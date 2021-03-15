@@ -75,7 +75,9 @@ class ClanEventsPanel extends PluginPanel
         icon = ImageUtil.loadImageResource(getClass(), "hof.png");
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Hall of Fame", "hof"));
         icon = ImageUtil.loadImageResource(getClass(), "botw.png");
-        dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Test", "test"));
+        dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Time Highscore", "speed"));
+        icon = ImageUtil.loadImageResource(getClass(), "botw.png");
+        dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " CM Mentors", "cmmen"));
 
         //Set the color
         color1 = "#"+Integer.toHexString(config.col1color().getRGB()).substring(2);
