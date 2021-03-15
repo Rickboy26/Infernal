@@ -20,9 +20,9 @@ import java.io.IOException;
 
 @Slf4j
 @PluginDescriptor(
-		name = "Clan Events",
+		name = "Infernal FC",
 		description = "A plugin used to keep track of clan events/announcements",
-		tags = {"ely", "elysium", "cc", "hunt", "pass", "event", "clan"}
+		tags = {"Infernal"}
 )
 public class ClanEventsPlugin extends Plugin
 {

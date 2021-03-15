@@ -69,7 +69,7 @@ class ClanEventsPanel extends PluginPanel
         BufferedImage icon = ImageUtil.loadImageResource(getClass(), "home.png");
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Home", "home"));
         icon = ImageUtil.loadImageResource(getClass(), "zuk.png");
-        dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Zuk'n Ladders", "botw"));
+        dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Zuk'n Ladders", "event"));
         icon = ImageUtil.loadImageResource(getClass(), "event.png");
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Clan Event", "event"));
         icon = ImageUtil.loadImageResource(getClass(), "hof.png");
