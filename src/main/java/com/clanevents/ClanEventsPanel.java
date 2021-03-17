@@ -77,7 +77,7 @@ class ClanEventsPanel extends PluginPanel
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Hall of Fame", "hof"));
         icon = ImageUtil.loadImageResource(getClass(), "botw.png");
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Time Highscore", "speed"));
-        icon = ImageUtil.loadImageResource(getClass(), "botw.png");
+        icon = ImageUtil.loadImageResource(getClass(), "cm.png");
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " CM Meta", "cmmen"));
 
         //Set the color
@@ -211,7 +211,7 @@ class ClanEventsPanel extends PluginPanel
                 if (tab.equals("cmmen")) {
                     int i = 0;
                     for (List row : values) {
-                        if (i  > 3) {
+                        if (i  > 6) {
                             break;
                         }
                         String val1 = "";
