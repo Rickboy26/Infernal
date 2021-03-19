@@ -11,6 +11,8 @@ import java.awt.event.KeyEvent;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 public class Lookup {
@@ -20,6 +22,7 @@ public class Lookup {
     private PlayerData[] playerData;
     private String color1;
     private String color2;
+    private RankData[] ranks;
 
     public Lookup (ClanEventsConfig config) {
 
@@ -56,18 +59,41 @@ public class Lookup {
         ssArea.setPreferredSize(new Dimension(200, 300));
         ssArea.add(combobox);
         ssArea.add(ssText);
+
+        GetRankData();
     }
 
     public JPanel getLayout() {
         return ssArea;
     }
 
-    public void GetPlayerData(String searchString) {
-
-
+    public void GetRankData() {
         try {
             // Create a neat value object to hold the URL
-            URL url = new URL("https://infernal-fc.com/api/Members?active=1&_start=0&_end=10&username=" + searchString);
+            URL url = new URL("https://infernal-fc.com/api/ranks?_start=0&_end=5000");
+
+            // Open a connection(?) on the URL(??) and cast the response(???)
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            // Now it's "open", we can set the request method, headers etc.
+            connection.setRequestProperty("accept", "application/json");
+
+            // This line makes the request
+            InputStream responseStream = connection.getInputStream();
+
+            // Manually converting the response body InputStream to APOD using Jackson
+            ObjectMapper mapper = new ObjectMapper();
+            ranks = mapper.readValue(responseStream, RankData[].class);
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void GetPlayerData(String searchString) {
+        try {
+            // Create a neat value object to hold the URL
+            URL url = new URL("https://infernal-fc.com/api/Members?active=1&_start=0&_end=10&username=" + URLEncoder.encode(searchString, StandardCharsets.UTF_8.toString()));
 
             // Open a connection(?) on the URL(??) and cast the response(???)
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -96,6 +122,8 @@ public class Lookup {
         String data = "";
 
         if (playerData != null) {
+            RankData rank = Arrays.stream(ranks).filter(r -> playerData.getRank_id() == r.getId()).findFirst().orElse(null);
+
             data += "<html><table width=230>";
 
             data += "<tr>";
@@ -108,7 +136,7 @@ public class Lookup {
             data += "<tr>";
             data += "<td><font color='" + color1 + "'>Rank</font></td>";
             data += "<td><font color='" + color2 + "'>";
-            data += playerData.Rank_id;
+            data += rank.Name;
             data += "</font></td>";
             data += "</tr>";
 
