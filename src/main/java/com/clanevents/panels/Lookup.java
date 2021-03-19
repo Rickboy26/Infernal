@@ -106,11 +106,33 @@ public class Lookup {
             data += "</tr>";
 
             data += "<tr>";
+            data += "<td><font color='" + color1 + "'>Rank</font></td>";
+            data += "<td><font color='" + color2 + "'>";
+            data += playerData.Rank_id;
+            data += "</font></td>";
+            data += "</tr>";
+
+            data += "<tr>";
+            data += "<td><font color='" + color1 + "'>PvM Points</font></td>";
+            data += "<td><font color='" + color2 + "'>";
+            data += playerData.PvmPoints;
+            data += "</font></td>";
+            data += "</tr>";
+
+            data += "<tr>";
+            data += "<td><font color='" + color1 + "'>Community Points</font></td>";
+            data += "<td><font color='" + color2 + "'>";
+            data += playerData.NonPvmPoints;
+            data += "</font></td>";
+            data += "</tr>";
+
+            data += "<tr>";
             data += "<td><font color='" + color1 + "'>Total points</font></td>";
             data += "<td><font color='" + color2 + "'>";
             data += playerData.OverallPoints;
             data += "</font></td>";
             data += "</tr>";
+
 
             data += "</table></html>";
         }
