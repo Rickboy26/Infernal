@@ -87,7 +87,7 @@ class ClanEventsPanel extends PluginPanel
                         this.add(lookupLayouit);
                         break;
                 }
-                this.repaint();
+                this.updateUI();
             }
         });
 
