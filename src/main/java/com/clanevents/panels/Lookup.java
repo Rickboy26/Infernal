@@ -127,6 +127,8 @@ public class Lookup {
             data += "<html><table width=230>";
 
             data += "<tr>";
+            data += "</tr>";
+            data += "<tr>";
             data += "<td><font color='" + color1 + "'>Username</font></td>";
             data += "<td><font color='" + color2 + "'>";
             data += playerData.Username;
@@ -137,6 +139,14 @@ public class Lookup {
             data += "<td><font color='" + color1 + "'>Rank</font></td>";
             data += "<td><font color='" + color2 + "'>";
             data += rank.Name;
+            data += "</font></td>";
+            data += "</tr>";
+
+            data += "<tr>";
+            data += "</tr>";
+            data += "<tr>";
+            data += "<td><font color='" + color1 + "'><b>Points Section</b></font></td>";
+            data += "<td><font color='" + color2 + "'>";
             data += "</font></td>";
             data += "</tr>";
 
@@ -161,6 +171,12 @@ public class Lookup {
             data += "</font></td>";
             data += "</tr>";
 
+            data += "<tr>";
+            data += "<td><font color='" + color1 + "'>Alt Accounts</font></td>";
+            data += "<td><font color='" + color2 + "'>";
+            data += playerData.ParentAccount;
+            data += "</font></td>";
+            data += "</tr>";
 
             data += "</table></html>";
         }
