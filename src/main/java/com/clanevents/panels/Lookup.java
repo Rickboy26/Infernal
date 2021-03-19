@@ -110,6 +110,8 @@ public class Lookup {
 
             String[] dropdownData = Arrays.stream(playerData).map(PlayerData::getUsername).toArray(String[]::new);
             combobox.setModel(new DefaultComboBoxModel(dropdownData));
+            combobox.setSelectedIndex(-1);
+            combobox.getEditor().setItem(searchString);
             combobox.showPopup();
 
         } catch (Exception e) {
