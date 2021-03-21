@@ -103,9 +103,9 @@ class ClanEventsPanel extends PluginPanel
         c.gridy++;
 
         lookupLayouit = lookup.getLayout();
-        lookupLayouit.setSize( new Dimension( 200, 300 ) );
+        lookupLayouit.setSize( new Dimension( 200, 700 ) );
 
         cmmenLayouit = cmMen.getLayout();
-        cmmenLayouit.setSize( new Dimension( 200, 300 ) );
+        cmmenLayouit.setSize( new Dimension( 200, 700 ) );
     }
 }

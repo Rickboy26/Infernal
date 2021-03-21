@@ -93,7 +93,7 @@ public class CmMen {
                 data += "<html><table width=230>";
                 int i = 0;
                 for (java.util.List row : values) {
-                    if (i  > 6) {
+                    if (i  > 12) {
                         break;
                     }
                     String val1 = "";

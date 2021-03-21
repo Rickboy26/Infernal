@@ -56,7 +56,7 @@ public class Lookup {
                     }
                 }
         );
-        ssArea.setPreferredSize(new Dimension(200, 300));
+        ssArea.setPreferredSize(new Dimension(200, 700));
         ssArea.add(combobox);
         ssArea.add(ssText);
 
@@ -145,6 +145,13 @@ public class Lookup {
             data += "</tr>";
 
             data += "<tr>";
+            data += "<td><font color='" + color1 + "'>Active?</font></td>";
+            data += "<td><font color='" + color2 + "'>";
+            data += playerData.Active;
+            data += "</font></td>";
+            data += "</tr>";
+
+            data += "<tr>";
             data += "</tr>";
             data += "<tr>";
             data += "<td><font color='" + color1 + "'><b>Points Section</b></font></td>";
@@ -170,6 +177,50 @@ public class Lookup {
             data += "<td><font color='" + color1 + "'>Total points</font></td>";
             data += "<td><font color='" + color2 + "'>";
             data += playerData.OverallPoints;
+            data += "</font></td>";
+            data += "</tr>";
+
+            data += "<tr>";
+            data += "</tr>";
+            data += "<tr>";
+            data += "<td><font color='" + color1 + "'><b>Loot Section</b></font></td>";
+            data += "<td><font color='" + color2 + "'>";
+            data += "</font></td>";
+            data += "</tr>";
+
+            data += "<tr>";
+            data += "<td><font color='" + color1 + "'>Amount split</font></td>";
+            data += "<td><font color='" + color2 + "'>";
+            data += playerData.ValueSplit ;
+            data += "<font color='" + color2 + "'>M</td>";
+            data += "</tr>";
+
+            data += "<tr>";
+            data += "<td><font color='" + color1 + "'>Amount Tanked</font></td>";
+            data += "<td><font color='" + color2 + "'>";
+            data += playerData.ValueTanked ;
+            data += "<font color='" + color2 + "'>M</td>";
+            data += "</tr>";
+
+            data += "<tr>";
+            data += "</tr>";
+            data += "<tr>";
+            data += "<td><font color='" + color1 + "'><b>Mentor Section</b></font></td>";
+            data += "<td><font color='" + color2 + "'>";
+            data += "</font></td>";
+            data += "</tr>";
+
+            data += "<tr>";
+            data += "<td><font color='" + color1 + "'>Mentor Points</font></td>";
+            data += "<td><font color='" + color2 + "'>";
+            data += playerData.MentorPoints;
+            data += "</font></td>";
+            data += "</tr>";
+
+            data += "<tr>";
+            data += "<td><font color='" + color1 + "'>Helper Points</font></td>";
+            data += "<td><font color='" + color2 + "'>";
+            data += playerData.HelperPoints;
             data += "</font></td>";
             data += "</tr>";
 
