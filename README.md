@@ -1,4 +1,4 @@
-The clan is used by Infernal Fc Members
+The Plugin is used by Infernal Fc Members
 
 The Plugin currently allows the following features :
 
