@@ -227,13 +227,17 @@ public class Lookup {
 
             data += "<tr>";
             data += "</tr>";
-
+            data += "<tr>";
+            data += "<td><font color='" + color1 + "'><b>Alt Section</b></font></td>";
+            data += "<td><font color='" + color2 + "'>";
+            data += "</font></td>";
+            data += "</tr>";
             if (alts.length > 0) {
                 int altIndex = 0;
                 for (PlayerData alt : alts) {
                     data += "<tr>";
                     if (altIndex == 0) {
-                        data += "<td><font color='" + color1 + "'>Alt Accounts</font></td>";
+                        data += "<td><font color='" + color1 + "'>Names</font></td>";
                     } else {
                         data += "<td></td>";
                     }
@@ -245,7 +249,7 @@ public class Lookup {
                     altIndex ++;
                 }
             } else {
-                data += "<tr><td><font color='" + color1 + "'>Alt Accounts</font></td></tr>";
+                data += "<tr><td><font color='" + color1 + "'>No registered alts</font></td></tr>";
             }
 
             data += "</table></html>";
