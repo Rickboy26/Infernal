@@ -19,7 +19,7 @@ public class Lookup {
     private final JPanel ssArea = new JPanel();
     private final JLabel ssText = new JLabel();
     private final JComboBox combobox = new JComboBox();
-    private PlayerData[] playerData;
+    private PlayerData[] playerData = new PlayerData[0];
     private String color1;
     private String color2;
     private RankData[] ranks;
@@ -120,10 +120,35 @@ public class Lookup {
 
     }
 
+    private PlayerData[] GetAltData(int id) {
+        try {
+            // Create a neat value object to hold the URL
+            URL url = new URL("https://infernal-fc.com/api/Members?active=1&_start=0&_end=10&parentAccount=" + id);
+
+            // Open a connection(?) on the URL(??) and cast the response(???)
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            // Now it's "open", we can set the request method, headers etc.
+            connection.setRequestProperty("accept", "application/json");
+
+            // This line makes the request
+            InputStream responseStream = connection.getInputStream();
+
+            // Manually converting the response body InputStream to APOD using Jackson
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.readValue(responseStream, PlayerData[].class);
+
+        } catch (Exception e) {
+            System.out.println(e);
+            return new PlayerData[0];
+        }
+    }
+
     private void SetPlayerStats(PlayerData playerData) {
         String data = "";
 
         if (playerData != null) {
+            PlayerData[] alts = GetAltData(playerData.getId());
             RankData rank = Arrays.stream(ranks).filter(r -> playerData.getRank_id() == r.getId()).findFirst().orElse(null);
 
             data += "<html><table width=230>";
@@ -225,11 +250,27 @@ public class Lookup {
             data += "</tr>";
 
             data += "<tr>";
-            data += "<td><font color='" + color1 + "'>Alt Accounts</font></td>";
-            data += "<td><font color='" + color2 + "'>";
-            data += playerData.ParentAccount;
-            data += "</font></td>";
             data += "</tr>";
+
+            if (alts.length > 0) {
+                int altIndex = 0;
+                for (PlayerData alt : alts) {
+                    data += "<tr>";
+                    if (altIndex == 0) {
+                        data += "<td><font color='" + color1 + "'>Alt Accounts</font></td>";
+                    } else {
+                        data += "<td></td>";
+                    }
+
+                    data += "<td><font color='" + color2 + "'>";
+                    data += alt.getUsername();
+                    data += "</font></td>";
+                    data += "</tr>";
+                    altIndex ++;
+                }
+            } else {
+                data += "<tr><td><font color='" + color1 + "'>Alt Accounts</font></td></tr>";
+            }
 
             data += "</table></html>";
         }

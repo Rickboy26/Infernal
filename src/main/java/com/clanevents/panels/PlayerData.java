@@ -1,11 +1,13 @@
 package com.clanevents.panels;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
 import java.util.TimeZone;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PlayerData {
 
     public PlayerData() {}
