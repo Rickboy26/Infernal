@@ -17,37 +17,17 @@ public class PlayerData {
     @Getter @Setter
     public Boolean Active;
     @Getter @Setter
-    public TimeZone Timezone;
-    @Getter @Setter
     public Boolean Gearcheck;
     @Getter @Setter
     public int Points;
     @Getter @Setter
-    public int RecruitedBy;
-    @Getter @Setter
     public int ParentAccount;
     @Getter @Setter
-    public String LegacyBumps;
-    @Getter @Setter
-    public String Comments;
-    @Getter @Setter
-    public Boolean IsAdmin;
-    @Getter @Setter
     public Date JoinDate;
-    @Getter @Setter
-    public String Legacyevents;
-    @Getter @Setter
-    public String Legacymentor;
-    @Getter @Setter
-    public String Legacyrecruits;
-    @Getter @Setter
-    public String Legacyhelper;
     @Getter @Setter
     public int Rank_id;
     @Getter @Setter
     public Boolean Mentor;
-    @Getter @Setter
-    public String DiscordId;
     @Getter @Setter
     public Boolean IsEventStaff;
     @Getter @Setter
@@ -76,18 +56,5 @@ public class PlayerData {
     public int ValueSplit;
     @Getter @Setter
     public int ValueTanked;
-    @Getter @Setter
-    public String[] Offenses;
-    @Getter @Setter
-    public int AltAccountPvmPoints;
-    @Getter @Setter
-    public int AltAccountAltPoints;
-    @Getter @Setter
-    public int AltAccountBumpPoints;
-    @Getter @Setter
-    public int AltAccountEventPoints;
-    @Getter @Setter
-    public int AltAccountHelperPoints;
-
 
 }
