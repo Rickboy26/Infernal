@@ -51,6 +51,7 @@ class ClanEventsPanel extends PluginPanel
     JPanel lookupLayouit;
     private String tab;
 
+
     void init(ClanEventsConfig config, int index){
 
 
@@ -59,6 +60,8 @@ class ClanEventsPanel extends PluginPanel
         dropdown.setForeground(Color.WHITE);
         final ComboBoxIconListRenderer renderer = new ComboBoxIconListRenderer();
         dropdown.setRenderer(renderer);
+
+
 
         BufferedImage icon = ImageUtil.loadImageResource(getClass(), "home.png");
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Home", "home"));
@@ -107,5 +110,6 @@ class ClanEventsPanel extends PluginPanel
 
         cmmenLayouit = cmMen.getLayout();
         cmmenLayouit.setSize( new Dimension( 200, 700 ) );
+
     }
 }
