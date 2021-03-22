@@ -75,7 +75,8 @@ public interface ClanEventsConfig extends Config
 			position = 5,
 			keyName = "sheetId",
 			name = "Google Sheet ID (Restart plugin)",
-			description = "ID of the google sheet to read.  You may need to restart the plugin after you have changed this.",
+			description = "ID of the google sheet to read.  " +
+					"You may need to restart the plugin after you have changed this.",
 			section = gSheetsSection
 	)
 	default String sheetId()
@@ -87,7 +88,8 @@ public interface ClanEventsConfig extends Config
 			position = 6,
 			keyName = "apiKey",
 			name = "Google Sheet API Key",
-			description = "Google project API Key (ask your clan for one).  You may need to restart the plugin after you have changed this.",
+			description = "Google project API Key (ask your clan for one).  " +
+					"You may need to restart the plugin after you have changed this.",
 			section = gSheetsSection
 	)
 	default String apiKey()
