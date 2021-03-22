@@ -237,7 +237,7 @@ public class Lookup {
                 for (PlayerData alt : alts) {
                     data += "<tr>";
                     if (altIndex == 0) {
-                        data += "<td><font color='" + color1 + "'>Names</font></td>";
+                        data += "<td><font color='" + color1 + "'>Usernames</font></td>";
                     } else {
                         data += "<td></td>";
                     }
