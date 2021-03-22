@@ -75,7 +75,7 @@ class ClanEventsPanel extends PluginPanel
         icon = ImageUtil.loadImageResource(getClass(), "home.png");
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Player Lookup", "lookup"));
         icon = ImageUtil.loadImageResource(getClass(), "home.png");
-        dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Ranks", "ranks"));
+        dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Requirements", "ranks"));
         icon = ImageUtil.loadImageResource(getClass(), "cm.png");
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " CM Meta", "cmmen"));
 
