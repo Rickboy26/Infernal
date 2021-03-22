@@ -4,12 +4,14 @@ import com.clanevents.ClanEventsConfig;
 import com.clanevents.GoogleSheet;
 import lombok.SneakyThrows;
 import net.runelite.client.ui.ColorScheme;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class CmMen {
+
+public class Ranks {
     private final JPanel ssArea = new JPanel();
     private final JLabel ssText = new JLabel();
     private JPanel cmButtonPanel = new JPanel();
@@ -17,8 +19,10 @@ public class CmMen {
     private String color1;
     private String color2;
     private int cmMan = 3;
+    private RankData[] ranks;
 
-    public CmMen(ClanEventsConfig config) {
+    public Ranks(ClanEventsConfig config, RankData[] ranks) {
+        this.ranks = ranks;
         // Google sheet API
         sheet.setKey(config.apiKey());
         sheet.setSheetId(config.sheetId());
@@ -27,9 +31,12 @@ public class CmMen {
         color1 = "#"+Integer.toHexString(config.col1color().getRGB()).substring(2);
         color2 = "#"+Integer.toHexString(config.col2color().getRGB()).substring(2);
 
-        for (int i = 3; i < 10; i++) {
-            cmButtonPanel.add(createCmButton(i), BorderLayout.WEST);
-        }
+        cmButtonPanel.add(createRankButton("trial", "⏱", "Trial"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("trial", "😊", "Junior Member"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("trial", "➀", "Member"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("trial", "➁", "Senior Member"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("trial", "➂", "Elite Member"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("trial", "⭐", "Lieutenant"), BorderLayout.WEST);
 
         ssArea.add(cmButtonPanel, BorderLayout.NORTH);
 
@@ -42,24 +49,26 @@ public class CmMen {
         return ssArea;
     }
 
-    private JButton createCmButton(int index )
+    private JButton createRankButton(String name, String label, String tooltip )
     {
-        final JButton label = new JButton(String.valueOf(index));
-        label.setPreferredSize(new Dimension(26, 26));
-        label.setFont(new Font("Arial", Font.PLAIN, 9));
-        label.setFocusable(false);
-        label.addMouseListener(new MouseAdapter()
+        final JButton button = new JButton(label);
+        button.setToolTipText(tooltip);
+        button.setPreferredSize(new Dimension(34, 34));
+        button.setFont(new Font("Arial Unicode MS", Font.PLAIN, 13));
+        button.setFocusable(false);
+        button.setMargin(new Insets(0, 0, 0, 0));
+        button.addMouseListener(new MouseAdapter()
         {
             @Override
             public void mouseEntered(MouseEvent e)
             {
-                label.setBackground(ColorScheme.DARK_GRAY_HOVER_COLOR);
+                button.setBackground(ColorScheme.DARK_GRAY_HOVER_COLOR);
             }
 
             @Override
             public void mouseExited(MouseEvent e)
             {
-                label.setBackground(ColorScheme.DARK_GRAY_COLOR);
+                button.setBackground(ColorScheme.DARK_GRAY_COLOR);
             }
 
             @SneakyThrows
@@ -68,13 +77,12 @@ public class CmMen {
             {
                 if (e.getButton() == MouseEvent.BUTTON1)
                 {
-                    cmMan = index;
-                    ssText.setText(getSheetDataFormatted(sheet, "cmmen"));
+
                 }
             }
         });
 
-        return label;
+        return button;
     }
 
     private String getSheetDataFormatted(GoogleSheet sheet, String field)

@@ -24,8 +24,9 @@ public class Lookup {
     private String color2;
     private RankData[] ranks;
 
-    public Lookup (ClanEventsConfig config) {
+    public Lookup (ClanEventsConfig config, RankData[] ranks) {
 
+        this.ranks = ranks;
         //Set the color
         color1 = "#"+Integer.toHexString(config.col1color().getRGB()).substring(2);
         color2 = "#"+Integer.toHexString(config.col2color().getRGB()).substring(2);
@@ -59,35 +60,10 @@ public class Lookup {
         ssArea.setPreferredSize(new Dimension(200, 700));
         ssArea.add(combobox);
         ssArea.add(ssText);
-
-        GetRankData();
     }
 
     public JPanel getLayout() {
         return ssArea;
-    }
-
-    public void GetRankData() {
-        try {
-            // Create a neat value object to hold the URL
-            URL url = new URL("https://infernal-fc.com/api/ranks?_start=0&_end=5000");
-
-            // Open a connection(?) on the URL(??) and cast the response(???)
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-            // Now it's "open", we can set the request method, headers etc.
-            connection.setRequestProperty("accept", "application/json");
-
-            // This line makes the request
-            InputStream responseStream = connection.getInputStream();
-
-            // Manually converting the response body InputStream to APOD using Jackson
-            ObjectMapper mapper = new ObjectMapper();
-            ranks = mapper.readValue(responseStream, RankData[].class);
-
-        } catch (Exception e) {
-            System.out.println(e);
-        }
     }
 
     public void GetPlayerData(String searchString) {

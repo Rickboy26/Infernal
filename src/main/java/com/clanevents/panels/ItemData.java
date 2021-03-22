@@ -5,13 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RankData {
-    public RankData() {}
+public class ItemData {
+    public ItemData() {}
 
     @Getter @Setter
     public int Id;
     @Getter @Setter
     public String Name;
     @Getter @Setter
-    public ItemData[] Items;
+    public String Artwork;
 }

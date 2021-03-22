@@ -34,10 +34,16 @@ import com.clanevents.components.combobox.ComboBoxIconEntry;
 import com.clanevents.components.combobox.ComboBoxIconListRenderer;
 import com.clanevents.panels.CmMen;
 import com.clanevents.panels.Lookup;
+import com.clanevents.panels.RankData;
+import com.clanevents.panels.Ranks;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.image.BufferedImage;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import net.runelite.client.ui.PluginPanel;
@@ -49,6 +55,7 @@ class ClanEventsPanel extends PluginPanel
     final JComboBox<ComboBoxIconEntry> dropdown = new JComboBox<>();
     JPanel cmmenLayouit;
     JPanel lookupLayouit;
+    JPanel ranksLayouit;
     private String tab;
 
 
@@ -67,11 +74,16 @@ class ClanEventsPanel extends PluginPanel
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Home", "home"));
         icon = ImageUtil.loadImageResource(getClass(), "home.png");
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Player Lookup", "lookup"));
+        icon = ImageUtil.loadImageResource(getClass(), "home.png");
+        dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Ranks", "ranks"));
         icon = ImageUtil.loadImageResource(getClass(), "cm.png");
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " CM Meta", "cmmen"));
 
-        Lookup lookup = new Lookup(config);
+        RankData[] ranks = GetRankData();
+
+        Lookup lookup = new Lookup(config, ranks);
         CmMen cmMen = new CmMen(config);
+        Ranks ranksPanel = new Ranks(config, ranks);
 
         dropdown.addItemListener(e ->
         {
@@ -88,6 +100,9 @@ class ClanEventsPanel extends PluginPanel
                         break;
                     case "lookup":
                         this.add(lookupLayouit);
+                        break;
+                    case "ranks":
+                        this.add(ranksLayouit);
                         break;
                 }
                 this.updateUI();
@@ -111,5 +126,32 @@ class ClanEventsPanel extends PluginPanel
         cmmenLayouit = cmMen.getLayout();
         cmmenLayouit.setSize( new Dimension( 200, 700 ) );
 
+        ranksLayouit = ranksPanel.getLayout();
+        ranksLayouit.setSize( new Dimension( 200, 700 ) );
+
+    }
+
+    public RankData[] GetRankData() {
+        try {
+            // Create a neat value object to hold the URL
+            URL url = new URL("https://infernal-fc.com/api/ranks?_start=0&_end=5000");
+
+            // Open a connection(?) on the URL(??) and cast the response(???)
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            // Now it's "open", we can set the request method, headers etc.
+            connection.setRequestProperty("accept", "application/json");
+
+            // This line makes the request
+            InputStream responseStream = connection.getInputStream();
+
+            // Manually converting the response body InputStream to APOD using Jackson
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.readValue(responseStream, RankData[].class);
+
+        } catch (Exception e) {
+            System.out.println(e);
+            return new RankData[0];
+        }
     }
 }
