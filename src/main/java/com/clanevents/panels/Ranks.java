@@ -5,24 +5,33 @@ import com.clanevents.GoogleSheet;
 import lombok.SneakyThrows;
 import net.runelite.client.ui.ColorScheme;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Arrays;
 
 
 public class Ranks {
     private final JPanel ssArea = new JPanel();
-    private final JLabel ssText = new JLabel();
     private JPanel cmButtonPanel = new JPanel();
     private final GoogleSheet sheet = new GoogleSheet();
     private String color1;
     private String color2;
     private int cmMan = 3;
     private RankData[] ranks;
+    private RankData selectedRank;
 
     public Ranks(ClanEventsConfig config, RankData[] ranks) {
         this.ranks = ranks;
+        selectedRank = Arrays.stream(ranks).filter(data -> "Trial".equals(data.getName())).findFirst().orElse(null);
         // Google sheet API
         sheet.setKey(config.apiKey());
         sheet.setSheetId(config.sheetId());
@@ -31,32 +40,63 @@ public class Ranks {
         color1 = "#"+Integer.toHexString(config.col1color().getRGB()).substring(2);
         color2 = "#"+Integer.toHexString(config.col2color().getRGB()).substring(2);
 
-        cmButtonPanel.add(createRankButton("trial", "⏱", "Trial"), BorderLayout.WEST);
-        cmButtonPanel.add(createRankButton("trial", "😊", "Junior Member"), BorderLayout.WEST);
-        cmButtonPanel.add(createRankButton("trial", "➀", "Member"), BorderLayout.WEST);
-        cmButtonPanel.add(createRankButton("trial", "➁", "Senior Member"), BorderLayout.WEST);
-        cmButtonPanel.add(createRankButton("trial", "➂", "Elite Member"), BorderLayout.WEST);
-        cmButtonPanel.add(createRankButton("trial", "⭐", "Lieutenant"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Trial", "⏱"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Junior Member", "☻"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Member", "➀"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Senior Member", "➁"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Elite Member", "➂"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Lieutenant", "⭐"), BorderLayout.WEST);
 
         ssArea.add(cmButtonPanel, BorderLayout.NORTH);
 
+        for (ItemData item : selectedRank.getItems()) {
+            ssArea.add(createItemLabel(item));
+        }
 
-        ssText.setText(getSheetDataFormatted(sheet, "cmmen"));
-        ssArea.add(ssText);
+        ssArea.setPreferredSize(new Dimension(200, 700));
     }
 
     public JPanel getLayout() {
         return ssArea;
     }
 
-    private JButton createRankButton(String name, String label, String tooltip )
+    private JLabel createItemLabel(ItemData item) {
+        JLabel label = new JLabel();
+        label.setBorder(new EmptyBorder(5, 5, 5, 5));
+        label.setToolTipText(item.getName());
+        try {
+            URL url = new URL(item.getArtwork());
+            final HttpURLConnection connection = (HttpURLConnection) url
+                    .openConnection();
+            connection.setRequestProperty(
+                    "User-Agent",
+                    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31");
+            String type = connection.getContentType();
+            InputStream stream = connection.getInputStream();
+
+
+            if (type.equals("image/gif")) {
+                //workaround for gif images
+            } else {
+                final BufferedImage image = ImageIO.read(stream);
+                Image img = image.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
+                label.setIcon(new ImageIcon(img));
+
+            }
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+
+        return label;
+    }
+
+    private JButton createRankButton(String name, String tooltip )
     {
-        final JButton button = new JButton(label);
+        final JButton button = new JButton(name);
         button.setToolTipText(tooltip);
-        button.setPreferredSize(new Dimension(34, 34));
-        button.setFont(new Font("Arial Unicode MS", Font.PLAIN, 13));
+        button.setPreferredSize(new Dimension(33, 33));
+        button.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
         button.setFocusable(false);
-        button.setMargin(new Insets(0, 0, 0, 0));
         button.addMouseListener(new MouseAdapter()
         {
             @Override
@@ -83,62 +123,5 @@ public class Ranks {
         });
 
         return button;
-    }
-
-    private String getSheetDataFormatted(GoogleSheet sheet, String field)
-    {
-        try
-        {
-            String data = "";
-            java.util.List<java.util.List<Object>> values = sheet.getValues(field);
-
-            if (values == null || values.isEmpty()) {
-                System.out.println("No data found.");
-            } else {
-                data += "<html><table width=230>";
-                int i = 0;
-                for (java.util.List row : values) {
-                    if (i  > 12) {
-                        break;
-                    }
-                    String val1 = "";
-                    String val2 = "";
-
-                    try
-                    {
-                        val1 = ""+row.get(0);
-                    }catch(Exception e)
-                    {
-                        val1 = "";
-                    }
-                    try
-                    {
-                        val2 = ""+row.get(1);
-                    }catch(Exception e)
-                    {
-                        val2 = "";
-                    }
-
-                    if (val1.equals(cmMan + " man") || i > 0) {
-                        data += "<tr>";
-                        data += "<td><font color='" + color1 + "'>";
-                        data += val1;
-                        data += "</font></td>";
-                        data += "<td><font color='" + color2 + "'>";
-                        data += val2;
-                        data += "</font></td>";
-                        data += "</tr>";
-
-                        i++;
-                    }
-                }
-                data += "</table></html>";
-
-            }
-            return data;
-        }catch (Exception ioException)
-        {
-            return "Could not load google sheet data.";
-        }
     }
 }

@@ -1,62 +1,59 @@
 package com.clanevents.panels;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.TimeZone;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class PlayerData {
 
     public PlayerData() {}
 
     @Getter @Setter
-    public int Id;
+    public int id;
     @Getter @Setter
-    public String Username;
+    public String username;
     @Getter @Setter
-    public Boolean Active;
+    public Boolean active;
     @Getter @Setter
-    public Boolean Gearcheck;
+    public Boolean gearcheck;
     @Getter @Setter
-    public int Points;
+    public int points;
     @Getter @Setter
-    public int ParentAccount;
+    public int parentAccount;
     @Getter @Setter
-    public Date JoinDate;
+    public Date poinDate;
     @Getter @Setter
-    public int Rank_id;
+    public int rank_id;
     @Getter @Setter
-    public Boolean Mentor;
+    public Boolean mentor;
     @Getter @Setter
-    public Boolean IsEventStaff;
+    public Boolean isEventStaff;
     @Getter @Setter
-    public Boolean IsClanAdmin;
+    public Boolean isClanAdmin;
     @Getter @Setter
-    public int OverallPoints;
+    public int overallPoints;
     @Getter @Setter
-    public int PvmPoints;
+    public int pvmPoints;
     @Getter @Setter
-    public int NonPvmPoints;
+    public int nonPvmPoints;
     @Getter @Setter
-    public int AltPoints;
+    public int altPoints;
     @Getter @Setter
-    public int BumpPoints;
+    public int bumpPoints;
     @Getter @Setter
-    public int RecruitPoints;
+    public int recruitPoints;
     @Getter @Setter
-    public int EventPoints;
+    public int eventPoints;
     @Getter @Setter
-    public int MentorPoints;
+    public int mentorPoints;
     @Getter @Setter
-    public int HelperPoints;
+    public int helperPoints;
     @Getter @Setter
-    public int DonationPoints;
+    public int donationPoints;
     @Getter @Setter
-    public int ValueSplit;
+    public int valueSplit;
     @Getter @Setter
-    public int ValueTanked;
+    public int valueTanked;
 
 }

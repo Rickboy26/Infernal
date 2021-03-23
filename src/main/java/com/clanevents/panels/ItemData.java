@@ -1,17 +1,15 @@
 package com.clanevents.panels;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class ItemData {
     public ItemData() {}
 
     @Getter @Setter
-    public int Id;
+    public int id;
     @Getter @Setter
-    public String Name;
+    public String name;
     @Getter @Setter
-    public String Artwork;
+    public String artwork;
 }

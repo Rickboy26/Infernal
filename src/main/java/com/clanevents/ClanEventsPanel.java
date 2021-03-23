@@ -32,18 +32,17 @@ import javax.swing.*;
 
 import com.clanevents.components.combobox.ComboBoxIconEntry;
 import com.clanevents.components.combobox.ComboBoxIconListRenderer;
-import com.clanevents.panels.CmMen;
-import com.clanevents.panels.Lookup;
-import com.clanevents.panels.RankData;
-import com.clanevents.panels.Ranks;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.clanevents.panels.*;
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import net.runelite.client.ui.PluginPanel;
@@ -136,18 +135,9 @@ class ClanEventsPanel extends PluginPanel
             // Create a neat value object to hold the URL
             URL url = new URL("https://infernal-fc.com/api/ranks?_start=0&_end=5000");
 
-            // Open a connection(?) on the URL(??) and cast the response(???)
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-            // Now it's "open", we can set the request method, headers etc.
-            connection.setRequestProperty("accept", "application/json");
-
-            // This line makes the request
-            InputStream responseStream = connection.getInputStream();
-
-            // Manually converting the response body InputStream to APOD using Jackson
-            ObjectMapper mapper = new ObjectMapper();
-            return mapper.readValue(responseStream, RankData[].class);
+            InputStream input = url.openStream();
+            Reader reader = new InputStreamReader(input, StandardCharsets.UTF_8);
+            return new Gson().fromJson(reader, RankData[].class);
 
         } catch (Exception e) {
             System.out.println(e);

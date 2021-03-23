@@ -1,7 +1,7 @@
 package com.clanevents.panels;
 
 import com.clanevents.ClanEventsConfig;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
@@ -9,7 +9,8 @@ import java.awt.event.ItemEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -68,21 +69,11 @@ public class Lookup {
 
     public void GetPlayerData(String searchString) {
         try {
-            // Create a neat value object to hold the URL
             URL url = new URL("https://infernal-fc.com/api/Members?active=1&_start=0&_end=10&username=" + URLEncoder.encode(searchString, StandardCharsets.UTF_8.toString()));
 
-            // Open a connection(?) on the URL(??) and cast the response(???)
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-            // Now it's "open", we can set the request method, headers etc.
-            connection.setRequestProperty("accept", "application/json");
-
-            // This line makes the request
-            InputStream responseStream = connection.getInputStream();
-
-            // Manually converting the response body InputStream to APOD using Jackson
-            ObjectMapper mapper = new ObjectMapper();
-            playerData = mapper.readValue(responseStream, PlayerData[].class);
+            InputStream input = url.openStream();
+            Reader reader = new InputStreamReader(input, StandardCharsets.UTF_8);
+            playerData  = new Gson().fromJson(reader, PlayerData[].class);
 
             String[] dropdownData = Arrays.stream(playerData).map(PlayerData::getUsername).toArray(String[]::new);
             combobox.setModel(new DefaultComboBoxModel(dropdownData));
@@ -101,18 +92,9 @@ public class Lookup {
             // Create a neat value object to hold the URL
             URL url = new URL("https://infernal-fc.com/api/Members?active=1&_start=0&_end=10&parentAccount=" + id);
 
-            // Open a connection(?) on the URL(??) and cast the response(???)
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-            // Now it's "open", we can set the request method, headers etc.
-            connection.setRequestProperty("accept", "application/json");
-
-            // This line makes the request
-            InputStream responseStream = connection.getInputStream();
-
-            // Manually converting the response body InputStream to APOD using Jackson
-            ObjectMapper mapper = new ObjectMapper();
-            return mapper.readValue(responseStream, PlayerData[].class);
+            InputStream input = url.openStream();
+            Reader reader = new InputStreamReader(input, StandardCharsets.UTF_8);
+            return new Gson().fromJson(reader, PlayerData[].class);
 
         } catch (Exception e) {
             System.out.println(e);
@@ -134,21 +116,21 @@ public class Lookup {
             data += "<tr>";
             data += "<td><font color='" + color1 + "'>Username</font></td>";
             data += "<td><font color='" + color2 + "'>";
-            data += playerData.Username;
+            data += playerData.getUsername();
             data += "</font></td>";
             data += "</tr>";
 
             data += "<tr>";
             data += "<td><font color='" + color1 + "'>Rank</font></td>";
             data += "<td><font color='" + color2 + "'>";
-            data += rank.Name;
+            data += rank.getName();
             data += "</font></td>";
             data += "</tr>";
 
             data += "<tr>";
             data += "<td><font color='" + color1 + "'>Active?</font></td>";
             data += "<td><font color='" + color2 + "'>";
-            data += playerData.Active;
+            data += playerData.getActive();
             data += "</font></td>";
             data += "</tr>";
 
@@ -163,21 +145,21 @@ public class Lookup {
             data += "<tr>";
             data += "<td><font color='" + color1 + "'>PvM Points</font></td>";
             data += "<td><font color='" + color2 + "'>";
-            data += playerData.PvmPoints;
+            data += playerData.getPvmPoints();
             data += "</font></td>";
             data += "</tr>";
 
             data += "<tr>";
             data += "<td><font color='" + color1 + "'>Community Points</font></td>";
             data += "<td><font color='" + color2 + "'>";
-            data += playerData.NonPvmPoints;
+            data += playerData.getNonPvmPoints();
             data += "</font></td>";
             data += "</tr>";
 
             data += "<tr>";
             data += "<td><font color='" + color1 + "'>Total points</font></td>";
             data += "<td><font color='" + color2 + "'>";
-            data += playerData.OverallPoints;
+            data += playerData.getOverallPoints();
             data += "</font></td>";
             data += "</tr>";
 
@@ -192,14 +174,14 @@ public class Lookup {
             data += "<tr>";
             data += "<td><font color='" + color1 + "'>Amount split</font></td>";
             data += "<td><font color='" + color2 + "'>";
-            data += playerData.ValueSplit ;
+            data += playerData.getValueSplit() ;
             data += "<font color='" + color2 + "'>M</td>";
             data += "</tr>";
 
             data += "<tr>";
             data += "<td><font color='" + color1 + "'>Amount Tanked</font></td>";
             data += "<td><font color='" + color2 + "'>";
-            data += playerData.ValueTanked ;
+            data += playerData.getValueTanked() ;
             data += "<font color='" + color2 + "'>M</td>";
             data += "</tr>";
 
@@ -214,14 +196,14 @@ public class Lookup {
             data += "<tr>";
             data += "<td><font color='" + color1 + "'>Mentor Points</font></td>";
             data += "<td><font color='" + color2 + "'>";
-            data += playerData.MentorPoints;
+            data += playerData.getMentorPoints();
             data += "</font></td>";
             data += "</tr>";
 
             data += "<tr>";
             data += "<td><font color='" + color1 + "'>Helper Points</font></td>";
             data += "<td><font color='" + color2 + "'>";
-            data += playerData.HelperPoints;
+            data += playerData.getHelperPoints();
             data += "</font></td>";
             data += "</tr>";
 
