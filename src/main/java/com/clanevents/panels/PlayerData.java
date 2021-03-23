@@ -24,7 +24,7 @@ public class PlayerData {
     @Getter @Setter
     public Date poinDate;
     @Getter @Setter
-    public int rank_id;
+    public int Rank_id;
     @Getter @Setter
     public Boolean mentor;
     @Getter @Setter
