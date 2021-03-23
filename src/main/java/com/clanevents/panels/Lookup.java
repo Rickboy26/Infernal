@@ -53,7 +53,8 @@ public class Lookup {
                     if (e.getStateChange() == ItemEvent.SELECTED)
                     {
                         String selection = e.getItem().toString();
-                        PlayerData player = Arrays.stream(playerData).filter(data -> selection.equals(data.getUsername())).findFirst().orElse(null);
+                        PlayerData player = Arrays.stream(playerData).filter(data ->
+                                selection.equals(data.getUsername())).findFirst().orElse(null);
                         SetPlayerStats(player);
                     }
                 }
@@ -69,7 +70,8 @@ public class Lookup {
 
     public void GetPlayerData(String searchString) {
         try {
-            URL url = new URL("https://infernal-fc.com/api/Members?active=1&_start=0&_end=10&username=" + URLEncoder.encode(searchString, StandardCharsets.UTF_8.toString()));
+            URL url = new URL("https://infernal-fc.com/api/Members?active=1&_start=0&_end=10&username="
+                    + URLEncoder.encode(searchString, StandardCharsets.UTF_8.toString()));
 
             InputStream input = url.openStream();
             Reader reader = new InputStreamReader(input, StandardCharsets.UTF_8);
@@ -107,7 +109,8 @@ public class Lookup {
 
         if (playerData != null) {
             PlayerData[] alts = GetAltData(playerData.getId());
-            RankData rank = Arrays.stream(ranks).filter(r -> playerData.getRank_id() == r.getId()).findFirst().orElse(null);
+            RankData rank = Arrays.stream(ranks).filter(r -> playerData.getRank_id()
+                    == r.getId()).findFirst().orElse(null);
 
             data += "<html><table width=230>";
 
@@ -209,13 +212,17 @@ public class Lookup {
 
             data += "<tr>";
             data += "</tr>";
-
+            data += "<tr>";
+            data += "<td><font color='" + color1 + "'><b>Alt Section</b></font></td>";
+            data += "<td><font color='" + color2 + "'>";
+            data += "</font></td>";
+            data += "</tr>";
             if (alts.length > 0) {
                 int altIndex = 0;
                 for (PlayerData alt : alts) {
                     data += "<tr>";
                     if (altIndex == 0) {
-                        data += "<td><font color='" + color1 + "'>Alt Accounts</font></td>";
+                        data += "<td><font color='" + color1 + "'>Usernames</font></td>";
                     } else {
                         data += "<td></td>";
                     }
@@ -227,7 +234,7 @@ public class Lookup {
                     altIndex ++;
                 }
             } else {
-                data += "<tr><td><font color='" + color1 + "'>Alt Accounts</font></td></tr>";
+                data += "<tr><td><font color='" + color1 + "'>No registered alts</font></td></tr>";
             }
 
             data += "</table></html>";
