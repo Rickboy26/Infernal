@@ -7,7 +7,6 @@ import net.runelite.client.ui.ColorScheme;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -22,6 +21,7 @@ import java.util.Arrays;
 public class Ranks {
     private final JPanel ssArea = new JPanel();
     private JPanel cmButtonPanel = new JPanel();
+    private JPanel itemPanel = new JPanel();
     private final GoogleSheet sheet = new GoogleSheet();
     private String color1;
     private String color2;
@@ -31,7 +31,7 @@ public class Ranks {
 
     public Ranks(ClanEventsConfig config, RankData[] ranks) {
         this.ranks = ranks;
-        selectedRank = Arrays.stream(ranks).filter(data -> "Trial".equals(data.getName())).findFirst().orElse(null);
+
         // Google sheet API
         sheet.setKey(config.apiKey());
         sheet.setSheetId(config.sheetId());
@@ -40,29 +40,45 @@ public class Ranks {
         color1 = "#"+Integer.toHexString(config.col1color().getRGB()).substring(2);
         color2 = "#"+Integer.toHexString(config.col2color().getRGB()).substring(2);
 
-        cmButtonPanel.add(createRankButton("Trial", "⏱"), BorderLayout.WEST);
-        cmButtonPanel.add(createRankButton("Junior Member", "☻"), BorderLayout.WEST);
-        cmButtonPanel.add(createRankButton("Member", "➀"), BorderLayout.WEST);
-        cmButtonPanel.add(createRankButton("Senior Member", "➁"), BorderLayout.WEST);
-        cmButtonPanel.add(createRankButton("Elite Member", "➂"), BorderLayout.WEST);
-        cmButtonPanel.add(createRankButton("Lieutenant", "⭐"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("⏱", "Trial"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("☻", "Junior Member"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("➀", "Member"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("➁", "Senior Member"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("➂", "Elite Member"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("⭐", "Lieutenant"), BorderLayout.WEST);
 
         ssArea.add(cmButtonPanel, BorderLayout.NORTH);
 
-        for (ItemData item : selectedRank.getItems()) {
-            ssArea.add(createItemLabel(item));
-        }
+        GridLayout gridLayout = new GridLayout(0,5);
+        itemPanel.setLayout(gridLayout);
 
-        ssArea.setPreferredSize(new Dimension(200, 700));
+        ssArea.add(itemPanel);
+        ssArea.setPreferredSize(new Dimension(200, 400));
+
+        rankChange("Trial");
     }
 
     public JPanel getLayout() {
         return ssArea;
     }
 
+    private void rankChange(String rankName) {
+        selectedRank = Arrays.stream(ranks).filter(data -> rankName.equals(data.getName())).findFirst().orElse(null);
+
+        int height = (int) Math.ceil(selectedRank.items.length / 5) * 50;
+        itemPanel.setPreferredSize(new Dimension(200, height));
+        itemPanel.removeAll();
+
+        for (ItemData item : selectedRank.getItems()) {
+            itemPanel.add(createItemLabel(item));
+        }
+
+        itemPanel.updateUI();
+        ssArea.updateUI();
+    }
+
     private JLabel createItemLabel(ItemData item) {
         JLabel label = new JLabel();
-        label.setBorder(new EmptyBorder(5, 5, 5, 5));
         label.setToolTipText(item.getName());
         try {
             URL url = new URL(item.getArtwork());
@@ -79,7 +95,7 @@ public class Ranks {
                 //workaround for gif images
             } else {
                 final BufferedImage image = ImageIO.read(stream);
-                Image img = image.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
+                Image img = image.getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH);
                 label.setIcon(new ImageIcon(img));
 
             }
@@ -117,7 +133,7 @@ public class Ranks {
             {
                 if (e.getButton() == MouseEvent.BUTTON1)
                 {
-
+                    rankChange(tooltip);
                 }
             }
         });
