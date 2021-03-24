@@ -1,6 +1,6 @@
-package com.clanevents.panels;
+package com.InfernalFC.panels;
 
-import com.clanevents.ClanEventsConfig;
+import com.InfernalFC.InfernalFCConfig;
 import com.google.gson.Gson;
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
@@ -25,7 +25,7 @@ public class Lookup {
     private String color2;
     private RankData[] ranks;
 
-    public Lookup (ClanEventsConfig config, RankData[] ranks) {
+    public Lookup (InfernalFCConfig config, RankData[] ranks) {
 
         this.ranks = ranks;
         //Set the color

@@ -1,4 +1,4 @@
-package com.clanevents.components.combobox;
+package com.InfernalFC.components.combobox;
 
 import javax.annotation.Nullable;
 import javax.swing.Icon;

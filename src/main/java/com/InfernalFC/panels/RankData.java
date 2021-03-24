@@ -1,15 +1,15 @@
-package com.clanevents.panels;
+package com.InfernalFC.panels;
 
 import lombok.Getter;
 import lombok.Setter;
 
-public class ItemData {
-    public ItemData() {}
+public class RankData {
+    public RankData() {}
 
     @Getter @Setter
     public int id;
     @Getter @Setter
     public String name;
     @Getter @Setter
-    public String artwork;
+    public ItemData[] items;
 }

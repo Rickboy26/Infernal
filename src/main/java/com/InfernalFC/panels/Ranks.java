@@ -1,7 +1,7 @@
-package com.clanevents.panels;
+package com.InfernalFC.panels;
 
-import com.clanevents.ClanEventsConfig;
-import com.clanevents.GoogleSheet;
+import com.InfernalFC.InfernalFCConfig;
+import com.InfernalFC.GoogleSheet;
 import lombok.SneakyThrows;
 import net.runelite.client.ui.ColorScheme;
 
@@ -29,7 +29,7 @@ public class Ranks {
     private RankData[] ranks;
     private RankData selectedRank;
 
-    public Ranks(ClanEventsConfig config, RankData[] ranks) {
+    public Ranks(InfernalFCConfig config, RankData[] ranks) {
         this.ranks = ranks;
 
         // Google sheet API
@@ -84,9 +84,7 @@ public class Ranks {
             URL url = new URL(item.getArtwork());
             final HttpURLConnection connection = (HttpURLConnection) url
                     .openConnection();
-            connection.setRequestProperty(
-                    "User-Agent",
-                    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31");
+            connection.setRequestProperty("User-Agent", "RuneLite/InfernalFC plugin");
             String type = connection.getContentType();
             InputStream stream = connection.getInputStream();
 

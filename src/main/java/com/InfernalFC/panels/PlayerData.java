@@ -1,4 +1,4 @@
-package com.clanevents.panels;
+package com.InfernalFC.panels;
 
 import lombok.Getter;
 import lombok.Setter;

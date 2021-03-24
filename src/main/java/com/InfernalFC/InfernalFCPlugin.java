@@ -1,4 +1,4 @@
-package com.clanevents;
+package com.InfernalFC;
 
 import com.google.inject.Provides;
 import javax.inject.Inject;
@@ -24,29 +24,29 @@ import java.io.IOException;
 		description = "A plugin used to keep track of clan events/announcements",
 		tags = {"Infernal"}
 )
-public class ClanEventsPlugin extends Plugin
+public class InfernalFCPlugin extends Plugin
 {
 	@Inject
 	private Client client;
 
 	@Inject
-	private ClanEventsConfig config;
+	private InfernalFCConfig config;
 
 	@Inject
 	private OverlayManager overlayManager;
 
 	@Inject
-	private ClanEventsOverlay overlay;
+	private InfernalFCOverlay overlay;
 
 	@Inject
 	private SkillIconManager skillIconManager;
 
 	@Inject
 	private ClientToolbar clientToolbar;
-	private ClanEventsPanel panel;
+	private InfernalFCPanel panel;
 	private NavigationButton uiNavigationButton;
 
-	static final String CONFIG_GROUP = "clanevents";
+	static final String CONFIG_GROUP = "InfernalFC";
 
 	@Override
 	protected void startUp() throws Exception
@@ -77,7 +77,7 @@ public class ClanEventsPlugin extends Plugin
 		if (!config.sheetId().equals("") && !config.apiKey().equals(""))
 		{
 			final BufferedImage icon = ImageUtil.loadImageResource(getClass(), "icon.png");
-			panel = injector.getInstance(ClanEventsPanel.class);
+			panel = injector.getInstance(InfernalFCPanel.class);
 			panel.init(config, 0);
 			uiNavigationButton = NavigationButton.builder()
 					.tooltip("Infernal FC")
@@ -90,8 +90,8 @@ public class ClanEventsPlugin extends Plugin
 	}
 
 	@Provides
-	ClanEventsConfig provideConfig(ConfigManager configManager)
+	InfernalFCConfig provideConfig(ConfigManager configManager)
 	{
-		return configManager.getConfig(ClanEventsConfig.class);
+		return configManager.getConfig(InfernalFCConfig.class);
 	}
 }

@@ -1,4 +1,4 @@
-package com.clanevents;
+package com.InfernalFC;
 
 import net.runelite.api.Client;
 import net.runelite.client.ui.overlay.OverlayMenuEntry;
@@ -15,15 +15,15 @@ import java.util.TimeZone;
 import static net.runelite.api.MenuAction.RUNELITE_OVERLAY_CONFIG;
 import static net.runelite.client.ui.overlay.OverlayManager.OPTION_CONFIGURE;
 
-public class ClanEventsOverlay extends OverlayPanel
+public class InfernalFCOverlay extends OverlayPanel
 {
     private final Client client;
-    private final ClanEventsPlugin plugin;
+    private final InfernalFCPlugin plugin;
     @Inject
-    private ClanEventsConfig config;
+    private InfernalFCConfig config;
 
     @Inject
-    private ClanEventsOverlay(Client client, ClanEventsPlugin plugin)
+    private InfernalFCOverlay(Client client, InfernalFCPlugin plugin)
     {
         super(plugin);
         setPosition(OverlayPosition.TOP_CENTER);

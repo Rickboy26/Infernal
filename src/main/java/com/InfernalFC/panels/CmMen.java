@@ -1,7 +1,7 @@
-package com.clanevents.panels;
+package com.InfernalFC.panels;
 
-import com.clanevents.ClanEventsConfig;
-import com.clanevents.GoogleSheet;
+import com.InfernalFC.InfernalFCConfig;
+import com.InfernalFC.GoogleSheet;
 import lombok.SneakyThrows;
 import net.runelite.client.ui.ColorScheme;
 import javax.swing.*;
@@ -18,7 +18,7 @@ public class CmMen {
     private String color2;
     private int cmMan = 3;
 
-    public CmMen(ClanEventsConfig config) {
+    public CmMen(InfernalFCConfig config) {
         // Google sheet API
         sheet.setKey(config.apiKey());
         sheet.setSheetId(config.sheetId());

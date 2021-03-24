@@ -1,4 +1,4 @@
-package com.clanevents;
+package com.InfernalFC;
 
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
@@ -7,8 +7,8 @@ import net.runelite.client.config.ConfigSection;
 
 import java.awt.*;
 
-@ConfigGroup(ClanEventsPlugin.CONFIG_GROUP)
-public interface ClanEventsConfig extends Config
+@ConfigGroup(InfernalFCPlugin.CONFIG_GROUP)
+public interface InfernalFCConfig extends Config
 {
 	@ConfigSection(
 			name = "Event Password",

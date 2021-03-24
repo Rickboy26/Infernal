@@ -24,15 +24,15 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.clanevents;
+package com.InfernalFC;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import com.clanevents.components.combobox.ComboBoxIconEntry;
-import com.clanevents.components.combobox.ComboBoxIconListRenderer;
-import com.clanevents.panels.*;
+import com.InfernalFC.components.combobox.ComboBoxIconEntry;
+import com.InfernalFC.components.combobox.ComboBoxIconListRenderer;
+import com.InfernalFC.panels.*;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import java.awt.Color;
@@ -49,7 +49,7 @@ import net.runelite.client.ui.PluginPanel;
 import net.runelite.client.util.ImageUtil;
 
 @Slf4j
-class ClanEventsPanel extends PluginPanel
+class InfernalFCPanel extends PluginPanel
 {
     final JComboBox<ComboBoxIconEntry> dropdown = new JComboBox<>();
     JPanel cmmenLayouit;
@@ -58,7 +58,7 @@ class ClanEventsPanel extends PluginPanel
     private String tab;
 
 
-    void init(ClanEventsConfig config, int index){
+    void init(InfernalFCConfig config, int index){
 
 
         //dropdown menu
