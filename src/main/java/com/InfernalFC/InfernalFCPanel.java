@@ -29,7 +29,6 @@ package com.InfernalFC;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
 import com.InfernalFC.components.combobox.ComboBoxIconEntry;
 import com.InfernalFC.components.combobox.ComboBoxIconListRenderer;
 import com.InfernalFC.panels.*;
@@ -52,22 +51,20 @@ import net.runelite.client.util.ImageUtil;
 class InfernalFCPanel extends PluginPanel
 {
     final JComboBox<ComboBoxIconEntry> dropdown = new JComboBox<>();
-    JPanel cmmenLayouit;
-    JPanel lookupLayouit;
-    JPanel ranksLayouit;
+    JPanel homeLayout;
+    JPanel cmmenLayout;
+    JPanel lookupLayout;
+    JPanel ranksLayout;
     private String tab;
 
 
     void init(InfernalFCConfig config, int index){
-
 
         //dropdown menu
         dropdown.setFocusable(false); // To prevent an annoying "focus paint" effect
         dropdown.setForeground(Color.WHITE);
         final ComboBoxIconListRenderer renderer = new ComboBoxIconListRenderer();
         dropdown.setRenderer(renderer);
-
-
 
         BufferedImage icon = ImageUtil.loadImageResource(getClass(), "home.png");
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Home", "home"));
@@ -80,8 +77,9 @@ class InfernalFCPanel extends PluginPanel
 
         RankData[] ranks = GetRankData();
 
-        Lookup lookup = new Lookup(config, ranks);
         CmMen cmMen = new CmMen(config);
+        Home home = new Home(config);
+        Lookup lookup = new Lookup(config, ranks);
         Ranks ranksPanel = new Ranks(config, ranks);
 
         dropdown.addItemListener(e ->
@@ -94,14 +92,18 @@ class InfernalFCPanel extends PluginPanel
                 this.add(dropdown);
 
                 switch (tab) {
+                    case "home":
+                        this.add(homeLayout);
+                        break;
                     case "cmmen":
-                        this.add(cmmenLayouit);
+                        this.add(cmmenLayout);
                         break;
                     case "lookup":
-                        this.add(lookupLayouit);
+                        this.add(lookupLayout);
                         break;
                     case "ranks":
-                        this.add(ranksLayouit);
+                        this.add(ranksLayout);
+                        ranksPanel.rankChange("Trial");
                         break;
                 }
                 this.updateUI();
@@ -119,15 +121,19 @@ class InfernalFCPanel extends PluginPanel
         this.add(dropdown, c);
         c.gridy++;
 
-        lookupLayouit = lookup.getLayout();
-        lookupLayouit.setSize( new Dimension( 200, 700 ) );
+        homeLayout = home.getLayout();
+        homeLayout.setSize( new Dimension( 200, 700 ) );
 
-        cmmenLayouit = cmMen.getLayout();
-        cmmenLayouit.setSize( new Dimension( 200, 700 ) );
+        cmmenLayout = cmMen.getLayout();
+        cmmenLayout.setSize( new Dimension( 200, 700 ) );
 
-        ranksLayouit = ranksPanel.getLayout();
-        ranksLayouit.setSize( new Dimension( 200, 700 ) );
+        lookupLayout = lookup.getLayout();
+        lookupLayout.setSize( new Dimension( 200, 700 ) );
 
+        ranksLayout = ranksPanel.getLayout();
+        ranksLayout.setSize( new Dimension( 200, 700 ) );
+
+        this.add(homeLayout);
     }
 
     public RankData[] GetRankData() {

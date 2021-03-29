@@ -11,7 +11,6 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -25,7 +24,6 @@ public class Ranks {
     private final GoogleSheet sheet = new GoogleSheet();
     private String color1;
     private String color2;
-    private int cmMan = 3;
     private RankData[] ranks;
     private RankData selectedRank;
 
@@ -54,15 +52,13 @@ public class Ranks {
 
         ssArea.add(itemPanel);
         ssArea.setPreferredSize(new Dimension(200, 400));
-
-        rankChange("Trial");
     }
 
     public JPanel getLayout() {
         return ssArea;
     }
 
-    private void rankChange(String rankName) {
+    public void rankChange(String rankName) {
         selectedRank = Arrays.stream(ranks).filter(data -> rankName.equals(data.getName())).findFirst().orElse(null);
 
         int height = (int) Math.ceil(selectedRank.items.length / 5) * 50;
@@ -91,13 +87,14 @@ public class Ranks {
 
             if (type.equals("image/gif")) {
                 //workaround for gif images
+                final BufferedImage image = ImageIO.read(stream);
             } else {
                 final BufferedImage image = ImageIO.read(stream);
                 Image img = image.getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH);
                 label.setIcon(new ImageIcon(img));
 
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
 
