@@ -76,14 +76,22 @@ public class Home {
         data += "<tr></tr>";
 
         data += "<tr>";
-        data += "<td><font color='" + color1 + "'><b>Overall points:</b></font></td>";
+        data += "<td colspan='2' style='text-align: center; font-size:30px;'><font color='yellow'><b>Highscores</b></font></td>";
+        data += "</tr>";
+
+        data += "<tr></tr>";
+
+        data += "<tr>";
+        data += "<td colspan='2' style='text-align: center;'><font color='" + color1 + "'><b>Overall points:</b></font></td>";
         data += "</tr>";
 
         data += "<tr>";
-        data += "<td><font color='" + color1 + "'>";
+        data += "<td colspan='2' style='text-align: center;'><font color='" + color1 + "'>";
         data += overall.getMember().getUsername();
         data += "</font></td>";
-        data += "<td><font color='" + color2 + "'>";
+        data += "</tr>";
+        data += "<tr>";
+        data += "<td colspan='2' style='text-align: center;'><font color='yellow'>";
         data += (int)overall.getSum();
         data += "</font></td>";
         data += "</tr>";
@@ -91,14 +99,16 @@ public class Home {
         data += "<tr></tr>";
 
         data += "<tr>";
-        data += "<td><font color='" + color1 + "'><b>EHB:</b></font></td>";
+        data += "<td colspan='2' style='text-align: center;'><font color='" + color1 + "'><b>EHB:</b></font></td>";
         data += "</tr>";
 
         data += "<tr>";
-        data += "<td><font color='" + color1 + "'>";
+        data += "<td colspan='2' style='text-align: center;'><font color='" + color1 + "'>";
         data += ehb.getMember().getUsername();
         data += "</font></td>";
-        data += "<td><font color='" + color2 + "'>";
+        data += "</tr>";
+        data += "<tr>";
+        data += "<td colspan='2' style='text-align: center;'><font color='yellow'>";
         data += (int)ehb.getSum();
         data += "</font></td>";
         data += "</tr>";
@@ -106,14 +116,16 @@ public class Home {
         data += "<tr></tr>";
 
         data += "<tr>";
-        data += "<td><font color='" + color1 + "'><b>KC:</b></font></td>";
+        data += "<td colspan='2' style='text-align: center;'><font color='" + color1 + "'><b>KC:</b></font></td>";
         data += "</tr>";
 
         data += "<tr>";
-        data += "<td><font color='" + color1 + "'>";
+        data += "<td colspan='2' style='text-align: center;'><font color='" + color1 + "'>";
         data += kc.getMember().getUsername();
         data += "</font></td>";
-        data += "<td><font color='" + color2 + "'>";
+        data += "</tr>";
+        data += "<tr>";
+        data += "<td colspan='2' style='text-align: center;'><font color='yellow'>";
         data += (int)kc.getSum();
         data += "</font></td>";
         data += "</tr>";
