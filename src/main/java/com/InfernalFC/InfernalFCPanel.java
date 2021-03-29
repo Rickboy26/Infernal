@@ -80,7 +80,7 @@ class InfernalFCPanel extends PluginPanel
         CmMen cmMen = new CmMen(config);
         Home home = new Home(config);
         Lookup lookup = new Lookup(config, ranks);
-        Ranks ranksPanel = new Ranks(config, ranks);
+        Ranks ranksPanel = new Ranks(ranks);
 
         dropdown.addItemListener(e ->
         {

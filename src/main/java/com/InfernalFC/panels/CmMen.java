@@ -20,8 +20,8 @@ public class CmMen {
 
     public CmMen(InfernalFCConfig config) {
         // Google sheet API
-        sheet.setKey(config.apiKey());
-        sheet.setSheetId(config.sheetId());
+        sheet.setKey("AIzaSyCNa-qSh3RewRkVh1NLbHefc8bjd8xWbkM");
+        sheet.setSheetId("1B3Oq_M45N5HULV1_OnMYE_RKgvIrXGiOrCQJKodjxU0");
 
         //Set the color
         color1 = "#"+Integer.toHexString(config.col1color().getRGB()).substring(2);

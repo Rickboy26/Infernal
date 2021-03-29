@@ -74,19 +74,16 @@ public class InfernalFCPlugin extends Plugin
 
 	private void startClanPanel()
 	{
-		if (!config.sheetId().equals("") && !config.apiKey().equals(""))
-		{
-			final BufferedImage icon = ImageUtil.loadImageResource(getClass(), "icon.png");
-			panel = injector.getInstance(InfernalFCPanel.class);
-			panel.init(config, 0);
-			uiNavigationButton = NavigationButton.builder()
-					.tooltip("Infernal FC")
-					.icon(icon)
-					.priority(7)
-					.panel(panel)
-					.build();
-			clientToolbar.addNavigation(uiNavigationButton);
-		}
+		final BufferedImage icon = ImageUtil.loadImageResource(getClass(), "icon.png");
+		panel = injector.getInstance(InfernalFCPanel.class);
+		panel.init(config, 0);
+		uiNavigationButton = NavigationButton.builder()
+				.tooltip("Infernal FC")
+				.icon(icon)
+				.priority(7)
+				.panel(panel)
+				.build();
+		clientToolbar.addNavigation(uiNavigationButton);
 	}
 
 	@Provides

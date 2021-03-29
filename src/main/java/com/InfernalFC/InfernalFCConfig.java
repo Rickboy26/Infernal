@@ -48,18 +48,6 @@ public interface InfernalFCConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 3,
-			keyName = "subPass",
-			name = "Bounty/Challenge Password",
-			description = "Display the sub passsword.",
-			section = eventPassSection
-	)
-	default String subPass()
-	{
-		return "";
-	}
-
-	@ConfigItem(
 			position = 4,
 			keyName = "passColor",
 			name = "Overlay Color",
@@ -71,34 +59,9 @@ public interface InfernalFCConfig extends Config
 		return Color.GREEN;
 	}
 
+
 	@ConfigItem(
 			position = 5,
-			keyName = "sheetId",
-			name = "Google Sheet ID (Restart plugin)",
-			description = "ID of the google sheet to read.  " +
-					"You may need to restart the plugin after you have changed this.",
-			section = gSheetsSection
-	)
-	default String sheetId()
-	{
-		return "1B3Oq_M45N5HULV1_OnMYE_RKgvIrXGiOrCQJKodjxU0";
-	}
-
-	@ConfigItem(
-			position = 6,
-			keyName = "apiKey",
-			name = "Google Sheet API Key",
-			description = "Google project API Key (ask your clan for one).  " +
-					"You may need to restart the plugin after you have changed this.",
-			section = gSheetsSection
-	)
-	default String apiKey()
-	{
-		return "AIzaSyCNa-qSh3RewRkVh1NLbHefc8bjd8xWbkM";
-	}
-
-	@ConfigItem(
-			position = 7,
 			keyName = "col1color",
 			name = "Column 1 Color",
 			description = "Configures the color of the spreadsheet column displayed",
@@ -110,7 +73,7 @@ public interface InfernalFCConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 8,
+			position = 6,
 			keyName = "col2color",
 			name = "Column 2 Color",
 			description = "Configures the color of the spreadsheet column displayed",

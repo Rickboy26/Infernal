@@ -35,7 +35,7 @@ public class InfernalFCOverlay extends OverlayPanel
     @Override
     public Dimension render(Graphics2D graphics)
     {
-        String text = config.eventPass() + " " + config.subPass();
+        String text = config.eventPass();
         if (config.dtm())
         {
             text = text + " " + localToGMT();

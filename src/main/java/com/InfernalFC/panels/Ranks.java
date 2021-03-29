@@ -1,7 +1,6 @@
 package com.InfernalFC.panels;
 
 import com.InfernalFC.InfernalFCConfig;
-import com.InfernalFC.GoogleSheet;
 import lombok.SneakyThrows;
 import net.runelite.client.ui.ColorScheme;
 
@@ -21,22 +20,11 @@ public class Ranks {
     private final JPanel ssArea = new JPanel();
     private JPanel cmButtonPanel = new JPanel();
     private JPanel itemPanel = new JPanel();
-    private final GoogleSheet sheet = new GoogleSheet();
-    private String color1;
-    private String color2;
     private RankData[] ranks;
     private RankData selectedRank;
 
-    public Ranks(InfernalFCConfig config, RankData[] ranks) {
+    public Ranks(RankData[] ranks) {
         this.ranks = ranks;
-
-        // Google sheet API
-        sheet.setKey(config.apiKey());
-        sheet.setSheetId(config.sheetId());
-
-        //Set the color
-        color1 = "#"+Integer.toHexString(config.col1color().getRGB()).substring(2);
-        color2 = "#"+Integer.toHexString(config.col2color().getRGB()).substring(2);
 
         cmButtonPanel.add(createRankButton("⏱", "Trial"), BorderLayout.WEST);
         cmButtonPanel.add(createRankButton("☻", "Junior Member"), BorderLayout.WEST);
