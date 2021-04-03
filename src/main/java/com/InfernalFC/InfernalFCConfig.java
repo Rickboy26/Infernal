@@ -33,7 +33,7 @@ public interface InfernalFCConfig extends Config
 	)
 	default String eventPass()
 	{
-		return "Event Password";
+		return "";
 	}
 	@ConfigItem(
 			position = 2,
