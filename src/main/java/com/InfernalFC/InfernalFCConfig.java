@@ -11,8 +11,8 @@ import java.awt.*;
 public interface InfernalFCConfig extends Config
 {
 		@ConfigSection(
-				name = "Event Password",
-				description = "Password info for clan event",
+				name = "Event Codeword",
+				description = "Codeword info for clan event",
 				position = 0
 		)
 		String eventPassSection = "Event Passphrase";
@@ -39,8 +39,8 @@ public interface InfernalFCConfig extends Config
 		@ConfigItem(
 				position = 2,
 				keyName = "eventPass",
-				name = "Event Password",
-				description = "Creates an overlay with the event password time",
+				name = "Event Codeword",
+				description = "Creates an overlay with the event codeword",
 				section = eventPassSection
 		)
 		default String eventPass()
