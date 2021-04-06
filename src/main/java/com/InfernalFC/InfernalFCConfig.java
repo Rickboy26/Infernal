@@ -18,7 +18,7 @@ public interface InfernalFCConfig extends Config
 		String eventPassSection = "Event Passphrase";
 
 		@ConfigSection(
-				name = "Colours",
+				name = "Colors",
 				description = "Colour config",
 				position = 1
 		)
