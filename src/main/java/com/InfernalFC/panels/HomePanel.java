@@ -2,7 +2,7 @@ package com.InfernalFC.panels;
 
 import com.InfernalFC.InfernalFCConfig;
 import com.google.gson.Gson;
-
+import javax.inject.Inject;
 import javax.swing.*;
 import java.awt.*;
 import java.io.InputStream;
@@ -17,27 +17,23 @@ import java.util.Date;
 
 import static com.InfernalFC.panels.PointsEnum.*;
 
-public class Home {
-    private final JPanel ssArea = new JPanel();
+public class HomePanel extends JPanel {
     private final JLabel ssText = new JLabel();
     private String color1;
     private String color2;
 
-    public Home(InfernalFCConfig config) {
+    @Inject
+    private HomePanel(InfernalFCConfig config) {
 
         //Set the color
         color1 = "#"+Integer.toHexString(config.col1color().getRGB()).substring(2);
         color2 = "#"+Integer.toHexString(config.col2color().getRGB()).substring(2);
 
 
-        ssArea.setPreferredSize(new Dimension(200, 900));
-        ssArea.add(ssText);
+        this.setPreferredSize(new Dimension(200, 900));
+        this.add(ssText);
 
         SetPointsStats();
-    }
-
-    public JPanel getLayout() {
-        return ssArea;
     }
 
     public PointsData GetPoints(PointsEnum score) {

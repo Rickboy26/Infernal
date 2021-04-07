@@ -1,10 +1,10 @@
 package com.InfernalFC.panels;
 
-import com.InfernalFC.InfernalFCConfig;
+import com.InfernalFC.InfernalFCPlugin;
 import lombok.SneakyThrows;
 import net.runelite.client.ui.ColorScheme;
-
 import javax.imageio.ImageIO;
+import javax.inject.Inject;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -16,15 +16,15 @@ import java.net.URL;
 import java.util.Arrays;
 
 
-public class Ranks {
-    private final JPanel ssArea = new JPanel();
+public class RanksPanel extends JPanel{
     private JPanel cmButtonPanel = new JPanel();
     private JPanel itemPanel = new JPanel();
     private RankData[] ranks;
     private RankData selectedRank;
 
-    public Ranks(RankData[] ranks) {
-        this.ranks = ranks;
+    @Inject
+    private RanksPanel(InfernalFCPlugin infernalFCPlugin) {
+        this.ranks = infernalFCPlugin.getRanks();
 
         cmButtonPanel.add(createRankButton("⏱", "Trial"), BorderLayout.WEST);
         cmButtonPanel.add(createRankButton("☻", "Junior Member"), BorderLayout.WEST);
@@ -33,18 +33,15 @@ public class Ranks {
         cmButtonPanel.add(createRankButton("➂", "Elite Member"), BorderLayout.WEST);
         cmButtonPanel.add(createRankButton("⭐", "Lieutenant"), BorderLayout.WEST);
 
-        ssArea.add(cmButtonPanel, BorderLayout.NORTH);
+        this.add(cmButtonPanel, BorderLayout.NORTH);
 
         GridLayout gridLayout = new GridLayout(0,5);
         itemPanel.setLayout(gridLayout);
 
-        ssArea.add(itemPanel);
-        ssArea.setPreferredSize(new Dimension(200, 400));
+        this.add(itemPanel);
+        this.setPreferredSize(new Dimension(200, 400));
     }
 
-    public JPanel getLayout() {
-        return ssArea;
-    }
 
     public void rankChange(String rankName) {
         selectedRank = Arrays.stream(ranks).filter(data -> rankName.equals(data.getName())).findFirst().orElse(null);
@@ -58,7 +55,7 @@ public class Ranks {
         }
 
         itemPanel.updateUI();
-        ssArea.updateUI();
+        this.updateUI();
     }
 
     private JLabel createItemLabel(ItemData item) {

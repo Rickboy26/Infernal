@@ -1,7 +1,9 @@
 package com.InfernalFC.panels;
 
 import com.InfernalFC.InfernalFCConfig;
+import com.InfernalFC.InfernalFCPlugin;
 import com.google.gson.Gson;
+import javax.inject.Inject;
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
@@ -16,8 +18,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
-public class Lookup {
-    private final JPanel ssArea = new JPanel();
+public class LookupPanel extends JPanel {
     private final JLabel ssText = new JLabel();
     private final JComboBox combobox = new JComboBox();
     private PlayerData[] playerData = new PlayerData[0];
@@ -25,9 +26,9 @@ public class Lookup {
     private String color2;
     private RankData[] ranks;
 
-    public Lookup (InfernalFCConfig config, RankData[] ranks) {
-
-        this.ranks = ranks;
+    @Inject
+    public LookupPanel(InfernalFCConfig config, InfernalFCPlugin infernalFCPlugin) {
+        this.ranks = infernalFCPlugin.getRanks();
         //Set the color
         color1 = "#"+Integer.toHexString(config.col1color().getRGB()).substring(2);
         color2 = "#"+Integer.toHexString(config.col2color().getRGB()).substring(2);
@@ -59,13 +60,9 @@ public class Lookup {
                     }
                 }
         );
-        ssArea.setPreferredSize(new Dimension(200, 700));
-        ssArea.add(combobox);
-        ssArea.add(ssText);
-    }
-
-    public JPanel getLayout() {
-        return ssArea;
+        this.setPreferredSize(new Dimension(200, 700));
+        this.add(combobox);
+        this.add(ssText);
     }
 
     public void GetPlayerData(String searchString) {

@@ -4,13 +4,13 @@ import com.InfernalFC.InfernalFCConfig;
 import com.InfernalFC.GoogleSheet;
 import lombok.SneakyThrows;
 import net.runelite.client.ui.ColorScheme;
+import javax.inject.Inject;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class CmMen {
-    private final JPanel ssArea = new JPanel();
+public class CmMenPanel extends JPanel {
     private final JLabel ssText = new JLabel();
     private JPanel cmButtonPanel = new JPanel();
     private final GoogleSheet sheet = new GoogleSheet();
@@ -18,7 +18,8 @@ public class CmMen {
     private String color2;
     private int cmMan = 3;
 
-    public CmMen(InfernalFCConfig config) {
+    @Inject
+    private CmMenPanel(InfernalFCConfig config) {
         // Google sheet API
         sheet.setKey("AIzaSyCNa-qSh3RewRkVh1NLbHefc8bjd8xWbkM");
         sheet.setSheetId("1B3Oq_M45N5HULV1_OnMYE_RKgvIrXGiOrCQJKodjxU0");
@@ -31,15 +32,10 @@ public class CmMen {
             cmButtonPanel.add(createCmButton(i), BorderLayout.WEST);
         }
 
-        ssArea.add(cmButtonPanel, BorderLayout.NORTH);
-
+        this.add(cmButtonPanel, BorderLayout.NORTH);
 
         ssText.setText(getSheetDataFormatted(sheet, "cmmen"));
-        ssArea.add(ssText);
-    }
-
-    public JPanel getLayout() {
-        return ssArea;
+        this.add(ssText);
     }
 
     private JButton createCmButton(int index )

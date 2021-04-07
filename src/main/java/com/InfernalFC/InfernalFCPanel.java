@@ -2,20 +2,15 @@ package com.InfernalFC;
 
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;
+import javax.inject.Inject;
 import com.InfernalFC.components.combobox.ComboBoxIconEntry;
 import com.InfernalFC.components.combobox.ComboBoxIconListRenderer;
 import com.InfernalFC.panels.*;
-import com.google.gson.Gson;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.image.BufferedImage;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import net.runelite.client.ui.PluginPanel;
@@ -24,15 +19,30 @@ import net.runelite.client.util.ImageUtil;
 @Slf4j
 class InfernalFCPanel extends PluginPanel
 {
+    private final InfernalFCConfig config;
+
     final JComboBox<ComboBoxIconEntry> dropdown = new JComboBox<>();
-    JPanel homeLayout;
-    JPanel cmmenLayout;
-    JPanel lookupLayout;
-    JPanel ranksLayout;
+
+    @Getter
+    private final HomePanel homePanel;
+    @Getter
+    private final CmMenPanel cmMenPanel;
+    @Getter
+    private final RanksPanel ranksPanel;
+    @Getter
+    private final LookupPanel lookupPanel;
+
     private String tab;
 
-
-    void init(InfernalFCConfig config, int index){
+    @Inject
+    private InfernalFCPanel(InfernalFCConfig config, CmMenPanel cmMenPanel, HomePanel homePanel,
+                            RanksPanel ranksPanel, LookupPanel lookupPanel){
+        this.config = config;
+        this.homePanel = homePanel;
+        this.cmMenPanel = cmMenPanel;
+        this.ranksPanel = ranksPanel;
+        this.lookupPanel = lookupPanel;
+        int index = 0;
 
         //dropdown menu
         dropdown.setFocusable(false); // To prevent an annoying "focus paint" effect
@@ -49,13 +59,6 @@ class InfernalFCPanel extends PluginPanel
         icon = ImageUtil.loadImageResource(getClass(), "cm.png");
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " CM Meta", "cmmen"));
 
-        RankData[] ranks = GetRankData();
-
-        CmMen cmMen = new CmMen(config);
-        Home home = new Home(config);
-        Lookup lookup = new Lookup(config, ranks);
-        Ranks ranksPanel = new Ranks(ranks);
-
         dropdown.addItemListener(e ->
         {
             if (e.getStateChange() == ItemEvent.SELECTED)
@@ -67,17 +70,17 @@ class InfernalFCPanel extends PluginPanel
 
                 switch (tab) {
                     case "home":
-                        this.add(homeLayout);
+                        this.add(getHomePanel());
                         break;
                     case "cmmen":
-                        this.add(cmmenLayout);
+                        this.add(getCmMenPanel());
                         break;
                     case "lookup":
-                        this.add(lookupLayout);
+                        this.add(getLookupPanel());
                         break;
                     case "ranks":
-                        this.add(ranksLayout);
-                        ranksPanel.rankChange("Trial");
+                        this.add(getRanksPanel());
+                        getRanksPanel().rankChange("Trial");
                         break;
                 }
                 this.updateUI();
@@ -95,33 +98,11 @@ class InfernalFCPanel extends PluginPanel
         this.add(dropdown, c);
         c.gridy++;
 
-        homeLayout = home.getLayout();
-        homeLayout.setSize( new Dimension( 200, 700 ) );
+        homePanel.setSize( new Dimension( 200, 700 ) );
+        cmMenPanel.setSize( new Dimension( 200, 700 ) );
+        lookupPanel.setSize( new Dimension( 200, 700 ) );
+        ranksPanel.setSize( new Dimension( 200, 700 ) );
 
-        cmmenLayout = cmMen.getLayout();
-        cmmenLayout.setSize( new Dimension( 200, 700 ) );
-
-        lookupLayout = lookup.getLayout();
-        lookupLayout.setSize( new Dimension( 200, 700 ) );
-
-        ranksLayout = ranksPanel.getLayout();
-        ranksLayout.setSize( new Dimension( 200, 700 ) );
-
-        this.add(homeLayout);
-    }
-
-    public RankData[] GetRankData() {
-        try {
-            // Create a neat value object to hold the URL
-            URL url = new URL("https://infernal-fc.com/api/ranks?_start=0&_end=5000");
-
-            InputStream input = url.openStream();
-            Reader reader = new InputStreamReader(input, StandardCharsets.UTF_8);
-            return new Gson().fromJson(reader, RankData[].class);
-
-        } catch (Exception e) {
-            System.out.println(e);
-            return new RankData[0];
-        }
+        this.add(homePanel);
     }
 }
