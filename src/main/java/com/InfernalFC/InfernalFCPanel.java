@@ -19,8 +19,6 @@ import net.runelite.client.util.ImageUtil;
 @Slf4j
 class InfernalFCPanel extends PluginPanel
 {
-    private final InfernalFCConfig config;
-
     final JComboBox<ComboBoxIconEntry> dropdown = new JComboBox<>();
 
     @Getter
@@ -35,9 +33,8 @@ class InfernalFCPanel extends PluginPanel
     private String tab;
 
     @Inject
-    private InfernalFCPanel(InfernalFCConfig config, CmMenPanel cmMenPanel, HomePanel homePanel,
+    private InfernalFCPanel(CmMenPanel cmMenPanel, HomePanel homePanel,
                             RanksPanel ranksPanel, LookupPanel lookupPanel){
-        this.config = config;
         this.homePanel = homePanel;
         this.cmMenPanel = cmMenPanel;
         this.ranksPanel = ranksPanel;
@@ -54,8 +51,8 @@ class InfernalFCPanel extends PluginPanel
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Home", "home"));
         icon = ImageUtil.loadImageResource(getClass(), "home.png");
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Player Lookup", "lookup"));
-//        icon = ImageUtil.loadImageResource(getClass(), "home.png");
-//        dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Requirements", "ranks"));
+        icon = ImageUtil.loadImageResource(getClass(), "home.png");
+        dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Requirements", "ranks"));
         icon = ImageUtil.loadImageResource(getClass(), "cm.png");
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " CM Meta", "cmmen"));
 

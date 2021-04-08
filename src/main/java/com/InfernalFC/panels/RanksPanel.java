@@ -17,13 +17,15 @@ import java.util.Arrays;
 
 public class RanksPanel extends JPanel{
     private final DataManager dataManager;
+    private final ResourceManager resourceManager;
     private JPanel cmButtonPanel = new JPanel();
     private JPanel itemPanel = new JPanel();
     private RankData selectedRank;
 
     @Inject
-    private RanksPanel(DataManager dataManager) {
+    private RanksPanel(DataManager dataManager, ResourceManager resourceManager) {
         this.dataManager = dataManager;
+        this.resourceManager = resourceManager;
 
         cmButtonPanel.add(createRankButton("⏱", "Trial"), BorderLayout.WEST);
         cmButtonPanel.add(createRankButton("☻", "Junior Member"), BorderLayout.WEST);
@@ -62,23 +64,8 @@ public class RanksPanel extends JPanel{
         JLabel label = new JLabel();
         label.setToolTipText(item.getName());
         try {
-            URL url = new URL(item.getArtwork());
-            final HttpURLConnection connection = (HttpURLConnection) url
-                    .openConnection();
-            connection.setRequestProperty("User-Agent", "RuneLite/InfernalFC plugin");
-            String type = connection.getContentType();
-            InputStream stream = connection.getInputStream();
-
-
-            if (type.equals("image/gif")) {
-                //workaround for gif images
-                final BufferedImage image = ImageIO.read(stream);
-            } else {
-                final BufferedImage image = ImageIO.read(stream);
-                Image img = image.getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH);
-                label.setIcon(new ImageIcon(img));
-
-            }
+            final Image image = resourceManager.GetItemImage(item.getName());
+            label.setIcon(new ImageIcon(image));
         } catch (Exception e) {
             System.out.println(e);
         }
