@@ -1,7 +1,5 @@
 package com.InfernalFC;
 
-import com.InfernalFC.panels.RankData;
-import com.google.gson.Gson;
 import com.google.inject.Provides;
 import javax.inject.Inject;
 import lombok.AccessLevel;
@@ -19,14 +17,8 @@ import net.runelite.client.ui.ClientToolbar;
 import net.runelite.client.ui.NavigationButton;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ImageUtil;
-
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
 
 @Slf4j
 @PluginDescriptor(
@@ -51,9 +43,6 @@ public class InfernalFCPlugin extends Plugin
 	@Inject
 	private SkillIconManager skillIconManager;
 
-	@Getter
-	public RankData[] ranks;
-
 	@Inject
 	private ClientToolbar clientToolbar;
 	@Getter(AccessLevel.PACKAGE)
@@ -66,7 +55,7 @@ public class InfernalFCPlugin extends Plugin
 	@Override
 	protected void startUp() throws Exception
 	{
-		overlayManager.add(overlay);
+		setOverLay();
 		startClanPanel();
 	}
 
@@ -81,15 +70,18 @@ public class InfernalFCPlugin extends Plugin
 	private void onConfigChanged(ConfigChanged event) throws IOException {
 		if (event.getGroup().equals(CONFIG_GROUP))
 		{
-			panel.removeAll();
-			clientToolbar.removeNavigation(uiNavigationButton);
-			startClanPanel();
+			if (event.getKey().equals("overlay")) {
+				setOverLay();
+			} else if (event.getKey().equals("col1color") || event.getKey().equals("col2color")){
+				panel.removeAll();
+				clientToolbar.removeNavigation(uiNavigationButton);
+				startClanPanel();
+			}
 		}
 	}
 
 	private void startClanPanel()
 	{
-		ranks = GetRankData();
 		final BufferedImage icon = ImageUtil.loadImageResource(getClass(), "icon.png");
 		panel = injector.getInstance(InfernalFCPanel.class);
 		uiNavigationButton = NavigationButton.builder()
@@ -101,18 +93,11 @@ public class InfernalFCPlugin extends Plugin
 		clientToolbar.addNavigation(uiNavigationButton);
 	}
 
-	private RankData[] GetRankData() {
-		try {
-			// Create a neat value object to hold the URL
-			URL url = new URL("https://infernal-fc.com/api/ranks?_start=0&_end=5000");
-
-			InputStream input = url.openStream();
-			Reader reader = new InputStreamReader(input, StandardCharsets.UTF_8);
-			return new Gson().fromJson(reader, RankData[].class);
-
-		} catch (Exception e) {
-			System.out.println(e);
-			return new RankData[0];
+	private void setOverLay() {
+		if (config.overlay()) {
+			overlayManager.add(overlay);
+		} else {
+			overlayManager.remove(overlay);
 		}
 	}
 

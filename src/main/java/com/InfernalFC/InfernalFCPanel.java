@@ -71,6 +71,7 @@ class InfernalFCPanel extends PluginPanel
                 switch (tab) {
                     case "home":
                         this.add(getHomePanel());
+                        getHomePanel().Load();
                         break;
                     case "cmmen":
                         this.add(getCmMenPanel());
@@ -103,6 +104,7 @@ class InfernalFCPanel extends PluginPanel
         lookupPanel.setSize( new Dimension( 200, 700 ) );
         ranksPanel.setSize( new Dimension( 200, 700 ) );
 
-        this.add(homePanel);
+        this.add(getHomePanel());
+        getHomePanel().Load();
     }
 }

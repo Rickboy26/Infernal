@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 public class CmMenPanel extends JPanel {
     private final JLabel ssText = new JLabel();
@@ -17,6 +18,7 @@ public class CmMenPanel extends JPanel {
     private String color1;
     private String color2;
     private int cmMan = 3;
+    private List<List<Object>> sheetValues;
 
     @Inject
     private CmMenPanel(InfernalFCConfig config) {
@@ -34,8 +36,23 @@ public class CmMenPanel extends JPanel {
 
         this.add(cmButtonPanel, BorderLayout.NORTH);
 
-        ssText.setText(getSheetDataFormatted(sheet, "cmmen"));
+        ssText.setText(getSheetDataFormatted());
         this.add(ssText);
+
+        Runnable task = () -> {
+            try {
+                sheetValues = sheet.getValues("cmmen");
+                ssText.setText(getSheetDataFormatted());
+
+            }catch (Exception ioException)
+            {
+                ssText.setText("Could not load google sheet data.");
+            }
+        };
+
+        Thread thread = new Thread(task);
+        thread.start();
+
     }
 
     private JButton createCmButton(int index )
@@ -65,7 +82,7 @@ public class CmMenPanel extends JPanel {
                 if (e.getButton() == MouseEvent.BUTTON1)
                 {
                     cmMan = index;
-                    ssText.setText(getSheetDataFormatted(sheet, "cmmen"));
+                    ssText.setText(getSheetDataFormatted());
                 }
             }
         });
@@ -73,60 +90,55 @@ public class CmMenPanel extends JPanel {
         return label;
     }
 
-    private String getSheetDataFormatted(GoogleSheet sheet, String field)
+    private String getSheetDataFormatted()
     {
-        try
-        {
-            String data = "";
-            java.util.List<java.util.List<Object>> values = sheet.getValues(field);
+        String data = "";
 
-            if (values == null || values.isEmpty()) {
-                System.out.println("No data found.");
-            } else {
-                data += "<html><table width=230>";
-                int i = 0;
-                for (java.util.List row : values) {
-                    if (i  > 12) {
-                        break;
-                    }
-                    String val1 = "";
-                    String val2 = "";
 
-                    try
-                    {
-                        val1 = ""+row.get(0);
-                    }catch(Exception e)
-                    {
-                        val1 = "";
-                    }
-                    try
-                    {
-                        val2 = ""+row.get(1);
-                    }catch(Exception e)
-                    {
-                        val2 = "";
-                    }
-
-                    if (val1.equals(cmMan + " man") || i > 0) {
-                        data += "<tr>";
-                        data += "<td><font color='" + color1 + "'>";
-                        data += val1;
-                        data += "</font></td>";
-                        data += "<td><font color='" + color2 + "'>";
-                        data += val2;
-                        data += "</font></td>";
-                        data += "</tr>";
-
-                        i++;
-                    }
+        if (sheetValues == null || sheetValues.isEmpty()) {
+            System.out.println("No data found.");
+        } else {
+            data += "<html><table width=230>";
+            int i = 0;
+            for (java.util.List row : sheetValues) {
+                if (i  > 12) {
+                    break;
                 }
-                data += "</table></html>";
+                String val1 = "";
+                String val2 = "";
 
+                try
+                {
+                    val1 = ""+row.get(0);
+                }catch(Exception e)
+                {
+                    val1 = "";
+                }
+                try
+                {
+                    val2 = ""+row.get(1);
+                }catch(Exception e)
+                {
+                    val2 = "";
+                }
+
+                if (val1.equals(cmMan + " man") || i > 0) {
+                    data += "<tr>";
+                    data += "<td><font color='" + color1 + "'>";
+                    data += val1;
+                    data += "</font></td>";
+                    data += "<td><font color='" + color2 + "'>";
+                    data += val2;
+                    data += "</font></td>";
+                    data += "</tr>";
+
+                    i++;
+                }
             }
-            return data;
-        }catch (Exception ioException)
-        {
-            return "Could not load google sheet data.";
+            data += "</table></html>";
+
         }
+        return data;
+
     }
 }

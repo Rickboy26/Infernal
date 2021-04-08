@@ -1,8 +1,7 @@
 package com.InfernalFC.panels;
 
 import com.InfernalFC.InfernalFCConfig;
-import com.InfernalFC.InfernalFCPlugin;
-import com.google.gson.Gson;
+import net.runelite.client.callback.ClientThread;
 import javax.inject.Inject;
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
@@ -10,25 +9,23 @@ import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 public class LookupPanel extends JPanel {
+    private final DataManager dataManager;
+    private final ClientThread clientThread;
     private final JLabel ssText = new JLabel();
     private final JComboBox combobox = new JComboBox();
     private PlayerData[] playerData = new PlayerData[0];
     private String color1;
     private String color2;
-    private RankData[] ranks;
 
     @Inject
-    public LookupPanel(InfernalFCConfig config, InfernalFCPlugin infernalFCPlugin) {
-        this.ranks = infernalFCPlugin.getRanks();
+    public LookupPanel(InfernalFCConfig config, DataManager dataManager, ClientThread clientThread) {
+
+        this.dataManager = dataManager;
+        this.clientThread = clientThread;
+
         //Set the color
         color1 = "#"+Integer.toHexString(config.col1color().getRGB()).substring(2);
         color2 = "#"+Integer.toHexString(config.col2color().getRGB()).substring(2);
@@ -43,7 +40,7 @@ public class LookupPanel extends JPanel {
                             .getSource()).getParent()).getEditor()
                             .getEditorComponent()).getText();
                     if (!searchString.isEmpty()) {
-                        GetPlayerData(searchString);
+                        Search(searchString);
                     }
                 }
             }
@@ -56,7 +53,13 @@ public class LookupPanel extends JPanel {
                         String selection = e.getItem().toString();
                         PlayerData player = Arrays.stream(playerData).filter(data ->
                                 selection.equals(data.getUsername())).findFirst().orElse(null);
-                        SetPlayerStats(player);
+
+                        Runnable task = () -> {
+                            SetPlayerStats(player);
+                        };
+
+                        Thread thread = new Thread(task);
+                        thread.start();
                     }
                 }
         );
@@ -65,47 +68,27 @@ public class LookupPanel extends JPanel {
         this.add(ssText);
     }
 
-    public void GetPlayerData(String searchString) {
-        try {
-            URL url = new URL("https://infernal-fc.com/api/Members?active=1&_start=0&_end=10&username="
-                    + URLEncoder.encode(searchString, StandardCharsets.UTF_8.toString()));
-
-            InputStream input = url.openStream();
-            Reader reader = new InputStreamReader(input, StandardCharsets.UTF_8);
-            playerData  = new Gson().fromJson(reader, PlayerData[].class);
+    public void Search(String searchString) {
+        Runnable task = () -> {
+            playerData  = dataManager.GetPlayerData(searchString);
 
             String[] dropdownData = Arrays.stream(playerData).map(PlayerData::getUsername).toArray(String[]::new);
             combobox.setModel(new DefaultComboBoxModel(dropdownData));
             combobox.setSelectedIndex(-1);
             combobox.getEditor().setItem(searchString);
             combobox.showPopup();
+        };
 
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-
-    }
-
-    private PlayerData[] GetAltData(int id) {
-        try {
-            // Create a neat value object to hold the URL
-            URL url = new URL("https://infernal-fc.com/api/Members?active=1&_start=0&_end=10&parentAccount=" + id);
-
-            InputStream input = url.openStream();
-            Reader reader = new InputStreamReader(input, StandardCharsets.UTF_8);
-            return new Gson().fromJson(reader, PlayerData[].class);
-
-        } catch (Exception e) {
-            System.out.println(e);
-            return new PlayerData[0];
-        }
+        Thread thread = new Thread(task);
+        thread.start();
     }
 
     private void SetPlayerStats(PlayerData playerData) {
         String data = "";
 
         if (playerData != null) {
-            PlayerData[] alts = GetAltData(playerData.getId());
+            PlayerData[] alts = dataManager.GetAltData(playerData.getId());
+            RankData[] ranks = dataManager.GetRankData();
             RankData rank = Arrays.stream(ranks).filter(r -> playerData.getRank_id()
                     == r.getId()).findFirst().orElse(null);
 

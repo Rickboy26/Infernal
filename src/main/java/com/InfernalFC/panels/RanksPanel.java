@@ -1,6 +1,5 @@
 package com.InfernalFC.panels;
 
-import com.InfernalFC.InfernalFCPlugin;
 import lombok.SneakyThrows;
 import net.runelite.client.ui.ColorScheme;
 import javax.imageio.ImageIO;
@@ -17,14 +16,14 @@ import java.util.Arrays;
 
 
 public class RanksPanel extends JPanel{
+    private final DataManager dataManager;
     private JPanel cmButtonPanel = new JPanel();
     private JPanel itemPanel = new JPanel();
-    private RankData[] ranks;
     private RankData selectedRank;
 
     @Inject
-    private RanksPanel(InfernalFCPlugin infernalFCPlugin) {
-        this.ranks = infernalFCPlugin.getRanks();
+    private RanksPanel(DataManager dataManager) {
+        this.dataManager = dataManager;
 
         cmButtonPanel.add(createRankButton("⏱", "Trial"), BorderLayout.WEST);
         cmButtonPanel.add(createRankButton("☻", "Junior Member"), BorderLayout.WEST);
@@ -44,6 +43,7 @@ public class RanksPanel extends JPanel{
 
 
     public void rankChange(String rankName) {
+        RankData[] ranks = dataManager.GetRankData();
         selectedRank = Arrays.stream(ranks).filter(data -> rankName.equals(data.getName())).findFirst().orElse(null);
 
         int height = (int) Math.ceil(selectedRank.items.length / 5) * 50;

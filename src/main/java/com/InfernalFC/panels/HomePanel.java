@@ -1,29 +1,21 @@
 package com.InfernalFC.panels;
 
 import com.InfernalFC.InfernalFCConfig;
-import com.google.gson.Gson;
 import javax.inject.Inject;
 import javax.swing.*;
 import java.awt.*;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-
-import static com.InfernalFC.panels.PointsEnum.*;
 
 public class HomePanel extends JPanel {
+    private final DataManager dataManager;
     private final JLabel ssText = new JLabel();
     private String color1;
     private String color2;
 
     @Inject
-    private HomePanel(InfernalFCConfig config) {
+    private HomePanel(InfernalFCConfig config, DataManager dataManager) {
+        this.dataManager = dataManager;
 
         //Set the color
         color1 = "#"+Integer.toHexString(config.col1color().getRGB()).substring(2);
@@ -32,73 +24,20 @@ public class HomePanel extends JPanel {
 
         this.setPreferredSize(new Dimension(200, 900));
         this.add(ssText);
-
-        SetPointsStats();
     }
 
-    public PointsData GetPoints(PointsEnum score) {
-        try {
-            URL url;
+    public void Load() {
+        Runnable task = this::SetPointsStats;
 
-            switch (score) {
-                case EHB:
-                    url = new URL("https://infernal-fc.com/api/Members/killcounts/ehb?_start=0&_end=1");
-                    break;
-                case KC:
-                    url = new URL("https://infernal-fc.com/api/Members/killcounts/overall?_start=0&_end=1");
-                    break;
-                default:
-                    url = new URL("https://infernal-fc.com/api/Members/points/overall?_start=0&_end=1");
-                    break;
-            }
-
-            InputStream input = url.openStream();
-            Reader reader = new InputStreamReader(input, StandardCharsets.UTF_8);
-            PointsData[] pointsData  = new Gson().fromJson(reader, PointsData[].class);
-
-            return pointsData[0];
-
-        } catch (Exception e) {
-            System.out.println(e);
-            return new PointsData();
-        }
-    }
-
-    public EventData[] GetEvents() {
-        try {
-            URL url = new URL("https://infernal-fc.com/api/Events?_end=10&_order=DESC&_sort=date&_start=0");
-
-            InputStream input = url.openStream();
-            Reader reader = new InputStreamReader(input, StandardCharsets.UTF_8);
-            EventData[] eventData  = new Gson().fromJson(reader, EventData[].class);
-
-            Date today = new Date();
-            today.setHours(0);
-            today.setMinutes(0);
-            today.setSeconds(0);
-            eventData = Arrays.stream(eventData).filter(x -> x.getDate().after(today)).toArray(EventData[]::new);
-            invertArray(eventData);
-
-            return eventData;
-        } catch (Exception e) {
-            System.out.println(e);
-            return new EventData[0];
-        }
-    }
-
-    private void invertArray(EventData[] array) {
-        for (int i = 0; i < array.length / 2; i++) {
-            EventData temp = array[i];
-            array[i] = array[array.length - 1 - i];
-            array[array.length - 1 - i] = temp;
-        }
+        Thread thread = new Thread(task);
+        thread.start();
     }
 
     private void SetPointsStats() {
-        PointsData overall = GetPoints(OVERALL);
-        PointsData ehb = GetPoints(EHB);
-        PointsData kc = GetPoints(KC);
-        EventData[] events = GetEvents();
+        PointsData overall = dataManager.GetOverallPoints();
+        PointsData ehb = dataManager.GetEhbPoints();
+        PointsData kc = dataManager.GetKcPoints();
+        EventData[] events = dataManager.GetEvents();
 
         String pattern = "yyyy/MM/dd";
         DateFormat df = new SimpleDateFormat(pattern);
@@ -192,11 +131,5 @@ public class HomePanel extends JPanel {
 
         ssText.setText(data);
     }
-}
-
-enum PointsEnum {
-    OVERALL,
-    EHB,
-    KC
 }
 
