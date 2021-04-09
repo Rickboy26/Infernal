@@ -37,6 +37,7 @@ public class HomePanel extends JPanel {
         PointsData overall = dataManager.GetOverallPoints();
         PointsData ehb = dataManager.GetEhbPoints();
         PointsData kc = dataManager.GetKcPoints();
+        PointsData pets = dataManager.GetPetPoints();
         EventData[] events = dataManager.GetEvents();
 
         String pattern = "yyyy/MM/dd";
@@ -100,6 +101,22 @@ public class HomePanel extends JPanel {
         data += "<tr>";
         data += "<td colspan='2' style='text-align: center;'><font color='yellow'>";
         data += (int)kc.getSum();
+        data += "</font></td>";
+        data += "</tr>";
+        data += "<tr></tr>";
+
+        data += "<tr>";
+        data += "<td colspan='2' style='text-align: center;'><font color='" + color1 + "'><b>Most Pets:</b></font></td>";
+        data += "</tr>";
+
+        data += "<tr>";
+        data += "<td colspan='2' style='text-align: center;'><font color='" + color1 + "'>";
+        data += pets.getMember().getUsername();
+        data += "</font></td>";
+        data += "</tr>";
+        data += "<tr>";
+        data += "<td colspan='2' style='text-align: center;'><font color='yellow'>";
+        data += (int)pets.getSum();
         data += "</font></td>";
         data += "</tr>";
         data += "<tr></tr>";

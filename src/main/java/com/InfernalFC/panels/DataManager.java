@@ -79,6 +79,10 @@ public class DataManager {
         return GetPoints(KC);
     }
 
+    PointsData GetPetPoints() {
+        return GetPoints(PETS);
+    }
+
     private PointsData GetPoints(PointsEnum score) {
         try {
             URL url;
@@ -92,6 +96,9 @@ public class DataManager {
                     break;
                 default:
                     url = new URL(baseUrl + "Members/points/overall?_start=0&_end=1");
+                    break;
+                case PETS:
+                    url = new URL(baseUrl + "Members/pets?_sort=count&_order=DESC&_start=0_end=1");
                     break;
             }
 
@@ -141,5 +148,6 @@ public class DataManager {
 enum PointsEnum {
     OVERALL,
     EHB,
-    KC
+    KC,
+    PETS
 }
