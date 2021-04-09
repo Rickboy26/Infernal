@@ -38,17 +38,6 @@ public interface InfernalFCConfig extends Config
 
 		@ConfigItem(
 				position = 2,
-				keyName = "eventPass",
-				name = "Event Codeword",
-				description = "Creates an overlay with the event codeword",
-				section = eventPassSection
-		)
-		default String eventPass()
-		{
-			return "";
-		}
-		@ConfigItem(
-				position = 3,
 				keyName = "dtm",
 				name = "Include Date & Time",
 				description = "Display the date and time",
@@ -57,6 +46,18 @@ public interface InfernalFCConfig extends Config
 		default boolean dtm()
 		{
 			return true;
+		}
+
+		@ConfigItem(
+				position = 3,
+				keyName = "eventPass",
+				name = "Event Codeword",
+				description = "Creates an overlay with the event codeword",
+				section = eventPassSection
+		)
+		default String eventPass()
+		{
+			return "";
 		}
 
 

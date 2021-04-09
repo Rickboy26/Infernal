@@ -111,9 +111,9 @@ public class LookupPanel extends JPanel {
             data += "</tr>";
 
             data += "<tr>";
-            data += "<td><font color='" + color1 + "'>Active?</font></td>";
+            data += "<td><font color='" + color1 + "'>Active</font></td>";
             data += "<td><font color='" + color2 + "'>";
-            data += playerData.getActive();
+            data += playerData.getActive()? "Yes" : "No";
             data += "</font></td>";
             data += "</tr>";
 

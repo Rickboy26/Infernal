@@ -42,6 +42,9 @@ public class ResourceManager {
                 { "Void knight gloves", "Void_knight_gloves_detail.png" },
                 { "Void robe (Elite)", "Elite_void_robe_detail.png" },
                 { "Amulet of torture", "Amulet_of_torture_detail.png" },
+                { "Fire/Inf cape", "Fire_inf_detail.gif" },
+                { "Twisted Bow / Scythe", "Tbow_scythe_detail.gif" },
+                { "Twisted Bow / Scythe + 250m", "Tbow_scythe250_detail.gif" },
         }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
     }
 
