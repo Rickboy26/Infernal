@@ -15,7 +15,9 @@ public class RanksPanel extends JPanel{
     private final ResourceManager resourceManager;
     private JPanel cmButtonPanel = new JPanel();
     private JPanel itemPanel = new JPanel();
+    private JPanel pointsPanel = new JPanel();
     private RankData selectedRank;
+    private JLabel rankName = new JLabel("");
 
     @Inject
     private RanksPanel(DataManager dataManager, ResourceManager resourceManager) {
@@ -31,15 +33,20 @@ public class RanksPanel extends JPanel{
 
         this.add(cmButtonPanel, BorderLayout.NORTH);
 
-        GridLayout gridLayout = new GridLayout(0,5);
-        itemPanel.setLayout(gridLayout);
+        itemPanel.setLayout(new GridLayout(0,5));
+        pointsPanel.setLayout(new BoxLayout(pointsPanel, BoxLayout.PAGE_AXIS));
 
+        rankName.setFont(new Font("Arial", Font.BOLD, 18));
+        this.add(rankName);
         this.add(itemPanel);
-        this.setPreferredSize(new Dimension(200, 400));
+        this.add(pointsPanel);
+        this.setPreferredSize(new Dimension(200, 600));
+
     }
 
 
     public void rankChange(String rankName) {
+        this.rankName.setText(rankName);
         RankData[] ranks = dataManager.GetRankData();
         selectedRank = Arrays.stream(ranks).filter(rank -> rankName.equals(rank.getName())).findFirst().orElse(null);
 
@@ -51,6 +58,19 @@ public class RanksPanel extends JPanel{
             itemPanel.add(createItemLabel(item));
         }
 
+        pointsPanel.removeAll();
+        pointsPanel.add(createIconLabel("Total_points.png", selectedRank.getTotal() + " Total"));
+        pointsPanel.add(createIconLabel("Pvm_points.png", selectedRank.getPvm() + " PvM"));
+        pointsPanel.add(createIconLabel("Community_points.png", selectedRank.getCommunity() + " Comunnity"));
+        pointsPanel.add(createIconLabel("Ehb_points.png", selectedRank.getEhb() + " EHB"));
+
+        pointsPanel.add(createIconLabel("Req_level.png", selectedRank.getCombat() + " Combat"));
+        pointsPanel.add(createIconLabel("Req_total.png", "1750+ Total"));
+        pointsPanel.add(createIconLabel("Req_ranged.png", "99 Ranged"));
+        pointsPanel.add(createIconLabel("Req_magic.png", selectedRank.getMagic() + " Magic"));
+        pointsPanel.add(createIconLabel("Req_herb.png", selectedRank.getHerblore() + " Herblore"));
+
+
         itemPanel.updateUI();
         this.updateUI();
     }
@@ -60,6 +80,22 @@ public class RanksPanel extends JPanel{
         label.setToolTipText(item.getName());
         try {
             Runnable task = () -> label.setIcon(resourceManager.GetItemImage(item.getName()));
+
+            Thread thread = new Thread(task);
+            thread.start();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return label;
+    }
+
+    private JLabel createIconLabel(String name, String title) {
+        JLabel label = new JLabel();
+        label.setText(title);
+        try {
+            Runnable task = () -> label.setIcon(resourceManager.GetIconImage(name));
 
             Thread thread = new Thread(task);
             thread.start();

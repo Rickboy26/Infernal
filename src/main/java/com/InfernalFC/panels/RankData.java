@@ -12,4 +12,18 @@ public class RankData {
     public String name;
     @Getter @Setter
     public ItemData[] items;
+    @Getter @Setter
+    public int total;
+    @Getter @Setter
+    public int pvm;
+    @Getter @Setter
+    public int community;
+    @Getter @Setter
+    public int ehb;
+    @Getter @Setter
+    public int combat;
+    @Getter @Setter
+    public int magic;
+    @Getter @Setter
+    public int herblore;
 }

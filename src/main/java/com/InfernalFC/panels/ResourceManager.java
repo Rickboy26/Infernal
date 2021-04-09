@@ -49,13 +49,17 @@ public class ResourceManager {
 
     public Icon GetItemImage(String item) {
         String filename = itemMapping.get(item);
-        BufferedImage image = ImageUtil.loadImageResource(InfernalFCPlugin.class, "items\\" + itemMapping.get(item));
         if (filename.endsWith(".gif")) {
             return new ImageIcon(InfernalFCPlugin.class.getResource("\\items\\" + itemMapping.get(item)));
         } else {
+            BufferedImage image = ImageUtil.loadImageResource(InfernalFCPlugin.class, "items\\" + itemMapping.get(item));
             return new ImageIcon(image.getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH));
         }
     }
 
+    public Icon GetIconImage(String name) {
+        BufferedImage image = ImageUtil.loadImageResource(InfernalFCPlugin.class, "icons\\" + name);
+        return new ImageIcon(image);
+    }
 
 }
