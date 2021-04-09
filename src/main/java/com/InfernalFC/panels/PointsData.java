@@ -7,6 +7,8 @@ public class PointsData {
         @Getter @Setter
         public double sum;
         @Getter @Setter
+        public String count;
+        @Getter @Setter
         public PlayerData member;
 
         public PointsData() {

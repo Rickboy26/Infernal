@@ -13,7 +13,6 @@ import java.util.Arrays;
 
 public class LookupPanel extends JPanel {
     private final DataManager dataManager;
-    private final ClientThread clientThread;
     private final JLabel ssText = new JLabel();
     private final JComboBox combobox = new JComboBox();
     private PlayerData[] playerData = new PlayerData[0];
@@ -21,10 +20,9 @@ public class LookupPanel extends JPanel {
     private String color2;
 
     @Inject
-    public LookupPanel(InfernalFCConfig config, DataManager dataManager, ClientThread clientThread) {
+    public LookupPanel(InfernalFCConfig config, DataManager dataManager) {
 
         this.dataManager = dataManager;
-        this.clientThread = clientThread;
 
         //Set the color
         color1 = "#"+Integer.toHexString(config.col1color().getRGB()).substring(2);

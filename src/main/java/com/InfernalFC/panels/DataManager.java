@@ -2,6 +2,7 @@ package com.InfernalFC.panels;
 
 import com.google.gson.Gson;
 import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -13,6 +14,7 @@ import java.util.Date;
 
 import static com.InfernalFC.panels.PointsEnum.*;
 
+@Singleton
 public class DataManager {
     private final static String baseUrl = "https://infernal-fc.com/api/";
     private RankData[] ranks;
@@ -98,7 +100,7 @@ public class DataManager {
                     url = new URL(baseUrl + "Members/points/overall?_start=0&_end=1");
                     break;
                 case PETS:
-                    url = new URL(baseUrl + "Members/pets?_sort=count&_order=DESC&_start=0_end=1");
+                    url = new URL(baseUrl + "Members/pets?_sort=count&_order=DESC&_start=0&_end=1");
                     break;
             }
 

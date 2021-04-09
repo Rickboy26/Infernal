@@ -2,16 +2,11 @@ package com.InfernalFC.panels;
 
 import lombok.SneakyThrows;
 import net.runelite.client.ui.ColorScheme;
-import javax.imageio.ImageIO;
 import javax.inject.Inject;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.Arrays;
 
 
@@ -46,7 +41,7 @@ public class RanksPanel extends JPanel{
 
     public void rankChange(String rankName) {
         RankData[] ranks = dataManager.GetRankData();
-        selectedRank = Arrays.stream(ranks).filter(data -> rankName.equals(data.getName())).findFirst().orElse(null);
+        selectedRank = Arrays.stream(ranks).filter(rank -> rankName.equals(rank.getName())).findFirst().orElse(null);
 
         int height = (int) Math.ceil(selectedRank.items.length / 5) * 50;
         itemPanel.setPreferredSize(new Dimension(200, height));
@@ -64,8 +59,11 @@ public class RanksPanel extends JPanel{
         JLabel label = new JLabel();
         label.setToolTipText(item.getName());
         try {
-            final Image image = resourceManager.GetItemImage(item.getName());
-            label.setIcon(new ImageIcon(image));
+            Runnable task = () -> label.setIcon(resourceManager.GetItemImage(item.getName()));
+
+            Thread thread = new Thread(task);
+            thread.start();
+
         } catch (Exception e) {
             System.out.println(e);
         }

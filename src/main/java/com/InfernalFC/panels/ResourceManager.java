@@ -5,7 +5,6 @@ import net.runelite.client.util.ImageUtil;
 
 import javax.inject.Inject;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -48,13 +47,13 @@ public class ResourceManager {
         }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
     }
 
-    public Image GetItemImage(String item) {
+    public Icon GetItemImage(String item) {
         String filename = itemMapping.get(item);
         BufferedImage image = ImageUtil.loadImageResource(InfernalFCPlugin.class, "items\\" + itemMapping.get(item));
-        if (filename.endsWith(".png")) {
-            return image.getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH);
+        if (filename.endsWith(".gif")) {
+            return new ImageIcon(InfernalFCPlugin.class.getResource("\\items\\" + itemMapping.get(item)));
         } else {
-            return new ImageIcon(image).getImage();
+            return new ImageIcon(image.getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH));
         }
     }
 

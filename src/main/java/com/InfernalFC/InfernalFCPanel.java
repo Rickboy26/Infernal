@@ -11,8 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.image.BufferedImage;
-import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
+import javax.swing.*;
+
 import net.runelite.client.ui.PluginPanel;
 import net.runelite.client.util.ImageUtil;
 
@@ -33,7 +33,7 @@ class InfernalFCPanel extends PluginPanel
     private String tab;
 
     @Inject
-    private InfernalFCPanel(CmMenPanel cmMenPanel, HomePanel homePanel,
+    private InfernalFCPanel(CmMenPanel cmMenPanel, HomePanel homePanel, DataManager dataManager,
                             RanksPanel ranksPanel, LookupPanel lookupPanel){
         this.homePanel = homePanel;
         this.cmMenPanel = cmMenPanel;
@@ -103,5 +103,10 @@ class InfernalFCPanel extends PluginPanel
 
         this.add(getHomePanel());
         getHomePanel().Load();
+
+        Runnable task = dataManager::GetRankData;
+        Thread thread = new Thread(task);
+        thread.start();
+
     }
 }

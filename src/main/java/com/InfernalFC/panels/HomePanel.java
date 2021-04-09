@@ -116,7 +116,7 @@ public class HomePanel extends JPanel {
         data += "</tr>";
         data += "<tr>";
         data += "<td colspan='2' style='text-align: center;'><font color='yellow'>";
-        data += (int)pets.getSum();
+        data += pets.getCount();
         data += "</font></td>";
         data += "</tr>";
         data += "<tr></tr>";
