@@ -40,7 +40,7 @@ public class HomePanel extends JPanel {
         PointsData pets = dataManager.GetPetPoints();
         EventData[] events = dataManager.GetEvents();
 
-        String pattern = "yyyy/MM/dd";
+        String pattern = "dd/MM/yyyy";
         DateFormat df = new SimpleDateFormat(pattern);
 
         String data = "";

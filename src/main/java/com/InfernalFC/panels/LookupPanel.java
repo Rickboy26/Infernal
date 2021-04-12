@@ -95,6 +95,13 @@ public class LookupPanel extends JPanel {
             data += "<tr>";
             data += "</tr>";
             data += "<tr>";
+            data += "<td><font color='yellow'><b>General</b></font></td>";
+            data += "<td><font color='" + color2 + "'>";
+            data += "</font></td>";
+            data += "</tr>";
+
+            data += "</tr>";
+            data += "<tr>";
             data += "<td><font color='" + color1 + "'>Username</font></td>";
             data += "<td><font color='" + color2 + "'>";
             data += playerData.getUsername();
@@ -118,7 +125,7 @@ public class LookupPanel extends JPanel {
             data += "<tr>";
             data += "</tr>";
             data += "<tr>";
-            data += "<td><font color='" + color1 + "'><b>Points Section</b></font></td>";
+            data += "<td><font color='yellow'><b>Points Section</b></font></td>";
             data += "<td><font color='" + color2 + "'>";
             data += "</font></td>";
             data += "</tr>";
@@ -147,7 +154,7 @@ public class LookupPanel extends JPanel {
             data += "<tr>";
             data += "</tr>";
             data += "<tr>";
-            data += "<td><font color='" + color1 + "'><b>Loot Section</b></font></td>";
+            data += "<td><font color='yellow'><b>Loot Section</b></font></td>";
             data += "<td><font color='" + color2 + "'>";
             data += "</font></td>";
             data += "</tr>";
@@ -169,7 +176,7 @@ public class LookupPanel extends JPanel {
             data += "<tr>";
             data += "</tr>";
             data += "<tr>";
-            data += "<td><font color='" + color1 + "'><b>Mentor Section</b></font></td>";
+            data += "<td><font color='yellow'><b>Mentor Section</b></font></td>";
             data += "<td><font color='" + color2 + "'>";
             data += "</font></td>";
             data += "</tr>";
@@ -191,7 +198,7 @@ public class LookupPanel extends JPanel {
             data += "<tr>";
             data += "</tr>";
             data += "<tr>";
-            data += "<td><font color='" + color1 + "'><b>Alt Section</b></font></td>";
+            data += "<td><font color='yellow'><b>Alt Section</b></font></td>";
             data += "<td><font color='" + color2 + "'>";
             data += "</font></td>";
             data += "</tr>";

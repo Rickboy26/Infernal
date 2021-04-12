@@ -95,6 +95,6 @@ public interface InfernalFCConfig extends Config
 		)
 		default Color col2color()
 		{
-			return Color.GREEN;
+			return Color.GRAY;
 		}
 	}

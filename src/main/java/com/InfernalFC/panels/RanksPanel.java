@@ -40,12 +40,14 @@ public class RanksPanel extends JPanel{
         this.add(rankName);
         this.add(itemPanel);
         this.add(pointsPanel);
-        this.setPreferredSize(new Dimension(200, 600));
+        this.setPreferredSize(new Dimension(200, 740));
 
     }
 
 
+
     public void rankChange(String rankName) {
+
         this.rankName.setText(rankName);
         RankData[] ranks = dataManager.GetRankData();
         selectedRank = Arrays.stream(ranks).filter(rank -> rankName.equals(rank.getName())).findFirst().orElse(null);
@@ -69,6 +71,12 @@ public class RanksPanel extends JPanel{
         pointsPanel.add(createIconLabel("Req_ranged.png", "99 Ranged"));
         pointsPanel.add(createIconLabel("Req_magic.png", selectedRank.getMagic() + " Magic"));
         pointsPanel.add(createIconLabel("Req_herb.png", selectedRank.getHerblore() + " Herblore"));
+
+        pointsPanel.add(createIconLabel("Req_box.png", "Ornate Jewellery Box"));
+        pointsPanel.add(createIconLabel("Req_pool.png", "Ornate Pool"));
+        pointsPanel.add(createIconLabel("Req_piety.png", "Piety"));
+        pointsPanel.add(createIconLabel("Req_rigour.png", "Rigour"));
+        pointsPanel.add(createIconLabel("Req_augury.png", "Augury"));
 
         itemPanel.updateUI();
         this.updateUI();
