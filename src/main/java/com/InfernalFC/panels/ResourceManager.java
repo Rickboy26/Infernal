@@ -59,7 +59,7 @@ public class ResourceManager {
 
     public Icon GetIconImage(String name) {
         BufferedImage image = ImageUtil.loadImageResource(InfernalFCPlugin.class, "icons\\" + name);
-        return new ImageIcon(image);
+        return new ImageIcon(image.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
     }
 
 }

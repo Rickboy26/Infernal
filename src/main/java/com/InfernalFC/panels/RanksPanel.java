@@ -34,7 +34,7 @@ public class RanksPanel extends JPanel{
         this.add(cmButtonPanel, BorderLayout.NORTH);
 
         itemPanel.setLayout(new GridLayout(0,5));
-        pointsPanel.setLayout(new BoxLayout(pointsPanel, BoxLayout.PAGE_AXIS));
+        pointsPanel.setLayout(new GridLayout(0,2));
 
         rankName.setFont(new Font("Arial", Font.BOLD, 18));
         this.add(rankName);
@@ -61,18 +61,33 @@ public class RanksPanel extends JPanel{
         }
 
         pointsPanel.removeAll();
+
+        pointsPanel.add(new JLabel());
+        pointsPanel.add(new JLabel());
+
+        pointsPanel.add(createHeaderLabel("Points"));
+        pointsPanel.add(new JLabel());
         pointsPanel.add(createIconLabel("Total_points.png", selectedRank.getTotal() + " Total"));
         pointsPanel.add(createIconLabel("Pvm_points.png", selectedRank.getPvm() + " PvM"));
         pointsPanel.add(createIconLabel("Community_points.png", selectedRank.getCommunity() + " Comunnity"));
         pointsPanel.add(createIconLabel("Ehb_points.png", selectedRank.getEhb() + " EHB"));
+        pointsPanel.add(new JLabel());
+        pointsPanel.add(new JLabel());
 
+        pointsPanel.add(createHeaderLabel("Skills"));
+        pointsPanel.add(new JLabel());
         pointsPanel.add(createIconLabel("Req_level.png", selectedRank.getCombat() + " Combat"));
         pointsPanel.add(createIconLabel("Req_total.png", "1750+ Total"));
         pointsPanel.add(createIconLabel("Req_ranged.png", "99 Ranged"));
         pointsPanel.add(createIconLabel("Req_magic.png", selectedRank.getMagic() + " Magic"));
         pointsPanel.add(createIconLabel("Req_herb.png", selectedRank.getHerblore() + " Herblore"));
+        pointsPanel.add(new JLabel());
+        pointsPanel.add(new JLabel());
+        pointsPanel.add(new JLabel());
 
-        pointsPanel.add(createIconLabel("Req_box.png", "Ornate Jewellery Box"));
+        pointsPanel.add(createHeaderLabel("Misc"));
+        pointsPanel.add(new JLabel());
+        pointsPanel.add(createIconLabel("Req_box.png", "<html>Ornate Jewellery <br/>Box</html>"));
         pointsPanel.add(createIconLabel("Req_pool.png", "Ornate Pool"));
         pointsPanel.add(createIconLabel("Req_piety.png", "Piety"));
         pointsPanel.add(createIconLabel("Req_rigour.png", "Rigour"));
@@ -99,8 +114,8 @@ public class RanksPanel extends JPanel{
     }
 
     private JLabel createIconLabel(String name, String title) {
-        JLabel label = new JLabel();
-        label.setText(title);
+        JLabel label = new JLabel(title);
+        label.setFont(new Font("Arial", Font.BOLD, 10));
         try {
             Runnable task = () -> label.setIcon(resourceManager.GetIconImage(name));
 
@@ -110,6 +125,13 @@ public class RanksPanel extends JPanel{
         } catch (Exception e) {
             System.out.println(e);
         }
+
+        return label;
+    }
+
+    private JLabel createHeaderLabel(String name) {
+        JLabel label = new JLabel(name);
+        label.setFont(new Font("Arial", Font.BOLD, 16));
 
         return label;
     }
