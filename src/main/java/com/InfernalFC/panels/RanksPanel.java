@@ -70,7 +70,6 @@ public class RanksPanel extends JPanel{
         pointsPanel.add(createIconLabel("Req_magic.png", selectedRank.getMagic() + " Magic"));
         pointsPanel.add(createIconLabel("Req_herb.png", selectedRank.getHerblore() + " Herblore"));
 
-
         itemPanel.updateUI();
         this.updateUI();
     }
