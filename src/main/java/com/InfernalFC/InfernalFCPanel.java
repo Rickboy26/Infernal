@@ -24,7 +24,7 @@ class InfernalFCPanel extends PluginPanel
     @Getter
     private final HomePanel homePanel;
     @Getter
-    private final CmMenPanel cmMenPanel;
+    private final CmManPanel cmManPanel;
     @Getter
     private final RanksPanel ranksPanel;
     @Getter
@@ -33,10 +33,10 @@ class InfernalFCPanel extends PluginPanel
     private String tab;
 
     @Inject
-    private InfernalFCPanel(CmMenPanel cmMenPanel, HomePanel homePanel, DataManager dataManager,
+    private InfernalFCPanel(CmManPanel cmManPanel, HomePanel homePanel, DataManager dataManager,
                             RanksPanel ranksPanel, LookupPanel lookupPanel){
         this.homePanel = homePanel;
-        this.cmMenPanel = cmMenPanel;
+        this.cmManPanel = cmManPanel;
         this.ranksPanel = ranksPanel;
         this.lookupPanel = lookupPanel;
         int index = 0;
@@ -53,8 +53,8 @@ class InfernalFCPanel extends PluginPanel
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Player Lookup", "lookup"));
         icon = ImageUtil.loadImageResource(getClass(), "home.png");
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Requirements", "ranks"));
-      //  icon = ImageUtil.loadImageResource(getClass(), "cm.png");
-      //  dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " CM Meta", "cmmen"));
+        icon = ImageUtil.loadImageResource(getClass(), "cm.png");
+        dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " CM Meta", "cmman"));
 
         dropdown.addItemListener(e ->
         {
@@ -70,8 +70,8 @@ class InfernalFCPanel extends PluginPanel
                         this.add(getHomePanel());
                         getHomePanel().Load();
                         break;
-                    case "cmmen":
-                        this.add(getCmMenPanel());
+                    case "cmman":
+                        this.add(getCmManPanel());
                         break;
                     case "lookup":
                         this.add(getLookupPanel());
@@ -97,7 +97,7 @@ class InfernalFCPanel extends PluginPanel
         c.gridy++;
 
         homePanel.setSize( new Dimension( 200, 700 ) );
-        cmMenPanel.setSize( new Dimension( 200, 700 ) );
+        cmManPanel.setSize( new Dimension( 200, 700 ) );
         lookupPanel.setSize( new Dimension( 200, 700 ) );
         ranksPanel.setSize( new Dimension( 200, 700 ) );
 
