@@ -1,14 +1,22 @@
 package com.InfernalFC.panels;
 
 import com.InfernalFC.InfernalFCConfig;
+import lombok.SneakyThrows;
+import net.runelite.client.ui.ColorScheme;
 import javax.inject.Inject;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 public class HomePanel extends JPanel {
     private final DataManager dataManager;
+    private JPanel buttonPanel = new JPanel();
     private final JLabel ssText = new JLabel();
     private String color1;
     private String color2;
@@ -23,6 +31,12 @@ public class HomePanel extends JPanel {
 
 
         this.setPreferredSize(new Dimension(200, 900));
+        buttonPanel.setLayout(new GridLayout(0,3));
+
+        buttonPanel.add(createLinkButton("Website", "https://infernal-fc.com/"));
+        buttonPanel.add(createLinkButton("Forum", "http://services.runescape.com/m=forum/c=IKL-JSzhrmo/users.ws?searchname=Infernal+Fc&lookup=view"));
+        buttonPanel.add(createLinkButton("Discord", "https://discord.gg/ABYs3VK"));
+        this.add(buttonPanel);
         this.add(ssText);
     }
 
@@ -31,6 +45,53 @@ public class HomePanel extends JPanel {
 
         Thread thread = new Thread(task);
         thread.start();
+    }
+
+    private JButton createLinkButton(String name, String url )
+    {
+        final JButton button = new JButton(name);
+        button.setPreferredSize(new Dimension(74, 33));
+        button.setFont(new Font("Arial", Font.PLAIN, 12));
+        button.setFocusable(false);
+        button.addMouseListener(new MouseAdapter()
+        {
+            @Override
+            public void mouseEntered(MouseEvent e)
+            {
+                button.setBackground(ColorScheme.DARK_GRAY_HOVER_COLOR);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e)
+            {
+                button.setBackground(ColorScheme.DARK_GRAY_COLOR);
+            }
+
+            @SneakyThrows
+            @Override
+            public void mousePressed(MouseEvent e)
+            {
+                if (e.getButton() == MouseEvent.BUTTON1)
+                {
+                    OpenUrl(url);
+                }
+            }
+        });
+
+        return button;
+    }
+
+    private void OpenUrl(String url) {
+
+        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+            try {
+                Desktop.getDesktop().browse(new URI(url));
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void SetPointsStats() {
