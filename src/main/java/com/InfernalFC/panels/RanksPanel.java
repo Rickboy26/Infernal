@@ -33,7 +33,7 @@ public class RanksPanel extends JPanel{
 
         this.add(cmButtonPanel, BorderLayout.NORTH);
 
-        itemPanel.setLayout(new GridLayout(0,5));
+        itemPanel.setLayout(new GridLayout(0,4));
         pointsPanel.setLayout(new GridLayout(0,2));
 
         rankName.setFont(new Font("Arial", Font.BOLD, 18));

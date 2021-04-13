@@ -23,7 +23,7 @@ public class CmMenPanel extends JPanel {
     @Inject
     private CmMenPanel(InfernalFCConfig config) {
         // Google sheet API
-        sheet.setKey("AIzaSyCNa-qSh3RewRkVh1NLbHefc8bjd8xWbkM");
+        sheet.setKey("");
         sheet.setSheetId("1B3Oq_M45N5HULV1_OnMYE_RKgvIrXGiOrCQJKodjxU0");
 
         //Set the color
