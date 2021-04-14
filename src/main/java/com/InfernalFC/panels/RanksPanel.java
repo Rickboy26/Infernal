@@ -103,6 +103,7 @@ public class RanksPanel extends JPanel{
         JLabel label = new JLabel();
         label.setToolTipText(item.getName());
         label.setHorizontalAlignment(JLabel.CENTER);
+        label.setBorder(BorderFactory.createLineBorder(ColorScheme.DARK_GRAY_COLOR, 2));
         if (!inventoryManager.HasItem(item.getName())) {
             label.setOpaque(true);
             label.setBackground(new Color(39, 25, 25));
