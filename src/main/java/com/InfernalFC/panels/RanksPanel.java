@@ -9,10 +9,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Arrays;
 
-
 public class RanksPanel extends JPanel{
     private final DataManager dataManager;
     private final ResourceManager resourceManager;
+    private final InventoryManager inventoryManager;
     private JPanel cmButtonPanel = new JPanel();
     private JPanel itemPanel = new JPanel();
     private JPanel pointsPanel = new JPanel();
@@ -20,9 +20,10 @@ public class RanksPanel extends JPanel{
     private JLabel rankName = new JLabel("");
 
     @Inject
-    private RanksPanel(DataManager dataManager, ResourceManager resourceManager) {
+    private RanksPanel(DataManager dataManager, ResourceManager resourceManager, InventoryManager inventoryManager) {
         this.dataManager = dataManager;
         this.resourceManager = resourceManager;
+        this.inventoryManager = inventoryManager;
 
         cmButtonPanel.add(createRankButton("⏱", "Trial"), BorderLayout.WEST);
         cmButtonPanel.add(createRankButton("☻", "Junior Member"), BorderLayout.WEST);
@@ -44,8 +45,6 @@ public class RanksPanel extends JPanel{
 
     }
 
-
-
     public void rankChange(String rankName) {
 
         this.rankName.setText(rankName);
@@ -56,6 +55,7 @@ public class RanksPanel extends JPanel{
         itemPanel.setPreferredSize(new Dimension(200, height));
         itemPanel.removeAll();
 
+        inventoryManager.UpdateInventoryItems();
         for (ItemData item : selectedRank.getItems()) {
             itemPanel.add(createItemLabel(item));
         }
@@ -100,6 +100,9 @@ public class RanksPanel extends JPanel{
     private JLabel createItemLabel(ItemData item) {
         JLabel label = new JLabel();
         label.setToolTipText(item.getName());
+        if (!inventoryManager.HasItem(item.getName())) {
+            label.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+        }
         try {
             Runnable task = () -> label.setIcon(resourceManager.GetItemImage(item.getName()));
 
