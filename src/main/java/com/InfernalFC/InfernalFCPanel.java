@@ -58,8 +58,8 @@ class InfernalFCPanel extends PluginPanel
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Requirements", "ranks"));
         icon = ImageUtil.loadImageResource(getClass(), "cm.png");
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " CM Meta", "cmman"));
-        icon = ImageUtil.loadImageResource(getClass(), "tob.png");
-        dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Tob Spec", "Tob"));
+    //    icon = ImageUtil.loadImageResource(getClass(), "tob.png");
+    //    dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Tob Spec", "Tob"));
 
         dropdown.addItemListener(e ->
         {
