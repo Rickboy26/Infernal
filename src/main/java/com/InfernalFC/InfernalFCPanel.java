@@ -29,16 +29,19 @@ class InfernalFCPanel extends PluginPanel
     private final RanksPanel ranksPanel;
     @Getter
     private final LookupPanel lookupPanel;
+    @Getter
+    private final TobSpecPanel tobSpecPanel;
 
     private String tab;
 
     @Inject
     private InfernalFCPanel(CmManPanel cmManPanel, HomePanel homePanel, DataManager dataManager,
-                            RanksPanel ranksPanel, LookupPanel lookupPanel){
+                            RanksPanel ranksPanel, LookupPanel lookupPanel, TobSpecPanel tobSpecPanel){
         this.homePanel = homePanel;
         this.cmManPanel = cmManPanel;
         this.ranksPanel = ranksPanel;
         this.lookupPanel = lookupPanel;
+        this.tobSpecPanel = tobSpecPanel;
         int index = 0;
 
         //dropdown menu
@@ -55,6 +58,8 @@ class InfernalFCPanel extends PluginPanel
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Requirements", "ranks"));
         icon = ImageUtil.loadImageResource(getClass(), "cm.png");
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " CM Meta", "cmman"));
+        icon = ImageUtil.loadImageResource(getClass(), "tob.png");
+        dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Tob Spec", "Tob"));
 
         dropdown.addItemListener(e ->
         {
@@ -80,6 +85,9 @@ class InfernalFCPanel extends PluginPanel
                         this.add(getRanksPanel());
                         getRanksPanel().rankChange("Trial");
                         break;
+                    case "Tob":
+                        this.add(getTobSpecPanel());
+                        break;
                 }
                 this.updateUI();
             }
@@ -100,6 +108,7 @@ class InfernalFCPanel extends PluginPanel
         cmManPanel.setSize( new Dimension( 200, 700 ) );
         lookupPanel.setSize( new Dimension( 200, 700 ) );
         ranksPanel.setSize( new Dimension( 200, 700 ) );
+        tobSpecPanel.setSize( new Dimension( 200, 700 ) );
 
         this.add(getHomePanel());
         getHomePanel().Load();
