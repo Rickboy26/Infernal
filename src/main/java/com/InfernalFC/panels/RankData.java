@@ -26,4 +26,8 @@ public class RankData {
     public int magic;
     @Getter @Setter
     public int herblore;
+    @Getter @Setter
+    public int coins;
+    @Getter @Setter
+    public int months;
 }

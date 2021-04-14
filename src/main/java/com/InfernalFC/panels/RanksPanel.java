@@ -41,7 +41,7 @@ public class RanksPanel extends JPanel{
         this.add(rankName);
         this.add(itemPanel);
         this.add(pointsPanel);
-        this.setPreferredSize(new Dimension(200, 740));
+        this.setPreferredSize(new Dimension(200, 780));
 
     }
 
@@ -92,6 +92,8 @@ public class RanksPanel extends JPanel{
         pointsPanel.add(createIconLabel("Req_piety.png", "Piety"));
         pointsPanel.add(createIconLabel("Req_rigour.png", "Rigour"));
         pointsPanel.add(createIconLabel("Req_augury.png", "Augury"));
+        pointsPanel.add(createIconLabel("Req_gold.png", selectedRank.getCoins() + "m PvM Gear"));
+        pointsPanel.add(createIconLabel("Req_time.png", selectedRank.getMonths() + " Months in clan"));
 
         itemPanel.updateUI();
         this.updateUI();
