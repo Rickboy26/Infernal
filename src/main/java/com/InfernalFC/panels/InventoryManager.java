@@ -64,8 +64,13 @@ public class InventoryManager {
 
     public boolean HasItem(String name) {
         int[] reqItems = itemMapping.get(name);
+        if (items == null) {
+            return true;
+        }
         for(Item item : items) {
-            return Arrays.stream(reqItems).anyMatch(x -> x == item.getId());
+            if (Arrays.stream(reqItems).anyMatch(x -> x == item.getId())) {
+                return true;
+            }
         }
         return false;
     }

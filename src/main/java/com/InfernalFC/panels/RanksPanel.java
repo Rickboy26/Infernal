@@ -51,7 +51,7 @@ public class RanksPanel extends JPanel{
         RankData[] ranks = dataManager.GetRankData();
         selectedRank = Arrays.stream(ranks).filter(rank -> rankName.equals(rank.getName())).findFirst().orElse(null);
 
-        int height = (int) Math.ceil(selectedRank.items.length / 5) * 50;
+        int height = (int) Math.ceil(selectedRank.items.length / 4) * 50;
         itemPanel.setPreferredSize(new Dimension(200, height));
         itemPanel.removeAll();
 
@@ -101,8 +101,10 @@ public class RanksPanel extends JPanel{
         JLabel label = new JLabel();
         label.setToolTipText(item.getName());
         if (!inventoryManager.HasItem(item.getName())) {
-            label.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            label.setOpaque(true);
+            label.setBackground(new Color(39, 25, 25));
         }
+
         try {
             Runnable task = () -> label.setIcon(resourceManager.GetItemImage(item.getName()));
 
