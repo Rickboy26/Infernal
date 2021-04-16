@@ -22,8 +22,6 @@ dependencies {
 	testImplementation group: 'net.runelite', name:'client', version: runeLiteVersion
 }
 
-}
-
 group = 'com.example'
 version = '1.15-BETA'
 sourceCompatibility = '1.8'
