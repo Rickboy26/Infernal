@@ -2,11 +2,14 @@ package com.InfernalFC;
 
 import com.google.inject.Provides;
 import javax.inject.Inject;
+import javax.swing.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
+import net.runelite.api.InventoryID;
+import net.runelite.api.events.ItemContainerChanged;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
@@ -19,6 +22,7 @@ import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ImageUtil;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 @Slf4j
 @PluginDescriptor(
@@ -76,6 +80,22 @@ public class InfernalFCPlugin extends Plugin
 				panel.removeAll();
 				clientToolbar.removeNavigation(uiNavigationButton);
 				startClanPanel();
+			}
+		}
+	}
+
+	@Subscribe
+	private void onItemContainerChanged(ItemContainerChanged event) {
+		if (panel.getRanksPanel().isShowing() && event.getContainerId() == InventoryID.INVENTORY.getId()) {
+			try {
+				SwingUtilities.invokeAndWait(() ->
+				{
+					panel.getRanksPanel().updateRank();
+				});
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				e.printStackTrace();
 			}
 		}
 	}

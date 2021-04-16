@@ -45,6 +45,10 @@ public class RanksPanel extends JPanel{
 
     }
 
+    public void updateRank() {
+        rankChange(selectedRank.getName());
+    }
+
     public void rankChange(String rankName) {
 
         this.rankName.setText(rankName);
