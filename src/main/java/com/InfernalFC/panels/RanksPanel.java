@@ -45,24 +45,13 @@ public class RanksPanel extends JPanel{
 
     }
 
-    public void updateRank() {
-        rankChange(selectedRank.getName());
-    }
-
     public void rankChange(String rankName) {
 
         this.rankName.setText(rankName);
         RankData[] ranks = dataManager.GetRankData();
         selectedRank = Arrays.stream(ranks).filter(rank -> rankName.equals(rank.getName())).findFirst().orElse(null);
 
-        int height = (int) Math.ceil((double) selectedRank.items.length / 4) * 50;
-        itemPanel.setPreferredSize(new Dimension(200, height));
-        itemPanel.removeAll();
-
-        inventoryManager.UpdateInventoryItems();
-        for (ItemData item : selectedRank.getItems()) {
-            itemPanel.add(createItemLabel(item));
-        }
+        updateItems();
 
         pointsPanel.removeAll();
 
@@ -101,6 +90,17 @@ public class RanksPanel extends JPanel{
 
         itemPanel.updateUI();
         this.updateUI();
+    }
+
+    public void updateItems() {
+        int height = (int) Math.ceil((double) selectedRank.items.length / 4) * 50;
+        itemPanel.setPreferredSize(new Dimension(200, height));
+        itemPanel.removeAll();
+
+        inventoryManager.UpdateInventoryItems();
+        for (ItemData item : selectedRank.getItems()) {
+            itemPanel.add(createItemLabel(item));
+        }
     }
 
     private JLabel createItemLabel(ItemData item) {

@@ -92,7 +92,7 @@ public class InfernalFCPlugin extends Plugin
 			try {
 				SwingUtilities.invokeAndWait(() ->
 				{
-					panel.getRanksPanel().updateRank();
+					panel.getRanksPanel().updateItems();
 				});
 			} catch (InterruptedException e) {
 				e.printStackTrace();
