@@ -26,6 +26,7 @@ import java.io.IOException;
 		description = "A plugin used to keep track of clan events/announcements",
 		tags = {"Infernal"}
 )
+
 public class InfernalFCPlugin extends Plugin
 {
 	@Inject
@@ -65,6 +66,7 @@ public class InfernalFCPlugin extends Plugin
 		overlayManager.remove(overlay);
 		clientToolbar.removeNavigation(uiNavigationButton);
 	}
+
 
 	@Subscribe
 	private void onConfigChanged(ConfigChanged event) throws IOException {

@@ -41,7 +41,7 @@ public class RanksPanel extends JPanel{
         this.add(rankName);
         this.add(itemPanel);
         this.add(pointsPanel);
-        this.setPreferredSize(new Dimension(200, 780));
+        this.setPreferredSize(new Dimension(200, 860));
 
     }
 
