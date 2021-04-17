@@ -51,7 +51,14 @@ public class RanksPanel extends JPanel{
         RankData[] ranks = dataManager.GetRankData();
         selectedRank = Arrays.stream(ranks).filter(rank -> rankName.equals(rank.getName())).findFirst().orElse(null);
 
-        updateItems();
+        int height = (int) Math.ceil((double) selectedRank.items.length / 4) * 50;
+        itemPanel.setPreferredSize(new Dimension(200, height));
+        itemPanel.removeAll();
+
+        inventoryManager.UpdateInventoryItems();
+        for (ItemData item : selectedRank.getItems()) {
+            itemPanel.add(createItemLabel(item));
+        }
 
         pointsPanel.removeAll();
 
@@ -93,14 +100,16 @@ public class RanksPanel extends JPanel{
     }
 
     public void updateItems() {
-        int height = (int) Math.ceil((double) selectedRank.items.length / 4) * 50;
-        itemPanel.setPreferredSize(new Dimension(200, height));
-        itemPanel.removeAll();
-
         inventoryManager.UpdateInventoryItems();
-        for (ItemData item : selectedRank.getItems()) {
-            itemPanel.add(createItemLabel(item));
+        for (Component component : itemPanel.getComponents()) {
+            JLabel label = (JLabel) component;
+            if (inventoryManager.HasItem(label.getToolTipText())) {
+                label.setOpaque(false);
+            } else {
+                label.setOpaque(true);
+            }
         }
+        itemPanel.updateUI();
     }
 
     private JLabel createItemLabel(ItemData item) {
@@ -108,9 +117,12 @@ public class RanksPanel extends JPanel{
         label.setToolTipText(item.getName());
         label.setHorizontalAlignment(JLabel.CENTER);
         label.setBorder(BorderFactory.createLineBorder(ColorScheme.DARK_GRAY_COLOR, 2));
-        if (!inventoryManager.HasItem(item.getName())) {
+        label.setBackground(new Color(39, 25, 25));
+
+        if (inventoryManager.HasItem(item.getName())) {
+            label.setOpaque(false);
+        } else {
             label.setOpaque(true);
-            label.setBackground(new Color(39, 25, 25));
         }
 
         try {
