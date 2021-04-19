@@ -145,7 +145,7 @@ public class LookupPanel extends JPanel {
             data += "</tr>";
 
             data += "<tr>";
-            data += "<td><font color='" + color1 + "'>Total points</font></td>";
+            data += "<td><font color='" + color1 + "'>Total Points</font></td>";
             data += "<td><font color='" + color2 + "'>";
             data += playerData.getOverallPoints();
             data += "</font></td>";
@@ -160,7 +160,7 @@ public class LookupPanel extends JPanel {
             data += "</tr>";
 
             data += "<tr>";
-            data += "<td><font color='" + color1 + "'>Amount split</font></td>";
+            data += "<td><font color='" + color1 + "'>Amount Split</font></td>";
             data += "<td><font color='" + color2 + "'>";
             data += playerData.getValueSplit() ;
             data += "<font color='" + color2 + "'>M</td>";

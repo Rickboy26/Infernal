@@ -117,7 +117,7 @@ public class HomePanel extends JPanel {
         data += "<tr></tr>";
 
         data += "<tr>";
-        data += "<td colspan='2' style='text-align: center;'><font color='" + color1 + "'><b>Overall points:</b></font></td>";
+        data += "<td colspan='2' style='text-align: center;'><font color='" + color1 + "'><b>Overall Points:</b></font></td>";
         data += "</tr>";
 
         data += "<tr>";
