@@ -24,7 +24,6 @@ import net.runelite.client.ui.NavigationButton;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.Text;
-import net.runelite.http.api.hiscore.HiscoreEndpoint;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.awt.image.BufferedImage;
@@ -114,16 +113,17 @@ public class InfernalFCPlugin extends Plugin
 	public void onMenuEntryAdded(MenuEntryAdded event)
 	{
 		int groupId = WidgetInfo.TO_GROUP(event.getActionParam1());
+		String option = event.getOption();
 
 		if (groupId == WidgetInfo.FRIENDS_LIST.getGroupId() || groupId == WidgetInfo.FRIENDS_CHAT.getGroupId() ||
-				groupId == WidgetInfo.CHATBOX.getGroupId() ||
+				groupId == WidgetInfo.CHATBOX.getGroupId() &&
 				groupId == WidgetInfo.RAIDING_PARTY.getGroupId() || groupId == WidgetInfo.PRIVATE_CHAT_MESSAGE.getGroupId() ||
 				groupId == WidgetInfo.IGNORE_LIST.getGroupId())
 		{
-//			if (!AFTER_OPTIONS.contains(option) || (option.equals("Delete") && groupId != WidgetInfo.IGNORE_LIST.getGroupId()))
-//			{
-//				return;
-//			}
+			if (option.equals("Delete") && groupId != WidgetInfo.IGNORE_LIST.getGroupId())
+			{
+				return;
+			}
 
 			final MenuEntry lookup = new MenuEntry();
 			lookup.setOption(CHECK);
