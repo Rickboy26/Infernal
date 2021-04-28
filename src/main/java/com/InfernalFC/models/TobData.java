@@ -1,4 +1,4 @@
-package com.InfernalFC.panels;
+package com.InfernalFC.models;
 
 import javax.inject.Inject;
 import java.util.Map;

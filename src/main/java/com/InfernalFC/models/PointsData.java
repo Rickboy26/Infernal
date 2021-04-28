@@ -1,4 +1,4 @@
-package com.InfernalFC.panels;
+package com.InfernalFC.models;
 
 import lombok.Getter;
 import lombok.Setter;

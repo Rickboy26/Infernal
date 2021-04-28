@@ -1,5 +1,6 @@
 package com.InfernalFC;
 
+import com.google.common.collect.ObjectArrays;
 import com.google.inject.Provides;
 import javax.inject.Inject;
 import javax.swing.*;
@@ -7,9 +8,11 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Client;
-import net.runelite.api.InventoryID;
+import net.runelite.api.*;
 import net.runelite.api.events.ItemContainerChanged;
+import net.runelite.api.events.MenuEntryAdded;
+import net.runelite.api.events.MenuOptionClicked;
+import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
@@ -20,6 +23,10 @@ import net.runelite.client.ui.ClientToolbar;
 import net.runelite.client.ui.NavigationButton;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ImageUtil;
+import net.runelite.client.util.Text;
+import net.runelite.http.api.hiscore.HiscoreEndpoint;
+import org.apache.commons.lang3.ArrayUtils;
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -56,6 +63,7 @@ public class InfernalFCPlugin extends Plugin
 	private NavigationButton uiNavigationButton;
 
 	static final String CONFIG_GROUP = "InfernalFC";
+	static final String CHECK = "Infernal lookup";
 
 	@Override
 	protected void startUp() throws Exception
@@ -100,6 +108,58 @@ public class InfernalFCPlugin extends Plugin
 				e.printStackTrace();
 			}
 		}
+	}
+
+	@Subscribe
+	public void onMenuEntryAdded(MenuEntryAdded event)
+	{
+		int groupId = WidgetInfo.TO_GROUP(event.getActionParam1());
+
+		if (groupId == WidgetInfo.FRIENDS_LIST.getGroupId() || groupId == WidgetInfo.FRIENDS_CHAT.getGroupId() ||
+				groupId == WidgetInfo.CHATBOX.getGroupId() ||
+				groupId == WidgetInfo.RAIDING_PARTY.getGroupId() || groupId == WidgetInfo.PRIVATE_CHAT_MESSAGE.getGroupId() ||
+				groupId == WidgetInfo.IGNORE_LIST.getGroupId())
+		{
+//			if (!AFTER_OPTIONS.contains(option) || (option.equals("Delete") && groupId != WidgetInfo.IGNORE_LIST.getGroupId()))
+//			{
+//				return;
+//			}
+
+			final MenuEntry lookup = new MenuEntry();
+			lookup.setOption(CHECK);
+			lookup.setTarget(event.getTarget());
+			lookup.setType(MenuAction.RUNELITE.getId());
+			lookup.setParam0(event.getActionParam0());
+			lookup.setParam1(event.getActionParam1());
+			lookup.setIdentifier(event.getIdentifier());
+
+			insertMenuEntry(lookup, client.getMenuEntries());
+		}
+	}
+
+	@Subscribe
+	public void onMenuOptionClicked(MenuOptionClicked event)
+	{
+		if ((event.getMenuAction() == MenuAction.RUNELITE || event.getMenuAction() == MenuAction.RUNELITE_PLAYER)
+				&& event.getMenuOption().equals(CHECK))
+		{
+			final String target;
+			if (event.getMenuAction() == MenuAction.RUNELITE)
+			{
+				target = Text.removeTags(event.getMenuTarget());
+
+				panel.SwitchPanel("lookup");
+				panel.getLookupPanel().SearchExact(target);
+			}
+		}
+	}
+
+	private void insertMenuEntry(MenuEntry newEntry, MenuEntry[] entries)
+	{
+		MenuEntry[] newMenu = ObjectArrays.concat(entries, newEntry);
+		int menuEntryCount = newMenu.length;
+		ArrayUtils.swap(newMenu, menuEntryCount - 1, menuEntryCount - 2);
+		client.setMenuEntries(newMenu);
 	}
 
 	private void startClanPanel()

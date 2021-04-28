@@ -1,4 +1,4 @@
-package com.InfernalFC.panels;
+package com.InfernalFC.helpers;
 
 import net.runelite.api.Client;
 import net.runelite.api.InventoryID;

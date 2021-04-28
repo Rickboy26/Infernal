@@ -1,4 +1,4 @@
-package com.InfernalFC.panels;
+package com.InfernalFC.helpers;
 
 import com.InfernalFC.InfernalFCPlugin;
 import net.runelite.client.util.ImageUtil;

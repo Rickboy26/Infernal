@@ -1,7 +1,10 @@
 package com.InfernalFC.panels;
 
 import com.InfernalFC.InfernalFCConfig;
-import net.runelite.client.callback.ClientThread;
+import com.InfernalFC.helpers.DataManager;
+import com.InfernalFC.models.PlayerData;
+import com.InfernalFC.models.RankData;
+
 import javax.inject.Inject;
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
@@ -81,11 +84,29 @@ public class LookupPanel extends JPanel {
         thread.start();
     }
 
+    public void SearchExact(String name) {
+        Runnable task = () -> {
+            playerData  = dataManager.GetPlayerData(name);
+
+            String[] dropdownData = Arrays.stream(playerData).map(PlayerData::getUsername).toArray(String[]::new);
+            combobox.setModel(new DefaultComboBoxModel(dropdownData));
+            combobox.setSelectedIndex(-1);
+            combobox.getEditor().setItem(name);
+
+            PlayerData player = Arrays.stream(playerData).filter(data ->
+                    name.equals(data.getUsername())).findFirst().orElse(null);
+            SetPlayerStats(player);
+        };
+
+        Thread thread = new Thread(task);
+        thread.start();
+    }
+
     private void SetPlayerStats(PlayerData playerData) {
         String data = "";
 
         if (playerData != null) {
-            PlayerData[] alts = dataManager.GetAltData(playerData.getId());
+
             RankData[] ranks = dataManager.GetRankData();
             RankData rank = Arrays.stream(ranks).filter(r -> playerData.getRank_id()
                     == r.getId()).findFirst().orElse(null);
@@ -195,32 +216,54 @@ public class LookupPanel extends JPanel {
             data += "</font></td>";
             data += "</tr>";
 
-            data += "<tr>";
-            data += "</tr>";
-            data += "<tr>";
-            data += "<td><font color='yellow'><b>Alt Section</b></font></td>";
-            data += "<td><font color='" + color2 + "'>";
-            data += "</font></td>";
-            data += "</tr>";
-            if (alts.length > 0) {
-                int altIndex = 0;
-                for (PlayerData alt : alts) {
-                    data += "<tr>";
-                    if (altIndex == 0) {
-                        data += "<td><font color='" + color1 + "'>Usernames</font></td>";
-                    } else {
-                        data += "<td></td>";
-                    }
+            data += "<tr></tr>";
 
-                    data += "<td><font color='" + color2 + "'>";
-                    data += alt.getUsername();
-                    data += "</font></td>";
-                    data += "</tr>";
-                    altIndex ++;
+            if (playerData.parentAccount == 0) {
+                PlayerData[] alts = dataManager.GetAltData(playerData.getId());
+
+                data += "<tr>";
+                data += "<td><font color='yellow'><b>Alt Section</b></font></td>";
+                data += "<td><font color='" + color2 + "'>";
+                data += "</font></td>";
+                data += "</tr>";
+
+                if (alts.length > 0) {
+                    int altIndex = 0;
+                    for (PlayerData alt : alts) {
+                        data += "<tr>";
+                        if (altIndex == 0) {
+                            data += "<td><font color='" + color1 + "'>Usernames</font></td>";
+                        } else {
+                            data += "<td></td>";
+                        }
+
+                        data += "<td><font color='" + color2 + "'>";
+                        data += alt.getUsername();
+                        data += "</font></td>";
+                        data += "</tr>";
+                        altIndex ++;
+                    }
+                } else {
+                    data += "<tr><td><font color='" + color1 + "'>No registered alts</font></td></tr>";
                 }
             } else {
-                data += "<tr><td><font color='" + color1 + "'>No registered alts</font></td></tr>";
+                PlayerData parent = dataManager.GetParentData(playerData.parentAccount);
+
+                data += "<tr>";
+                data += "<td><font color='yellow'><b>Parent Account</b></font></td>";
+                data += "<td><font color='" + color2 + "'>";
+                data += "</font></td>";
+                data += "</tr>";
+
+
+                data += "<tr>";
+                data += "<td><font color='" + color1 + "'>Username</font></td>";
+                data += "<td><font color='" + color2 + "'>";
+                data += parent.getUsername();
+                data += "</font></td>";
+                data += "</tr>";
             }
+
 
             data += "</table></html>";
         }

@@ -1,5 +1,10 @@
 package com.InfernalFC.panels;
 
+import com.InfernalFC.helpers.DataManager;
+import com.InfernalFC.helpers.InventoryManager;
+import com.InfernalFC.helpers.ResourceManager;
+import com.InfernalFC.models.ItemData;
+import com.InfernalFC.models.RankData;
 import lombok.SneakyThrows;
 import net.runelite.client.ui.ColorScheme;
 import javax.inject.Inject;

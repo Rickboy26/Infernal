@@ -5,6 +5,7 @@ import java.awt.event.*;
 import javax.inject.Inject;
 import com.InfernalFC.components.combobox.ComboBoxIconEntry;
 import com.InfernalFC.components.combobox.ComboBoxIconListRenderer;
+import com.InfernalFC.helpers.DataManager;
 import com.InfernalFC.panels.*;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -67,29 +68,8 @@ class InfernalFCPanel extends PluginPanel
             {
                 final ComboBoxIconEntry source = (ComboBoxIconEntry) e.getItem();
                 tab = source.getData().toString();
-                this.removeAll();
-                this.add(dropdown);
 
-                switch (tab) {
-                    case "home":
-                        this.add(getHomePanel());
-                        getHomePanel().Load();
-                        break;
-                    case "cmman":
-                        this.add(getCmManPanel());
-                        break;
-                    case "lookup":
-                        this.add(getLookupPanel());
-                        break;
-                    case "ranks":
-                        this.add(getRanksPanel());
-                        getRanksPanel().rankChange("Trial");
-                        break;
-                    case "Tob":
-                        this.add(getTobSpecPanel());
-                        break;
-                }
-                this.updateUI();
+                SwitchPanel(tab);
             }
         });
 
@@ -110,12 +90,38 @@ class InfernalFCPanel extends PluginPanel
         ranksPanel.setSize( new Dimension( 200, 700 ) );
         tobSpecPanel.setSize( new Dimension( 200, 700 ) );
 
-        this.add(getHomePanel());
-        getHomePanel().Load();
+        dropdown.setSelectedIndex(-1);
+        dropdown.setSelectedIndex(0);
 
         Runnable task = dataManager::GetRankData;
         Thread thread = new Thread(task);
         thread.start();
 
+    }
+
+    public void SwitchPanel(String tab) {
+        this.removeAll();
+        this.add(dropdown);
+
+        switch (tab) {
+            case "home":
+                this.add(getHomePanel());
+                getHomePanel().Load();
+                break;
+            case "cmman":
+                this.add(getCmManPanel());
+                break;
+            case "lookup":
+                this.add(getLookupPanel());
+                break;
+            case "ranks":
+                this.add(getRanksPanel());
+                getRanksPanel().rankChange("Trial");
+                break;
+            case "Tob":
+                this.add(getTobSpecPanel());
+                break;
+        }
+        this.updateUI();
     }
 }

@@ -1,6 +1,7 @@
 package com.InfernalFC.panels;
 
 import com.InfernalFC.InfernalFCConfig;
+import com.InfernalFC.models.CmManData;
 import lombok.SneakyThrows;
 import net.runelite.client.ui.ColorScheme;
 import javax.inject.Inject;
