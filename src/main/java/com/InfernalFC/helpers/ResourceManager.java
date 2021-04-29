@@ -57,9 +57,13 @@ public class ResourceManager {
         }
     }
 
-    public Icon GetIconImage(String name) {
+    public Icon GetIconImage(String name, int size) {
         BufferedImage image = ImageUtil.loadImageResource(InfernalFCPlugin.class, "icons/" + name);
-        return new ImageIcon(image.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
+        if (size > 0) {
+            return new ImageIcon(image.getScaledInstance(size, size,  java.awt.Image.SCALE_SMOOTH));
+        } else {
+            return new ImageIcon(image);
+        }
     }
 
 }

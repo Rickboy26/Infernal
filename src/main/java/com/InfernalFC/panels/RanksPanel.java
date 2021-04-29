@@ -31,12 +31,12 @@ public class RanksPanel extends JPanel{
         this.resourceManager = resourceManager;
         this.inventoryManager = inventoryManager;
 
-        cmButtonPanel.add(createRankButton("⏱", "Trial"), BorderLayout.WEST);
-        cmButtonPanel.add(createRankButton("☻", "Junior Member"), BorderLayout.WEST);
-        cmButtonPanel.add(createRankButton("➀", "Member"), BorderLayout.WEST);
-        cmButtonPanel.add(createRankButton("➁", "Senior Member"), BorderLayout.WEST);
-        cmButtonPanel.add(createRankButton("➂", "Elite Member"), BorderLayout.WEST);
-        cmButtonPanel.add(createRankButton("⭐", "Lieutenant"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Junior_icon.png", "Trial"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Junior_icon.png", "Junior Member"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Member_icon.png", "Member"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Senior_icon.png", "Senior Member"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Elite_icon.png", "Elite Member"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Lieutenant_icon.png", "Lieutenant"), BorderLayout.WEST);
 
         this.add(cmButtonPanel, BorderLayout.NORTH);
 
@@ -150,7 +150,7 @@ public class RanksPanel extends JPanel{
         JLabel label = new JLabel(title);
         label.setFont(new Font("Arial", Font.BOLD, 10));
         try {
-            Runnable task = () -> label.setIcon(resourceManager.GetIconImage(name));
+            Runnable task = () -> label.setIcon(resourceManager.GetIconImage(name, 20));
 
             Thread thread = new Thread(task);
             thread.start();
@@ -169,12 +169,13 @@ public class RanksPanel extends JPanel{
         return label;
     }
 
-    private JButton createRankButton(String name, String tooltip )
+    private JButton createRankButton(String iconName, String tooltip )
     {
-        final JButton button = new JButton(name);
+        Icon icon = resourceManager.GetIconImage(iconName, 0);
+        final JButton button = new JButton(icon);
+
         button.setToolTipText(tooltip);
         button.setPreferredSize(new Dimension(33, 33));
-        button.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
         button.setFocusable(false);
         button.addMouseListener(new MouseAdapter()
         {
