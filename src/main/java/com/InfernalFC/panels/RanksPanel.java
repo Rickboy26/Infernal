@@ -13,6 +13,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class RanksPanel extends JPanel{
     private final DataManager dataManager;
@@ -61,6 +62,8 @@ public class RanksPanel extends JPanel{
         itemPanel.removeAll();
 
         inventoryManager.UpdateInventoryItems();
+
+        Arrays.sort(selectedRank.getItems(), Comparator.comparing(ItemData::getName));
         for (ItemData item : selectedRank.getItems()) {
             itemPanel.add(createItemLabel(item));
         }
