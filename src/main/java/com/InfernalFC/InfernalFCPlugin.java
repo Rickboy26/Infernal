@@ -1,5 +1,6 @@
 package com.InfernalFC;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ObjectArrays;
 import com.google.inject.Provides;
 import javax.inject.Inject;
@@ -63,6 +64,8 @@ public class InfernalFCPlugin extends Plugin
 
 	static final String CONFIG_GROUP = "InfernalFC";
 	static final String CHECK = "Infernal lookup";
+	private static final String KICK_OPTION = "Kick";
+	private static final ImmutableList<String> AFTER_OPTIONS = ImmutableList.of("Message", "Add ignore", "Remove friend", "Delete", KICK_OPTION);
 
 	@Override
 	protected void startUp() throws Exception
@@ -116,11 +119,11 @@ public class InfernalFCPlugin extends Plugin
 		String option = event.getOption();
 
 		if (groupId == WidgetInfo.FRIENDS_LIST.getGroupId() || groupId == WidgetInfo.FRIENDS_CHAT.getGroupId() ||
-				groupId == WidgetInfo.CHATBOX.getGroupId() &&
+				groupId == WidgetInfo.CHATBOX.getGroupId() && !KICK_OPTION.equals(option) || //prevent from adding for Kick option (interferes with the raiding party one)
 				groupId == WidgetInfo.RAIDING_PARTY.getGroupId() || groupId == WidgetInfo.PRIVATE_CHAT_MESSAGE.getGroupId() ||
 				groupId == WidgetInfo.IGNORE_LIST.getGroupId())
 		{
-			if (option.equals("Delete") && groupId != WidgetInfo.IGNORE_LIST.getGroupId())
+			if (!AFTER_OPTIONS.contains(option) || (option.equals("Delete") && groupId != WidgetInfo.IGNORE_LIST.getGroupId()))
 			{
 				return;
 			}
