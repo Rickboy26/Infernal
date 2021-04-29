@@ -33,7 +33,7 @@ public class HomePanel extends JPanel {
         color2 = "#"+Integer.toHexString(config.col2color().getRGB()).substring(2);
 
 
-        this.setPreferredSize(new Dimension(200, 900));
+        this.setPreferredSize(new Dimension(200, 950));
         buttonPanel.setLayout(new GridLayout(0,3));
 
         buttonPanel.add(createLinkButton("Website", "https://infernal-fc.com/"));

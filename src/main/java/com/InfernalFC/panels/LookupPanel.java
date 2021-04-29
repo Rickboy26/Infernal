@@ -250,7 +250,7 @@ public class LookupPanel extends JPanel {
                 PlayerData parent = dataManager.GetParentData(playerData.parentAccount);
 
                 data += "<tr>";
-                data += "<td><font color='yellow'><b>Parent Account</b></font></td>";
+                data += "<td><font color='yellow'><b>Main Account</b></font></td>";
                 data += "<td><font color='" + color2 + "'>";
                 data += "</font></td>";
                 data += "</tr>";
