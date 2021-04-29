@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ObjectArrays;
 import com.google.inject.Provides;
 import javax.inject.Inject;
+import javax.inject.Provider;
 import javax.swing.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -18,6 +19,7 @@ import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.game.SkillIconManager;
+import net.runelite.client.menus.MenuManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.ClientToolbar;
@@ -41,6 +43,9 @@ import java.lang.reflect.InvocationTargetException;
 public class InfernalFCPlugin extends Plugin
 {
 	@Inject
+	private Provider<MenuManager> menuManager;
+
+	@Inject
 	private Client client;
 
 	@Inject
@@ -63,7 +68,7 @@ public class InfernalFCPlugin extends Plugin
 	private NavigationButton uiNavigationButton;
 
 	static final String CONFIG_GROUP = "InfernalFC";
-	static final String CHECK = "Infernal lookup";
+	static final String LOOKUP = "Infernal lookup";
 	private static final String KICK_OPTION = "Kick";
 	private static final ImmutableList<String> AFTER_OPTIONS = ImmutableList.of("Message", "Add ignore", "Remove friend", "Delete", KICK_OPTION);
 
@@ -72,6 +77,11 @@ public class InfernalFCPlugin extends Plugin
 	{
 		setOverLay();
 		startClanPanel();
+
+		if (config.menuOption() && client != null)
+		{
+			menuManager.get().addPlayerMenuItem(LOOKUP);
+		}
 	}
 
 	@Override
@@ -79,6 +89,11 @@ public class InfernalFCPlugin extends Plugin
 	{
 		overlayManager.remove(overlay);
 		clientToolbar.removeNavigation(uiNavigationButton);
+
+		if (client != null)
+		{
+			menuManager.get().removePlayerMenuItem(LOOKUP);
+		}
 	}
 
 
@@ -92,6 +107,16 @@ public class InfernalFCPlugin extends Plugin
 				panel.removeAll();
 				clientToolbar.removeNavigation(uiNavigationButton);
 				startClanPanel();
+			}
+
+			if (client != null)
+			{
+				menuManager.get().removePlayerMenuItem(LOOKUP);
+
+				if (config.menuOption())
+				{
+					menuManager.get().addPlayerMenuItem(LOOKUP);
+				}
 			}
 		}
 	}
@@ -115,6 +140,11 @@ public class InfernalFCPlugin extends Plugin
 	@Subscribe
 	public void onMenuEntryAdded(MenuEntryAdded event)
 	{
+		if (!config.menuOption())
+		{
+			return;
+		}
+
 		int groupId = WidgetInfo.TO_GROUP(event.getActionParam1());
 		String option = event.getOption();
 
@@ -129,7 +159,7 @@ public class InfernalFCPlugin extends Plugin
 			}
 
 			final MenuEntry lookup = new MenuEntry();
-			lookup.setOption(CHECK);
+			lookup.setOption(LOOKUP);
 			lookup.setTarget(event.getTarget());
 			lookup.setType(MenuAction.RUNELITE.getId());
 			lookup.setParam0(event.getActionParam0());
@@ -144,16 +174,35 @@ public class InfernalFCPlugin extends Plugin
 	public void onMenuOptionClicked(MenuOptionClicked event)
 	{
 		if ((event.getMenuAction() == MenuAction.RUNELITE || event.getMenuAction() == MenuAction.RUNELITE_PLAYER)
-				&& event.getMenuOption().equals(CHECK))
+				&& event.getMenuOption().equals(LOOKUP))
 		{
 			final String target;
-			if (event.getMenuAction() == MenuAction.RUNELITE)
+			if (event.getMenuAction() == MenuAction.RUNELITE_PLAYER)
+			{
+				// The player id is included in the event, so we can use that to get the player name,
+				// which avoids having to parse out the combat level and any icons preceding the name.
+				Player player = client.getCachedPlayers()[event.getId()];
+				if (player == null)
+				{
+					return;
+				}
+
+				target = player.getName();
+			}
+			else
 			{
 				target = Text.removeTags(event.getMenuTarget());
+			}
 
+			SwingUtilities.invokeLater(() ->
+			{
+				if (!uiNavigationButton.isSelected())
+				{
+					uiNavigationButton.getOnSelect().run();
+				}
 				panel.SwitchPanel("lookup");
 				panel.getLookupPanel().SearchExact(target);
-			}
+			});
 		}
 	}
 

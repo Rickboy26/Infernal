@@ -24,6 +24,13 @@ public interface InfernalFCConfig extends Config
 		)
 		String gSheetsSection = "Google Sheets API";
 
+		@ConfigSection(
+				name = "Menu",
+				description = "Menu config",
+				position = 2
+		)
+		String menuSection = "Lookup menu";
+
 		@ConfigItem(
 				position = 1,
 				keyName = "overlay",
@@ -96,5 +103,17 @@ public interface InfernalFCConfig extends Config
 		default Color col2color()
 		{
 			return Color.GRAY;
+		}
+
+		@ConfigItem(
+				position = 10,
+				keyName = "menuOption",
+				name = "Menu option",
+				description = "Show Lookup option in menus",
+				section = menuSection
+		)
+		default boolean menuOption()
+		{
+			return true;
 		}
 	}
