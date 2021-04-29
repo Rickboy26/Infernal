@@ -28,7 +28,7 @@ public class DataManager {
 
     public PlayerData[] GetPlayerData(String searchString) {
         try {
-            URL url = new URL(baseUrl + "Members?active=1&_start=0&_end=10&username="
+            URL url = new URL(baseUrl + "Members?active=1&_start=0&_end=10&Clan_id=1&username="
                     + URLEncoder.encode(searchString, StandardCharsets.UTF_8.toString()));
 
             InputStream input = url.openStream();
@@ -42,7 +42,7 @@ public class DataManager {
 
     public PlayerData[] GetAltData(int id) {
         try {
-            URL url = new URL(baseUrl + "Members?active=1&_start=0&_end=10&parentAccount=" + id);
+            URL url = new URL(baseUrl + "Members?active=1&_start=0&_end=10&Clan_id=1&parentAccount=" + id);
 
             InputStream input = url.openStream();
             Reader reader = new InputStreamReader(input, StandardCharsets.UTF_8);
@@ -56,7 +56,7 @@ public class DataManager {
 
     public PlayerData GetParentData(int id) {
         try {
-            URL url = new URL(baseUrl + "Members?active=1&_start=0&_end=10&id=" + id);
+            URL url = new URL(baseUrl + "Members?active=1&_start=0&_end=10&Clan_id=1&id=" + id);
 
             InputStream input = url.openStream();
             Reader reader = new InputStreamReader(input, StandardCharsets.UTF_8);
@@ -74,7 +74,7 @@ public class DataManager {
             return ranks;
         }
         try {
-            URL url = new URL(baseUrl + "ranks?_start=0&_end=5000");
+            URL url = new URL(baseUrl + "ranks?_start=0&_end=5000&Clan_id=1");
 
             InputStream input = url.openStream();
             Reader reader = new InputStreamReader(input, StandardCharsets.UTF_8);
@@ -110,16 +110,16 @@ public class DataManager {
 
             switch (score) {
                 case EHB:
-                    url = new URL(baseUrl + "Members/killcounts/ehb?_start=0&_end=1");
+                    url = new URL(baseUrl + "Members/killcounts/ehb?_start=0&_end=1&Clan_id=1");
                     break;
                 case KC:
-                    url = new URL(baseUrl + "Members/killcounts/overall?_start=0&_end=1");
+                    url = new URL(baseUrl + "Members/killcounts/overall?_start=0&_end=1&Clan_id=1");
                     break;
                 default:
-                    url = new URL(baseUrl + "Members/points/overall?_start=0&_end=1");
+                    url = new URL(baseUrl + "Members/points/overall?_start=0&_end=1&Clan_id=1");
                     break;
                 case PETS:
-                    url = new URL(baseUrl + "Members/pets?_sort=count&_order=DESC&_start=0&_end=1");
+                    url = new URL(baseUrl + "Members/pets?_sort=count&_order=DESC&_start=0&_end=1&Clan_id=1");
                     break;
             }
 
@@ -137,7 +137,7 @@ public class DataManager {
 
     public EventData[] GetEvents() {
         try {
-            URL url = new URL(baseUrl + "Events?_end=10&_order=DESC&_sort=date&_start=0");
+            URL url = new URL(baseUrl + "Events?_end=10&_order=DESC&_sort=date&_start=0&Clan_id=1");
 
             InputStream input = url.openStream();
             Reader reader = new InputStreamReader(input, StandardCharsets.UTF_8);
