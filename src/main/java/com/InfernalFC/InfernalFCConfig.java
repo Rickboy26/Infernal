@@ -108,7 +108,7 @@ public interface InfernalFCConfig extends Config
 		@ConfigItem(
 				position = 10,
 				keyName = "menuOption",
-				name = "Menu option",
+				name = "Clan Check menu",
 				description = "Show Lookup option in menus",
 				section = menuSection
 		)
