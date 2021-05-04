@@ -68,7 +68,7 @@ public class InfernalFCPlugin extends Plugin
 	private NavigationButton uiNavigationButton;
 
 	static final String CONFIG_GROUP = "InfernalFC";
-	static final String LOOKUP = "Infernal lookup";
+	static final String LOOKUP = "Clan Check";
 	private static final String KICK_OPTION = "Kick";
 	private static final ImmutableList<String> AFTER_OPTIONS = ImmutableList.of("Message", "Add ignore", "Remove friend", "Delete", KICK_OPTION);
 
