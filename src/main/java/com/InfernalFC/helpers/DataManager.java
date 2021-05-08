@@ -119,7 +119,7 @@ public class DataManager {
                     url = new URL(baseUrl + "Members/points/overall?_start=0&_end=1&Clan_id=1");
                     break;
                 case PETS:
-                    url = new URL(baseUrl + "Members/pets?_sort=count&_order=DESC&_start=0&_end=1&Clan_id=1");
+                    url = new URL(baseUrl + "Members/pets?_sort=count&_order=DESC&_start=0&_end=1");
                     break;
             }
 
