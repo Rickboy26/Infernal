@@ -8,3 +8,9 @@ Exactly the same as the website, see if someone is a member, their points, their
 -- CM Meta --
 Currently showing how many items of each you need in CM with the Clan
 
+-- Requirements page --
+Showing all clan requirements for each rank
+
+-- Home --
+Shows hiscores & event details
+
