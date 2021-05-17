@@ -69,7 +69,8 @@ public class LookupPanel extends JPanel {
         this.add(ssText);
     }
 
-    public void Search(String searchString) {
+    public void Search(String input) {
+        final String searchString = input.replaceAll(" ", " ");
         Runnable task = () -> {
             playerData  = dataManager.GetPlayerData(searchString);
 
@@ -84,17 +85,18 @@ public class LookupPanel extends JPanel {
         thread.start();
     }
 
-    public void SearchExact(String name) {
+    public void SearchExact(String input) {
+        final String searchString = input.replaceAll(" ", " ");
         Runnable task = () -> {
-            playerData  = dataManager.GetPlayerData(name);
+            playerData  = dataManager.GetPlayerData(searchString);
 
             String[] dropdownData = Arrays.stream(playerData).map(PlayerData::getUsername).toArray(String[]::new);
             combobox.setModel(new DefaultComboBoxModel(dropdownData));
             combobox.setSelectedIndex(-1);
-            combobox.getEditor().setItem(name);
+            combobox.getEditor().setItem(searchString);
 
             PlayerData player = Arrays.stream(playerData).filter(data ->
-                    name.equals(data.getUsername())).findFirst().orElse(null);
+                    searchString.equals(data.getUsername())).findFirst().orElse(null);
             SetPlayerStats(player);
         };
 
