@@ -96,7 +96,7 @@ public class LookupPanel extends JPanel {
             combobox.getEditor().setItem(searchString);
 
             PlayerData player = Arrays.stream(playerData).filter(data ->
-                    searchString.equals(data.getUsername())).findFirst().orElse(null);
+                    searchString.equalsIgnoreCase(data.getUsername())).findFirst().orElse(null);
             SetPlayerStats(player);
         };
 
