@@ -35,8 +35,8 @@ import java.lang.reflect.InvocationTargetException;
 
 @Slf4j
 @PluginDescriptor(
-		name = "Infernal FC",
-		description = "A plugin used to keep track of clan events/announcements",
+		name = "Infernal",
+		description = "A plugin designed for clans to keep track of members/events & much more!",
 		tags = {"Infernal"}
 )
 
@@ -219,7 +219,7 @@ public class InfernalFCPlugin extends Plugin
 		final BufferedImage icon = ImageUtil.loadImageResource(getClass(), "icon.png");
 		panel = injector.getInstance(InfernalFCPanel.class);
 		uiNavigationButton = NavigationButton.builder()
-				.tooltip("Infernal FC")
+				.tooltip("Infernal")
 				.icon(icon)
 				.priority(7)
 				.panel(panel)
