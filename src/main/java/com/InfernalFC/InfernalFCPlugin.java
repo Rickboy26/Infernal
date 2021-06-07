@@ -14,7 +14,9 @@ import net.runelite.api.*;
 import net.runelite.api.events.ItemContainerChanged;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.MenuOptionClicked;
+import net.runelite.api.events.ScriptCallbackEvent;
 import net.runelite.api.widgets.WidgetInfo;
+import net.runelite.client.chat.ChatMessageManager;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
@@ -59,6 +61,8 @@ public class InfernalFCPlugin extends Plugin
 
 	@Inject
 	private SkillIconManager skillIconManager;
+	@Inject
+	private ChatMessageManager chatMessageManager;
 
 	@Inject
 	private ClientToolbar clientToolbar;
@@ -69,6 +73,8 @@ public class InfernalFCPlugin extends Plugin
 
 	static final String CONFIG_GROUP = "InfernalFC";
 	static final String LOOKUP = "Clan Check";
+	static final int FRIENDS_CHAT = 9;
+	static final int CLAN_CHAT = 41;
 	private static final String KICK_OPTION = "Kick";
 	private static final ImmutableList<String> AFTER_OPTIONS = ImmutableList.of("Message", "Add ignore", "Remove friend", "Delete", KICK_OPTION);
 
@@ -117,6 +123,39 @@ public class InfernalFCPlugin extends Plugin
 				{
 					menuManager.get().addPlayerMenuItem(LOOKUP);
 				}
+			}
+		}
+	}
+
+	@Subscribe
+	public void onScriptCallbackEvent(ScriptCallbackEvent scriptCallbackEvent)
+	{
+		if (scriptCallbackEvent.getEventName().equals("preChatSendpublic")) {
+			if (!config.slashSwaperOption())
+			{
+				return;
+			}
+			final String chatboxInput = client.getVar(VarClientStr.CHATBOX_TYPED_TEXT);
+			if(chatboxInput == null){
+				return;
+			}
+
+			if(chatboxInput.length()>=2 && chatboxInput.charAt(0)=='/' && chatboxInput.charAt(1) != '/'){
+				int[] intStack = client.getIntStack();
+				final int intStackSize = client.getIntStackSize();
+				intStack[intStackSize - 1] = CLAN_CHAT;
+				intStack[intStackSize - 2] = 1;
+
+				return;
+			}
+
+
+			if(chatboxInput.length()>2 && chatboxInput.charAt(0)=='/' && chatboxInput.charAt(1) == '/' && chatboxInput.charAt(2) != '/'){
+				int[] intStack = client.getIntStack();
+				final int intStackSize = client.getIntStackSize();
+				intStack[intStackSize - 1] = FRIENDS_CHAT;
+				intStack[intStackSize - 2] = 0;
+				client.setVar(VarClientStr.CHATBOX_TYPED_TEXT,chatboxInput.substring(2));
 			}
 		}
 	}

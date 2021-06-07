@@ -31,6 +31,13 @@ public interface InfernalFCConfig extends Config
 		)
 		String menuSection = "Lookup menu";
 
+		@ConfigSection(
+				name = "Chat",
+				description = "Chat config",
+				position = 3
+		)
+		String chatSection = "Chat";
+
 		@ConfigItem(
 				position = 1,
 				keyName = "overlay",
@@ -115,5 +122,17 @@ public interface InfernalFCConfig extends Config
 		default boolean menuOption()
 		{
 			return true;
+		}
+
+		@ConfigItem(
+				position = 10,
+				keyName = "slashSwaperOption",
+				name = "SlashSwaper",
+				description = "SlashSwaper",
+				section = chatSection
+		)
+		default boolean slashSwaperOption()
+		{
+			return false;
 		}
 	}

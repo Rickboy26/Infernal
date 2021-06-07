@@ -46,12 +46,14 @@ public class RanksPanel extends JPanel{
         cmButtonPanel.add(createRankButton("Marshal_icon.png", "Marshal"), BorderLayout.WEST);
 
 
-        this.add(cmButtonPanel, BorderLayout.NORTH);
+//        this.add(cmButtonPanel, BorderLayout.NORTH);
 
         itemPanel.setLayout(new GridLayout(0,4));
         pointsPanel.setLayout(new GridLayout(0,2));
+        cmButtonPanel.setLayout(new GridLayout(0,6));
 
         rankName.setFont(new Font("Arial", Font.BOLD, 18));
+        this.add(cmButtonPanel);
         this.add(rankName);
         this.add(itemPanel);
         this.add(pointsPanel);
@@ -183,7 +185,7 @@ public class RanksPanel extends JPanel{
         final JButton button = new JButton(icon);
 
         button.setToolTipText(tooltip);
-        button.setPreferredSize(new Dimension(33, 33));
+        button.setPreferredSize(new Dimension(38, 38));
         button.setFocusable(false);
         button.addMouseListener(new MouseAdapter()
         {
