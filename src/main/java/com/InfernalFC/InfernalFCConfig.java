@@ -127,8 +127,8 @@ public interface InfernalFCConfig extends Config
 		@ConfigItem(
 				position = 10,
 				keyName = "slashSwaperOption",
-				name = "SlashSwaper",
-				description = "SlashSwaper",
+				name = "SlashSwapper",
+				description = "SlashSwapper changes the / and // around for clan chat",
 				section = chatSection
 		)
 		default boolean slashSwaperOption()
