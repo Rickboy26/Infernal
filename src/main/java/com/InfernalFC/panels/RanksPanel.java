@@ -31,12 +31,19 @@ public class RanksPanel extends JPanel{
         this.resourceManager = resourceManager;
         this.inventoryManager = inventoryManager;
 
-        cmButtonPanel.add(createRankButton("Junior_icon.png", "Trial"), BorderLayout.WEST);
-        cmButtonPanel.add(createRankButton("Junior_icon.png", "Junior Member"), BorderLayout.WEST);
-        cmButtonPanel.add(createRankButton("Member_icon.png", "Member"), BorderLayout.WEST);
-        cmButtonPanel.add(createRankButton("Senior_icon.png", "Senior Member"), BorderLayout.WEST);
-        cmButtonPanel.add(createRankButton("Elite_icon.png", "Elite Member"), BorderLayout.WEST);
-        cmButtonPanel.add(createRankButton("Lieutenant_icon.png", "Lieutenant"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Trial_icon.png", "Trial"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Recruit_icon.png", "Recruit"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Peon_icon.png", "Peon"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Corporal_icon.png", "Corporal"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Sergeant_icon.png", "Sergeant"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Cadet_icon.png", "Cadet"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Officer_icon.png", "Officer"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Commander_icon.png", "Commander"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Colonel_icon.png", "Colonel"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Brigadier_icon.png", "Brigadier"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Admiral_icon.png", "Admiral"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Marshal_icon.png", "Marshal"), BorderLayout.WEST);
+
 
         this.add(cmButtonPanel, BorderLayout.NORTH);
 
@@ -77,7 +84,7 @@ public class RanksPanel extends JPanel{
         pointsPanel.add(new JLabel());
         pointsPanel.add(createIconLabel("Total_points.png", selectedRank.getTotal() + " Total"));
         pointsPanel.add(createIconLabel("Pvm_points.png", selectedRank.getPvm() + " PvM"));
-        pointsPanel.add(createIconLabel("Ehb_points.png", selectedRank.getEhb() + " EHB"));
+        pointsPanel.add(createIconLabel("Ehb_points.png", selectedRank.getEhb() + " Diaries tier 4"));
         pointsPanel.add(createIconLabel("Community_points.png", selectedRank.getCommunity() + " Community"));
         pointsPanel.add(new JLabel());
         pointsPanel.add(new JLabel());
