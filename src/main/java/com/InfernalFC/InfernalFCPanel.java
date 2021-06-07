@@ -53,9 +53,9 @@ class InfernalFCPanel extends PluginPanel
 
         BufferedImage icon = ImageUtil.loadImageResource(getClass(), "home.png");
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Home", "home"));
-        icon = ImageUtil.loadImageResource(getClass(), "home.png");
+        icon = ImageUtil.loadImageResource(getClass(), "Lookup_icon.png");
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Player Lookup", "lookup"));
-        icon = ImageUtil.loadImageResource(getClass(), "home.png");
+        icon = ImageUtil.loadImageResource(getClass(), "Requirement_icon.png");
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " Requirements", "ranks"));
         icon = ImageUtil.loadImageResource(getClass(), "cm.png");
         dropdown.addItem(new ComboBoxIconEntry(new ImageIcon(icon), " CM Meta", "cmman"));
