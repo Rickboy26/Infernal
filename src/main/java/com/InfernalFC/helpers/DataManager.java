@@ -20,7 +20,7 @@ import static com.InfernalFC.helpers.PointsEnum.*;
 
 @Singleton
 public class DataManager {
-    private final static String baseUrl = "https://infernal-fc.com/api/";
+    private final static String baseUrl = "https://infernal-osrs.com/api/";
     private RankData[] ranks;
 
     @Inject
