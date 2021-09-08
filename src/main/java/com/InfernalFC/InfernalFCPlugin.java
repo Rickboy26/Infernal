@@ -1,5 +1,6 @@
 package com.InfernalFC;
 
+import com.InfernalFC.helpers.GroundMarkerOverlay;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ObjectArrays;
 import com.google.inject.Provides;
@@ -60,6 +61,9 @@ public class InfernalFCPlugin extends Plugin
 	private InfernalFCOverlay overlay;
 
 	@Inject
+	private GroundMarkerOverlay groundMarkerOverlay;
+
+	@Inject
 	private SkillIconManager skillIconManager;
 	@Inject
 	private ChatMessageManager chatMessageManager;
@@ -83,6 +87,7 @@ public class InfernalFCPlugin extends Plugin
 	{
 		setOverLay();
 		startClanPanel();
+		overlayManager.add(groundMarkerOverlay);
 
 		if (config.menuOption() && client != null)
 		{
@@ -94,7 +99,9 @@ public class InfernalFCPlugin extends Plugin
 	protected void shutDown() throws Exception
 	{
 		overlayManager.remove(overlay);
+		overlayManager.remove(groundMarkerOverlay);
 		clientToolbar.removeNavigation(uiNavigationButton);
+
 
 		if (client != null)
 		{
@@ -269,6 +276,7 @@ public class InfernalFCPlugin extends Plugin
 	private void setOverLay() {
 		if (config.overlay()) {
 			overlayManager.add(overlay);
+
 		} else {
 			overlayManager.remove(overlay);
 		}

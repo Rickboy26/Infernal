@@ -121,4 +121,15 @@ public interface InfernalFCConfig extends Config {
 		return false;
 	}
 
+	@ConfigItem(
+			position = 10,
+			keyName = "tekton",
+			name = "Tekton",
+			description = "Tekton",
+			section = chambersSection
+	)
+	default boolean chamberTektonOption() {
+		return false;
+	}
+
 }
