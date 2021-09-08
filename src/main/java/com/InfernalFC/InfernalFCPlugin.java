@@ -1,6 +1,7 @@
 package com.InfernalFC;
 
 import com.InfernalFC.helpers.GroundMarkerOverlay;
+import com.InfernalFC.helpers.MarkersManager;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ObjectArrays;
 import com.google.inject.Provides;
@@ -12,10 +13,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
-import net.runelite.api.events.ItemContainerChanged;
-import net.runelite.api.events.MenuEntryAdded;
-import net.runelite.api.events.MenuOptionClicked;
-import net.runelite.api.events.ScriptCallbackEvent;
+import net.runelite.api.events.*;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.chat.ChatMessageManager;
 import net.runelite.client.config.ConfigManager;
@@ -62,6 +60,9 @@ public class InfernalFCPlugin extends Plugin
 
 	@Inject
 	private GroundMarkerOverlay groundMarkerOverlay;
+
+	@Inject
+	private MarkersManager markersManager;
 
 	@Inject
 	private SkillIconManager skillIconManager;
@@ -181,6 +182,18 @@ public class InfernalFCPlugin extends Plugin
 				e.printStackTrace();
 			}
 		}
+	}
+
+	@Subscribe
+	public void onGameStateChanged(GameStateChanged gameStateChanged)
+	{
+		if (gameStateChanged.getGameState() != GameState.LOGGED_IN)
+		{
+			return;
+		}
+
+		// map region has just been updated
+		markersManager.loadPoints();
 	}
 
 	@Subscribe

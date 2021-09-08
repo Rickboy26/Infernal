@@ -9,14 +9,17 @@ import net.runelite.api.Client;
 import net.runelite.api.coords.WorldPoint;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Singleton
 public class MarkersManager {
 
     private final Client client;
     private final InfernalFCConfig config;
+    private final Gson gson;
     private final String tektonMarkers = "[{\"regionId\":4919,\"regionX\":37,\"regionY\":46,\"z\":0,\"color\":\"#FF04FFD4\"}]";
 
     private Map<String, Collection<ColorTileMarker>> markerMapping;
@@ -25,8 +28,8 @@ public class MarkersManager {
     private MarkersManager(Gson gson, Client client, InfernalFCConfig config) {
         this.client = client;
         this.config = config;
-        markerMapping = new HashMap<>();
-        markerMapping.put("Tekton", translateToColorTileMarker(gson.fromJson(tektonMarkers, new TypeToken<List<GroundMarkerPoint>>(){}.getType())));
+        this.gson = gson;
+        loadPoints();
     }
 
     private Collection<ColorTileMarker> translateToColorTileMarker(Collection<GroundMarkerPoint> points)
@@ -46,6 +49,11 @@ public class MarkersManager {
                     return localWorldPoints.stream().map(wp -> new ColorTileMarker(wp, colorTile.getColor(), colorTile.getLabel()));
                 })
                 .collect(Collectors.toList());
+    }
+
+    public void loadPoints() {
+        markerMapping = new HashMap<>();
+        markerMapping.put("Tekton", translateToColorTileMarker(gson.fromJson(tektonMarkers, new TypeToken<List<GroundMarkerPoint>>(){}.getType())));
     }
 
     public Collection<ColorTileMarker> getMarkers() {
