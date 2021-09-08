@@ -17,7 +17,7 @@ public class MarkersManager {
 
     private final Client client;
     private final InfernalFCConfig config;
-    private final String testMarkers = "[{\"regionId\":12850,\"regionX\":7,\"regionY\":12,\"z\":2,\"color\":\"#FFFFFF00\"}]";
+    private final String tektonMarkers = "[{\"regionId\":4919,\"regionX\":37,\"regionY\":46,\"z\":0,\"color\":\"#FF04FFD4\"}]";
 
     private Map<String, Collection<ColorTileMarker>> markerMapping;
 
@@ -26,7 +26,7 @@ public class MarkersManager {
         this.client = client;
         this.config = config;
         markerMapping = new HashMap<>();
-        markerMapping.put("test", translateToColorTileMarker(gson.fromJson(testMarkers, new TypeToken<List<GroundMarkerPoint>>(){}.getType())));
+        markerMapping.put("Tekton", translateToColorTileMarker(gson.fromJson(tektonMarkers, new TypeToken<List<GroundMarkerPoint>>(){}.getType())));
     }
 
     private Collection<ColorTileMarker> translateToColorTileMarker(Collection<GroundMarkerPoint> points)
@@ -52,7 +52,7 @@ public class MarkersManager {
         List<ColorTileMarker> anotherList = new ArrayList<>();
 
         if (config.chamberTektonOption()) {
-            anotherList.addAll(markerMapping.get("test"));
+            anotherList.addAll(markerMapping.get("Tekton"));
         }
         return anotherList;
     }
