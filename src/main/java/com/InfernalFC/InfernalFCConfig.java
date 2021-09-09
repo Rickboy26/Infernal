@@ -122,14 +122,148 @@ public interface InfernalFCConfig extends Config {
 	}
 
 	@ConfigItem(
-			position = 10,
+			position = 1,
 			keyName = "tekton",
 			name = "Tekton",
 			description = "Tekton",
 			section = chambersSection
 	)
 	default boolean chamberTektonOption() {
-		return false;
+		return true;
+	}
+
+	@ConfigItem(
+			position = 2,
+			keyName = "crabs",
+			name = "Crabs",
+			description = "Show tiles for crabs META",
+			section = chambersSection
+	)
+	default boolean chamberCrabOption() {
+		return true;
+	}
+
+	@ConfigItem(
+			position = 3,
+			keyName = "ice",
+			name = "Ice Demon",
+			description = "Show tiles for crabs META",
+			section = chambersSection
+	)
+	default boolean chamberIceOption() {
+		return true;
+	}
+	@ConfigItem(
+			position = 4,
+			keyName = "shamans",
+			name = "Shamans",
+			description = "Show tiles for crabs META",
+			section = chambersSection
+	)
+	default boolean chamberShamansOption() {
+		return true;
+	}
+	@ConfigItem(
+			position = 5,
+			keyName = "vanguards",
+			name = "Vanguards",
+			description = "Show tiles for crabs META",
+			section = chambersSection
+	)
+	default boolean chamberVanguardsOption() {
+		return true;
+	}
+	@ConfigItem(
+			position = 6,
+			keyName = "thieving",
+			name = "Thieving",
+			description = "Show tiles for crabs META",
+			section = chambersSection
+	)
+	default boolean chamberThievingOption() {
+		return true;
+	}
+
+	@ConfigItem(
+			position = 7,
+			keyName = "vespula",
+			name = "Vespula",
+			description = "Show tiles for crabs META",
+			section = chambersSection
+	)
+	default boolean chamberVespulaOption() {
+		return true;
+	}
+	@ConfigItem(
+			position = 8,
+			keyName = "tightrope",
+			name = "Tightrope",
+			description = "Show tiles for crabs META",
+			section = chambersSection
+	)
+	default boolean chamberTightropeOption() {
+		return true;
+	}
+
+	@ConfigItem(
+			position = 9,
+			keyName = "guardians",
+			name = "Guardians",
+			description = "Show tiles for crabs META",
+			section = chambersSection
+	)
+	default boolean chamberGuardiansOption() {
+		return true;
+	}
+	@ConfigItem(
+			position = 10,
+			keyName = "vasa",
+			name = "Vasa Nistiro",
+			description = "Show tiles for crabs META",
+			section = chambersSection
+	)
+	default boolean chamberVasaOption() {
+		return true;
+	}
+	@ConfigItem(
+			position = 11,
+			keyName = "mystics",
+			name = "Mystics",
+			description = "Show tiles for crabs META",
+			section = chambersSection
+	)
+	default boolean chamberMysticOption() {
+		return true;
+	}
+	@ConfigItem(
+			position = 12,
+			keyName = "muttadile",
+			name = "Muttadile",
+			description = "Show tiles for crabs META",
+			section = chambersSection
+	)
+	default boolean chamberMuttadileOption() {
+		return true;
+	}
+	@ConfigItem(
+			position = 13,
+			keyName = "olm",
+			name = "Olm",
+			description = "Show tiles for crabs META",
+			section = chambersSection
+	)
+	default boolean chamberOlmOption() {
+		return true;
+	}
+	@ConfigItem(
+			position = 14,
+			keyName = "tips",
+			name = "Tips",
+			description = "Show tiles for crabs META",
+			section = chambersSection
+	)
+	default boolean chamberTipsOption() {
+		return true;
 	}
 
 }
