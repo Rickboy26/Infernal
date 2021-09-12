@@ -33,7 +33,7 @@ public class RanksPanel extends JPanel{
 
         cmButtonPanel.add(createRankButton("Trial_icon.png", "Trial"), BorderLayout.WEST);
         cmButtonPanel.add(createRankButton("Recruit_icon.png", "Recruit"), BorderLayout.WEST);
-        cmButtonPanel.add(createRankButton("Peon_icon.png", "Peon"), BorderLayout.WEST);
+        cmButtonPanel.add(createRankButton("Peon_icon.png", "Pawn"), BorderLayout.WEST);
         cmButtonPanel.add(createRankButton("Corporal_icon.png", "Corporal"), BorderLayout.WEST);
         cmButtonPanel.add(createRankButton("Sergeant_icon.png", "Sergeant"), BorderLayout.WEST);
         cmButtonPanel.add(createRankButton("Cadet_icon.png", "Cadet"), BorderLayout.WEST);

@@ -265,5 +265,14 @@ public interface InfernalFCConfig extends Config {
 	default boolean chamberTipsOption() {
 		return true;
 	}
-
+	@ConfigItem(
+			position = 14,
+			keyName = "EasterEgg",
+			name = "EasterEgg",
+			description = "Where o where ?",
+			section = menuSection
+	)
+	default boolean chamberEasterEggOption() {
+		return false;
+	}
 }
