@@ -12,7 +12,7 @@ public interface InfernalFCConfig extends Config {
 	@ConfigSection(
 			name = "Event Codeword",
 			description = "Codeword info for clan event",
-			position = 0
+			position = 1
 	)
 	String eventPassSection = "Event Passphrase";
 
@@ -117,7 +117,18 @@ public interface InfernalFCConfig extends Config {
 			description = "SlashSwapper changes the / and // around for clan chat",
 			section = menuSection
 	)
+
 	default boolean slashSwaperOption() {
+		return false;
+	}
+	@ConfigItem(
+			position = 12,
+			keyName = "EasterEgg",
+			name = "EasterEgg",
+			description = "Where o where ?",
+			section = menuSection
+	)
+	default boolean chamberEasterEggOption() {
 		return false;
 	}
 
@@ -125,7 +136,7 @@ public interface InfernalFCConfig extends Config {
 			position = 1,
 			keyName = "tekton",
 			name = "Tekton",
-			description = "Tekton",
+			description = "Shows tiles for Tekton",
 			section = chambersSection
 	)
 	default boolean chamberTektonOption() {
@@ -136,7 +147,7 @@ public interface InfernalFCConfig extends Config {
 			position = 2,
 			keyName = "crabs",
 			name = "Crabs",
-			description = "Show tiles for crabs META",
+			description = "Shows tiles for Crabs",
 			section = chambersSection
 	)
 	default boolean chamberCrabOption() {
@@ -147,7 +158,7 @@ public interface InfernalFCConfig extends Config {
 			position = 3,
 			keyName = "ice",
 			name = "Ice Demon",
-			description = "Show tiles for crabs META",
+			description = "Shows tiles for Ice Demon",
 			section = chambersSection
 	)
 	default boolean chamberIceOption() {
@@ -157,7 +168,7 @@ public interface InfernalFCConfig extends Config {
 			position = 4,
 			keyName = "shamans",
 			name = "Shamans",
-			description = "Show tiles for crabs META",
+			description = "Shows tiles for Shamans",
 			section = chambersSection
 	)
 	default boolean chamberShamansOption() {
@@ -167,7 +178,7 @@ public interface InfernalFCConfig extends Config {
 			position = 5,
 			keyName = "vanguards",
 			name = "Vanguards",
-			description = "Show tiles for crabs META",
+			description = "Shows tiles for Vanguards",
 			section = chambersSection
 	)
 	default boolean chamberVanguardsOption() {
@@ -177,7 +188,7 @@ public interface InfernalFCConfig extends Config {
 			position = 6,
 			keyName = "thieving",
 			name = "Thieving",
-			description = "Show tiles for crabs META",
+			description = "Shows tiles for Thieving",
 			section = chambersSection
 	)
 	default boolean chamberThievingOption() {
@@ -188,7 +199,7 @@ public interface InfernalFCConfig extends Config {
 			position = 7,
 			keyName = "vespula",
 			name = "Vespula",
-			description = "Show tiles for crabs META",
+			description = "Shows tiles for Vespula",
 			section = chambersSection
 	)
 	default boolean chamberVespulaOption() {
@@ -198,7 +209,7 @@ public interface InfernalFCConfig extends Config {
 			position = 8,
 			keyName = "tightrope",
 			name = "Tightrope",
-			description = "Show tiles for crabs META",
+			description = "Shows tiles for Tightrope",
 			section = chambersSection
 	)
 	default boolean chamberTightropeOption() {
@@ -209,7 +220,7 @@ public interface InfernalFCConfig extends Config {
 			position = 9,
 			keyName = "guardians",
 			name = "Guardians",
-			description = "Show tiles for crabs META",
+			description = "Shows tiles for Guardians",
 			section = chambersSection
 	)
 	default boolean chamberGuardiansOption() {
@@ -219,7 +230,7 @@ public interface InfernalFCConfig extends Config {
 			position = 10,
 			keyName = "vasa",
 			name = "Vasa Nistiro",
-			description = "Show tiles for crabs META",
+			description = "Shows tiles for Vasa",
 			section = chambersSection
 	)
 	default boolean chamberVasaOption() {
@@ -229,7 +240,7 @@ public interface InfernalFCConfig extends Config {
 			position = 11,
 			keyName = "mystics",
 			name = "Mystics",
-			description = "Show tiles for crabs META",
+			description = "Shows tiles for Mystics",
 			section = chambersSection
 	)
 	default boolean chamberMysticOption() {
@@ -239,7 +250,7 @@ public interface InfernalFCConfig extends Config {
 			position = 12,
 			keyName = "muttadile",
 			name = "Muttadile",
-			description = "Show tiles for crabs META",
+			description = "Shows tiles for Muttadile",
 			section = chambersSection
 	)
 	default boolean chamberMuttadileOption() {
@@ -249,7 +260,7 @@ public interface InfernalFCConfig extends Config {
 			position = 13,
 			keyName = "olm",
 			name = "Olm",
-			description = "Show tiles for crabs META",
+			description = "Shows tiles for Olm",
 			section = chambersSection
 	)
 	default boolean chamberOlmOption() {
@@ -259,20 +270,11 @@ public interface InfernalFCConfig extends Config {
 			position = 14,
 			keyName = "tips",
 			name = "Tips",
-			description = "Show tiles for crabs META",
+			description = "Shows tips & tricks what to bank & take",
 			section = chambersSection
 	)
 	default boolean chamberTipsOption() {
 		return true;
 	}
-	@ConfigItem(
-			position = 14,
-			keyName = "EasterEgg",
-			name = "EasterEgg",
-			description = "Where o where ?",
-			section = menuSection
-	)
-	default boolean chamberEasterEggOption() {
-		return false;
-	}
+
 }
