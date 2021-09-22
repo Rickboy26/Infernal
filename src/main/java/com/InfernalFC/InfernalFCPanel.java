@@ -12,13 +12,15 @@ import lombok.extern.slf4j.Slf4j;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.image.BufferedImage;
+import javax.inject.Singleton;
 import javax.swing.*;
 
 import net.runelite.client.ui.PluginPanel;
 import net.runelite.client.util.ImageUtil;
 
 @Slf4j
-class InfernalFCPanel extends PluginPanel
+@Singleton
+public class InfernalFCPanel extends PluginPanel
 {
     final JComboBox<ComboBoxIconEntry> dropdown = new JComboBox<>();
 
@@ -26,6 +28,8 @@ class InfernalFCPanel extends PluginPanel
     private final HomePanel homePanel;
     @Getter
     private final CmManPanel cmManPanel;
+    @Getter
+    public final CmManRolePanel cmManRolePanel;
     @Getter
     private final RanksPanel ranksPanel;
     @Getter
@@ -36,10 +40,11 @@ class InfernalFCPanel extends PluginPanel
     private String tab;
 
     @Inject
-    private InfernalFCPanel(CmManPanel cmManPanel, HomePanel homePanel, DataManager dataManager,
+    private InfernalFCPanel(CmManPanel cmManPanel, CmManRolePanel cmManRolePanel, HomePanel homePanel, DataManager dataManager,
                             RanksPanel ranksPanel, LookupPanel lookupPanel, TobSpecPanel tobSpecPanel){
         this.homePanel = homePanel;
         this.cmManPanel = cmManPanel;
+        this.cmManRolePanel = cmManRolePanel;
         this.ranksPanel = ranksPanel;
         this.lookupPanel = lookupPanel;
         this.tobSpecPanel = tobSpecPanel;
@@ -110,6 +115,9 @@ class InfernalFCPanel extends PluginPanel
                 break;
             case "cmman":
                 this.add(getCmManPanel());
+                break;
+            case "cmmanrole":
+                this.add(getCmManRolePanel());
                 break;
             case "lookup":
                 this.add(getLookupPanel());

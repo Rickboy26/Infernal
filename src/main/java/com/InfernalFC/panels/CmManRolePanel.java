@@ -5,9 +5,12 @@ import com.InfernalFC.InfernalFCPanel;
 import com.InfernalFC.helpers.InventoryManager;
 import com.InfernalFC.helpers.ResourceManager;
 import com.InfernalFC.models.CmManData;
+import com.InfernalFC.models.CmRoleEquipment;
 import com.google.inject.Provider;
+import lombok.Getter;
 import lombok.SneakyThrows;
 import net.runelite.client.ui.ColorScheme;
+
 import javax.inject.Inject;
 import javax.swing.*;
 import java.awt.*;
@@ -16,21 +19,22 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.Array;
 
-public class CmManPanel extends JPanel {
+public class CmManRolePanel extends JPanel {
     @Inject()
     private Provider<InfernalFCPanel> infernalFCPanel;
     private final InventoryManager inventoryManager;
     private final ResourceManager resourceManager;
 
-    private JPanel cmButtonPanel = new JPanel();
+    private String role = "Role 1";
+
     private JPanel itemPanel = new JPanel();
+    private JPanel equipmentPanel = new JPanel();
     private String color1;
     private String color2;
-    private int cmMan = 3;
     private CmManData data;
 
     @Inject
-    private CmManPanel(InfernalFCConfig config, CmManData data, ResourceManager resourceManager, InventoryManager inventoryManager) {
+    private CmManRolePanel(InfernalFCConfig config, CmManData data, ResourceManager resourceManager, InventoryManager inventoryManager) {
         this.resourceManager = resourceManager;
         this.inventoryManager = inventoryManager;
         this.data = data;
@@ -38,29 +42,32 @@ public class CmManPanel extends JPanel {
         color1 = "#"+Integer.toHexString(config.col1color().getRGB()).substring(2);
         color2 = "#"+Integer.toHexString(config.col2color().getRGB()).substring(2);
 
-        for (int i = 3; i < 10; i++) {
-            cmButtonPanel.add(createCmButton(i), BorderLayout.WEST);
-        }
-
         this.setPreferredSize(new Dimension(200, 400));
-        this.add(cmButtonPanel, BorderLayout.NORTH);
 
-        itemPanel.setLayout(new GridLayout(0,4));
+        this.add(createBackButton());
+
+        equipmentPanel.setLayout(new GridLayout(5,3));
+        equipmentPanel.setPreferredSize(new Dimension(200, 250));
+        setEquipmentPanel();
+
+        itemPanel.setLayout(new GridLayout(7,4));
         itemPanel.setPreferredSize(new Dimension(200, 100));
         setItemPanel();
 
+        this.add(equipmentPanel);
         this.add(itemPanel);
 
-        this.add(createRoleButton("Role 1"));
-        this.add(createRoleButton("Role 2"));
-        this.add(createRoleButton("Role 3"));
-        this.add(createRoleButton("Role 4"));
-        this.add(createRoleButton("Role 5"));
+        this.updateUI();
     }
 
-    private JButton createCmButton(int index )
+    public void setRole(String role) {
+        this.role = role;
+        setEquipmentPanel();
+    }
+
+    private JButton createBackButton()
     {
-        final JButton label = new JButton(String.valueOf(index));
+        final JButton label = new JButton("<");
         label.setPreferredSize(new Dimension(26, 26));
         label.setFont(new Font("Arial", Font.PLAIN, 9));
         label.setFocusable(false);
@@ -84,9 +91,7 @@ public class CmManPanel extends JPanel {
             {
                 if (e.getButton() == MouseEvent.BUTTON1)
                 {
-                    cmMan = index;
-                    setItemPanel();
-
+                    infernalFCPanel.get().SwitchPanel("cmman");
                 }
             }
         });
@@ -94,74 +99,69 @@ public class CmManPanel extends JPanel {
         return label;
     }
 
-    private JButton createRoleButton(String role)
-    {
-        final JButton label = new JButton(role);
-        label.setPreferredSize(new Dimension(200, 30));
-        label.setFont(new Font("Arial", Font.PLAIN, 9));
-        label.setFocusable(false);
-        label.addMouseListener(new MouseAdapter()
-        {
-            @Override
-            public void mouseEntered(MouseEvent e)
-            {
-                label.setBackground(ColorScheme.DARK_GRAY_HOVER_COLOR);
-            }
+    private void setEquipmentPanel() {
+        equipmentPanel.removeAll();
+        CmRoleEquipment equipment = data.roleGearMapping.get(role);
+        equipmentPanel.add(createDummyLabel());
+        equipmentPanel.add(createItemLabel(equipment.helmet.name));
+        equipmentPanel.add(createDummyLabel());
 
-            @Override
-            public void mouseExited(MouseEvent e)
-            {
-                label.setBackground(ColorScheme.DARK_GRAY_COLOR);
-            }
+        equipmentPanel.add(createItemLabel(equipment.cape.name));
+        equipmentPanel.add(createItemLabel(equipment.necklace.name));
+        equipmentPanel.add(createItemLabel(equipment.ammo.name));
 
-            @SneakyThrows
-            @Override
-            public void mousePressed(MouseEvent e)
-            {
-                if (e.getButton() == MouseEvent.BUTTON1)
-                {
-                    infernalFCPanel.get().cmManRolePanel.setRole(role);
-                    infernalFCPanel.get().SwitchPanel("cmmanrole");
-                }
-            }
-        });
+        equipmentPanel.add(createItemLabel(equipment.weapon.name));
+        equipmentPanel.add(createItemLabel(equipment.torso.name));
+        equipmentPanel.add(createItemLabel(equipment.shield.name));
 
-        return label;
+        equipmentPanel.add(createDummyLabel());
+        equipmentPanel.add(createItemLabel(equipment.pants.name));
+        equipmentPanel.add(createDummyLabel());
+
+        equipmentPanel.add(createItemLabel(equipment.gloves.name));
+        equipmentPanel.add(createItemLabel(equipment.boots.name));
+        equipmentPanel.add(createItemLabel(equipment.ring.name));
+
+        equipmentPanel.updateUI();
     }
 
     private void setItemPanel() {
-        try {
-            String[][] cmManData = this.data.itemMapping.get(String.valueOf(cmMan));
 
-            itemPanel.removeAll();
-            for (String[] row : cmManData) {
-                itemPanel.add(createItemLabel((String) Array.get(row, 0), (String) Array.get(row, 1)));
-            }
-            itemPanel.updateUI();
-            this.updateUI();
-        } catch (Exception e) {
-
-        }
     }
 
-    private JLabel createItemLabel(String name, String quantity) {
+    private JLabel createDummyLabel() {
+        JLabel label = new JLabel();
+        label.setMinimumSize(new Dimension(30, 30));
+        label.setMaximumSize(new Dimension(30, 30));
+        label.setBorder(BorderFactory.createLineBorder(ColorScheme.DARK_GRAY_COLOR, 2));
+        return label;
+    }
+
+    private JLabel createEmptyLabel() {
+        JLabel label = new JLabel();
+        label.setMinimumSize(new Dimension(30, 30));
+        label.setMaximumSize(new Dimension(30, 30));
+        label.setBackground(ColorScheme.DARKER_GRAY_COLOR);
+        label.setBorder(BorderFactory.createLineBorder(ColorScheme.DARK_GRAY_COLOR, 2));
+        label.setOpaque(true);
+        return label;
+    }
+
+    private JLabel createItemLabel(String name) {
         JLabel label = new JLabel();
         label.setToolTipText(name);
         label.setHorizontalAlignment(JLabel.CENTER);
         label.setBorder(BorderFactory.createLineBorder(ColorScheme.DARK_GRAY_COLOR, 2));
-        label.setBackground(new Color(39, 25, 25));
+        label.setOpaque(true);
 
         if (inventoryManager.HasItem(name)) {
-            label.setOpaque(false);
+            label.setBackground(ColorScheme.DARKER_GRAY_COLOR);
         } else {
-            label.setOpaque(true);
+            label.setBackground(new Color(39, 25, 25));
         }
 
         try {
-            Runnable task = () -> {
-                Icon icon  = resourceManager.GetItemImage(name);
-                label.setIcon(getLabeledIcon(icon, quantity));
-            };
+            Runnable task = () -> label.setIcon(resourceManager.GetItemImage(name));
 
             Thread thread = new Thread(task);
             thread.start();
@@ -183,6 +183,6 @@ public class CmManPanel extends JPanel {
         g2d.setPaint(Color.yellow);
         g2d.drawString(text, 0, 10);
         g2d.dispose();
-        return new ImageIcon(img.getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH));
+        return new ImageIcon(img.getScaledInstance(30, 30,  Image.SCALE_SMOOTH));
     }
 }
