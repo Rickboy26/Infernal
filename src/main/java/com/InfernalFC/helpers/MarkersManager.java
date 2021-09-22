@@ -82,7 +82,6 @@ public class MarkersManager {
         markerMapping.put("Olm", translateToColorTileMarker(gson.fromJson(olmMarkers, new TypeToken<List<GroundMarkerPoint>>(){}.getType())));
         markerMapping.put("Tips", translateToColorTileMarker(gson.fromJson(tipsMarkers, new TypeToken<List<GroundMarkerPoint>>(){}.getType())));
         markerMapping.put("EasterEgg", translateToColorTileMarker(gson.fromJson(easterMarkers, new TypeToken<List<GroundMarkerPoint>>(){}.getType())));
-        markerMapping.put("Test", translateToColorTileMarker(gson.fromJson(testMarkers, new TypeToken<List<GroundMarkerPoint>>(){}.getType())));
     }
 
 
@@ -133,9 +132,6 @@ public class MarkersManager {
         }
         if (config.chamberEasterEggOption()) {
             anotherList.addAll(markerMapping.get("EasterEgg"));
-        }
-        if (config.chamberTestOption()) {
-            anotherList.addAll(markerMapping.get("Test"));
         }
         return anotherList;
     }

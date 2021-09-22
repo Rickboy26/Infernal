@@ -12,74 +12,74 @@ public class CmManData {
     private CmManData() {
         itemMapping = Stream.of(new Object[][] {
                 { "3", new String[][] {
-                        { "Juice", "25" },
-                        { "Mushroom", "12" },
+                        { "Endarkened juice", "25" },
+                        { "Stinkhorn mushroom", "12" },
                         { "Cicely", "1" },
-                        { "Buchu", "38" },
-                        { "Noxifier", "0" },
-                        { "Golpar", "0" },
-                        { "Humidifies", "2" },
-                        { "Grubs", "47" }
+                        { "Humidify", "2" },
+                        { "Buchu leaf", "38" },
+                        { "Golpar leaf", "0" },
+                        { "Noxifer leaf", "0" },
+                        { "Cavern grubs", "47" }
                 } },
                 { "4", new String[][] {
-                        { "Juice", "30" },
-                        { "Mushroom", "16" },
+                        { "Endarkened juice", "30" },
+                        { "Stinkhorn mushroom", "16" },
                         { "Cicely", "1" },
-                        { "Buchu", "47" },
-                        { "Noxifier", "0" },
-                        { "Golpar", "0" },
-                        { "Humidifies", "2" },
-                        { "Grubs", "63" }
+                        { "Humidify", "2" },
+                        { "Buchu leaf", "47" },
+                        { "Golpar leaf", "0" },
+                        { "Noxifer leaf", "0" },
+                        { "Cavern grubs", "63" }
                 } },
                 { "5", new String[][] {
-                        { "Juice", "40" },
-                        { "Mushroom", "20" },
+                        { "Endarkened juice", "40" },
+                        { "Stinkhorn mushroom", "20" },
                         { "Cicely", "2" },
-                        { "Buchu", "62" },
-                        { "Noxifier", "1" },
-                        { "Golpar", "0" },
-                        { "Humidifies", "3" },
-                        { "Grubs", "79" }
+                        { "Humidify", "3" },
+                        { "Buchu leaf", "62" },
+                        { "Golpar leaf", "0" },
+                        { "Noxifer leaf", "1" },
+                        { "Cavern grubs", "79" }
                 } },
                 { "6", new String[][] {
-                        { "Juice", "42" },
-                        { "Mushroom", "26" },
+                        { "Endarkened juice", "42" },
+                        { "Stinkhorn mushroom", "26" },
                         { "Cicely", "5" },
-                        { "Buchu", "67" },
-                        { "Noxifier", "3" },
-                        { "Golpar", "6" },
-                        { "Humidifies", "3" },
-                        { "Grubs", "95" }
+                        { "Humidify", "3" },
+                        { "Buchu leaf", "67" },
+                        { "Golpar leaf", "6" },
+                        { "Noxifer leaf", "3" },
+                        { "Cavern grubs", "95" }
                 } },
                 { "7", new String[][] {
-                        { "Juice", "51" },
-                        { "Mushroom", "30" },
+                        { "Endarkened juice", "51" },
+                        { "Stinkhorn mushroom", "30" },
                         { "Cicely", "5" },
-                        { "Buchu", "82" },
-                        { "Noxifier", "3" },
-                        { "Golpar", "6" },
-                        { "Humidifies", "4" },
-                        { "Grubs", "111" }
+                        { "Humidify", "4" },
+                        { "Buchu leaf", "82" },
+                        { "Golpar leaf", "6" },
+                        { "Noxifer leaf", "3" },
+                        { "Cavern grubs", "111" }
                 } },
                 { "8", new String[][] {
-                        { "Juice", "56" },
-                        { "Mushroom", "30" },
+                        { "Endarkened juice", "56" },
+                        { "Stinkhorn mushroom", "30" },
                         { "Cicely", "5" },
-                        { "Buchu", "86" },
-                        { "Noxifier", "3" },
-                        { "Golpar", "6" },
-                        { "Humidifies", "4" },
-                        { "Grubs", "127" }
+                        { "Humidify", "4" },
+                        { "Buchu leaf", "86" },
+                        { "Golpar leaf", "6" },
+                        { "Noxifer leaf", "3" },
+                        { "Cavern grubs", "127" }
                 } },
                 { "9", new String[][] {
-                        { "Juice", "60" },
-                        { "Mushroom", "40" },
+                        { "Endarkened juice", "60" },
+                        { "Stinkhorn mushroom", "40" },
                         { "Cicely", "11" },
-                        { "Buchu", "111" },
-                        { "Noxifier", "5" },
-                        { "Golpar", "12" },
-                        { "Humidifies", "6" },
-                        { "Grubs", "143" }
+                        { "Humidify", "6" },
+                        { "Buchu leaf", "111" },
+                        { "Golpar leaf", "12" },
+                        { "Noxifer leaf", "5" },
+                        { "Cavern grubs", "143" }
                 } }
         }).collect(Collectors.toMap(data -> (String) data[0], data -> (String[][]) data[1]));
     }
