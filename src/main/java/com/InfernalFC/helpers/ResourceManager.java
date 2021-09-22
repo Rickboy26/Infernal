@@ -83,6 +83,14 @@ public class ResourceManager {
                 { "Vengeance", "Vengeance_icon.png" },
                 { "Water rune", "Water_rune_detail.png" },
                 { "Wrath rune", "Wrath_rune_detail.png" },
+                { "Buchu leaf", "Buchu_leaf_icon.png" },
+                { "Golpar leaf", "Golar_icon.png" },
+                { "Noxifer leaf", "Noxifer_icon.png" },
+                { "Endarkend juice", "Endarkend_juice_icon.png" },
+                { "Stinkhorn mushroom", "Stinkhorn_mushroom_icon.png" },
+                { "Cicely", "Cicely_icon.png" },
+                { "Humidify", "Humidify_icon.png" },
+                { "Cavern grubs", "Cavern_grubs_icon.png" },
 
         }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
     }
