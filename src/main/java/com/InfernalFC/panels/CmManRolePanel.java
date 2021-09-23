@@ -6,8 +6,8 @@ import com.InfernalFC.helpers.InventoryManager;
 import com.InfernalFC.helpers.ResourceManager;
 import com.InfernalFC.models.CmManData;
 import com.InfernalFC.models.CmRoleEquipment;
+import com.InfernalFC.models.ItemData;
 import com.google.inject.Provider;
-import lombok.Getter;
 import lombok.SneakyThrows;
 import net.runelite.client.ui.ColorScheme;
 
@@ -17,7 +17,6 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.lang.reflect.Array;
 
 public class CmManRolePanel extends JPanel {
     @Inject()
@@ -27,8 +26,12 @@ public class CmManRolePanel extends JPanel {
 
     private String role = "Surge BGS";
 
-    private JPanel itemPanel = new JPanel();
+    private JPanel titlePanel = new JPanel();
     private JPanel equipmentPanel = new JPanel();
+    private JPanel inventoryPannel = new JPanel();
+    private JPanel runePanel = new JPanel();
+    private JPanel prepotPanel = new JPanel();
+    private JLabel notes = new JLabel("", SwingConstants.LEFT);
     private String color1;
     private String color2;
     private CmManData data;
@@ -42,32 +45,57 @@ public class CmManRolePanel extends JPanel {
         color1 = "#"+Integer.toHexString(config.col1color().getRGB()).substring(2);
         color2 = "#"+Integer.toHexString(config.col2color().getRGB()).substring(2);
 
-        this.setPreferredSize(new Dimension(200, 400));
-
-        this.add(createBackButton());
+        this.setPreferredSize(new Dimension(200, 1200));
 
         equipmentPanel.setLayout(new GridLayout(5,3));
-        equipmentPanel.setPreferredSize(new Dimension(200, 250));
-        setEquipmentPanel();
+        equipmentPanel.setPreferredSize(new Dimension(150, 250));
 
-        itemPanel.setLayout(new GridLayout(7,4));
-        itemPanel.setPreferredSize(new Dimension(200, 100));
-        setItemPanel();
+        inventoryPannel.setLayout(new GridLayout(0,4));
+        inventoryPannel.setPreferredSize(new Dimension(200, 350));
 
+        runePanel.setLayout(new GridLayout(1,3));
+        runePanel.setPreferredSize(new Dimension(150, 50));
+
+        prepotPanel.setLayout(new GridLayout(2,3));
+        prepotPanel.setPreferredSize(new Dimension(150, 100));
+
+        notes.setBackground(ColorScheme.DARKER_GRAY_COLOR);
+        notes.setOpaque(true);
+
+
+        this.add(titlePanel);
+        this.add(createTitleLabel("Equipment"));
         this.add(equipmentPanel);
-        this.add(itemPanel);
+
+        this.add(createTitleLabel("Inventory"));
+        this.add(inventoryPannel);
+
+        this.add(createTitleLabel("Runes"));
+        this.add(runePanel);
+
+        this.add(createTitleLabel("Prepot"));
+        this.add(prepotPanel);
+
+        this.add(createTitleLabel("Notes"));
+        this.add(notes);
 
         this.updateUI();
     }
 
     public void setRole(String role) {
         this.role = role;
+        this.setTitleRow();
         setEquipmentPanel();
+        setInventoryPannel();
+        setRunePannel();
+        setPrepotPanel();
+        setNotes();
     }
 
     private JButton createBackButton()
     {
         final JButton label = new JButton("<");
+        label.setToolTipText("Back");
         label.setPreferredSize(new Dimension(26, 26));
         label.setFont(new Font("Arial", Font.PLAIN, 9));
         label.setFocusable(false);
@@ -125,8 +153,72 @@ public class CmManRolePanel extends JPanel {
         equipmentPanel.updateUI();
     }
 
-    private void setItemPanel() {
+    private void setTitleRow() {
+        titlePanel.removeAll();
 
+        titlePanel.add(createBackButton());
+
+        JLabel title = new JLabel(role, SwingConstants.CENTER);
+        title.setPreferredSize(new Dimension(150, 26));
+        titlePanel.add(title);
+
+        JLabel dummy = new JLabel();
+        dummy.setPreferredSize(new Dimension(26, 26));
+        titlePanel.add(dummy);
+    }
+
+    private void setInventoryPannel() {
+        inventoryPannel.removeAll();
+        ItemData[] items = data.roleInventoryMapping.get(role);
+
+        for (ItemData item : items) {
+            inventoryPannel.add(createItemLabel(item.name));
+        }
+        int rest = 28 - items.length;
+
+        for(int i = 0; i < rest; ++i) {
+            inventoryPannel.add(createEmptyLabel());
+        }
+
+        inventoryPannel.updateUI();
+    }
+
+    private void setRunePannel() {
+        runePanel.removeAll();
+        ItemData[] items = data.roleRuneMapping.get(role);
+
+        for (ItemData item : items) {
+            runePanel.add(createItemLabel(item.name));
+        }
+
+        runePanel.updateUI();
+    }
+
+    private void setPrepotPanel() {
+        prepotPanel.removeAll();
+        ItemData[] items = data.rolePrepotMapping.get(role);
+
+        for (ItemData item : items) {
+            prepotPanel.add(createItemLabel(item.name));
+        }
+        int rest = 6 - items.length;
+
+        for(int i = 0; i < rest; ++i) {
+            prepotPanel.add(createEmptyLabel());
+        }
+
+        prepotPanel.updateUI();
+    }
+
+    private void setNotes() {
+        String note = data.roleNoteMapping.get(role);
+        notes.setText("<html><p style=\"width:150px\">" +note +"</p></html>");
+    }
+
+    private JLabel createTitleLabel(String title) {
+        JLabel label = new JLabel(title, SwingConstants.CENTER);
+        label.setPreferredSize(new Dimension(200, 20));
+        return label;
     }
 
     private JLabel createDummyLabel() {
@@ -171,18 +263,5 @@ public class CmManRolePanel extends JPanel {
         }
 
         return label;
-    }
-
-    private Icon getLabeledIcon(Icon oldIcon, String text) {
-        int w = oldIcon.getIconWidth();
-        int h = oldIcon.getIconHeight();
-        BufferedImage img = new BufferedImage(
-                w, h, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2d = img.createGraphics();
-        oldIcon.paintIcon(null, g2d, 0, 0);
-        g2d.setPaint(Color.yellow);
-        g2d.drawString(text, 0, 10);
-        g2d.dispose();
-        return new ImageIcon(img.getScaledInstance(30, 30,  Image.SCALE_SMOOTH));
     }
 }

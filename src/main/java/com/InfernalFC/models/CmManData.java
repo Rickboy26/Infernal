@@ -8,6 +8,10 @@ import java.util.stream.Stream;
 public class CmManData {
     public Map<String, String[][]> itemMapping;
     public Map<String, CmRoleEquipment> roleGearMapping;
+    public Map<String, ItemData[]> roleInventoryMapping;
+    public Map<String, ItemData[]> roleRuneMapping;
+    public Map<String, ItemData[]> rolePrepotMapping;
+    public Map<String, String> roleNoteMapping;
 
     @Inject
     private CmManData() {
@@ -163,5 +167,125 @@ public class CmManData {
 
         }).collect(Collectors.toMap(data -> (String) data[0], data -> (CmRoleEquipment) data[1]));
 
+        roleInventoryMapping = Stream.of(new Object[][] {
+                { "Surge BGS", new ItemData[] {
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}}
+                } },
+                { "Surge DWH", new ItemData[] {
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}}
+                } },
+                { "Prep", new ItemData[] {
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}}
+                } },
+                { "Veng Chin", new ItemData[] {
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}}
+                } },
+                { "Veng Leech / Cross", new ItemData[] {
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}}
+                } }
+
+        }).collect(Collectors.toMap(data -> (String) data[0], data -> (ItemData[]) data[1]));
+
+        roleRuneMapping = Stream.of(new Object[][] {
+                { "Surge BGS", new ItemData[] {
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}}
+                } },
+                { "Surge DWH", new ItemData[] {
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}}
+                } },
+                { "Prep", new ItemData[] {
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}}
+                } },
+                { "Veng Chin", new ItemData[] {
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}}
+                } },
+                { "Veng Leech / Cross", new ItemData[] {
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}}
+                } }
+
+        }).collect(Collectors.toMap(data -> (String) data[0], data -> (ItemData[]) data[1]));
+
+        rolePrepotMapping = Stream.of(new Object[][] {
+                { "Surge BGS", new ItemData[] {
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}}
+                } },
+                { "Surge DWH", new ItemData[] {
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}}
+                } },
+                { "Prep", new ItemData[] {
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}}
+                } },
+                { "Veng Chin", new ItemData[] {
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}}
+                } },
+                { "Veng Leech / Cross", new ItemData[] {
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}},
+                        new ItemData() { { name = "Inquisitor's great helm";}}
+                } }
+
+        }).collect(Collectors.toMap(data -> (String) data[0], data -> (ItemData[]) data[1]));
+
+        roleNoteMapping = Stream.of(new Object[][] {
+                { "Surge BGS", "DEEZ NUTS" },
+                { "Surge DWH", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book" },
+                { "Prep", "RIIIICK" },
+                { "Veng Chin", "RIIIICK" },
+                { "Veng Leech / Cross", "RIIIICK" }
+
+        }).collect(Collectors.toMap(data -> (String) data[0], data -> (String) data[1]));
     }
 }
