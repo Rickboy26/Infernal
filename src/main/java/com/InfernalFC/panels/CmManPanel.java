@@ -45,7 +45,7 @@ public class CmManPanel extends JPanel {
         this.setPreferredSize(new Dimension(200, 400));
         this.add(cmButtonPanel, BorderLayout.NORTH);
 
-        this.add(createTitleLabel("een letter"));
+        this.add(createTitleLabel("Prep numbers"));
 
         itemPanel.setLayout(new GridLayout(0,4));
         itemPanel.setPreferredSize(new Dimension(200, 100));
@@ -53,7 +53,7 @@ public class CmManPanel extends JPanel {
 
         this.add(itemPanel);
 
-        this.add(createTitleLabel("een letter"));
+        this.add(createTitleLabel("Roles"));
 
         this.add(createRoleButton("Surge BGS"));
         this.add(createRoleButton("Surge DWH"));

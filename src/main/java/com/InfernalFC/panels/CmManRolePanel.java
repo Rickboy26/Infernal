@@ -160,6 +160,8 @@ public class CmManRolePanel extends JPanel {
 
         JLabel title = new JLabel(role, SwingConstants.CENTER);
         title.setPreferredSize(new Dimension(150, 26));
+        title.setForeground(Color.yellow);
+        title.setFont(new Font("Serif", Font.BOLD, 14));
         titlePanel.add(title);
 
         JLabel dummy = new JLabel();
@@ -218,6 +220,7 @@ public class CmManRolePanel extends JPanel {
     private JLabel createTitleLabel(String title) {
         JLabel label = new JLabel(title, SwingConstants.CENTER);
         label.setPreferredSize(new Dimension(200, 20));
+        label.setForeground(Color.yellow);
         return label;
     }
 
