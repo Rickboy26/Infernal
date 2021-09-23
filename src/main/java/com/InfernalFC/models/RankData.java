@@ -30,4 +30,6 @@ public class RankData {
     public int coins;
     @Getter @Setter
     public int months;
+    @Getter @Setter
+    public int tasks;
 }

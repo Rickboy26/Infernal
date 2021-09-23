@@ -87,7 +87,7 @@ public class RanksPanel extends JPanel{
         pointsPanel.add(new JLabel());
         pointsPanel.add(createIconLabel("Total_points.png", selectedRank.getTotal() + " Total"));
         pointsPanel.add(createIconLabel("Pvm_points.png", selectedRank.getPvm() + " PvM"));
-        pointsPanel.add(createIconLabel("Ehb_points.png", selectedRank.getEhb() + " Diaries tier 4"));
+        pointsPanel.add(createIconLabel("Ehb_points.png", selectedRank.getTasks() + " Diaries tier 4"));
         pointsPanel.add(createIconLabel("Community_points.png", selectedRank.getCommunity() + " Community"));
         pointsPanel.add(new JLabel());
         pointsPanel.add(new JLabel());

@@ -85,79 +85,79 @@ public class CmManData {
         }).collect(Collectors.toMap(data -> (String) data[0], data -> (String[][]) data[1]));
 
         roleGearMapping = Stream.of(new Object[][] {
-                { "Role 1", new CmRoleEquipment() {
+                { "Surge BGS", new CmRoleEquipment() {
                     {
-                        helmet = new ItemData() { { name = "Void ranger helm";}};
-                        cape = new ItemData() { { name = "Infernal cape";}};
-                        necklace = new ItemData() { { name = "Necklace of anguish";}};
+                        helmet = new ItemData() { { name = "Neitiznot faceguard";}};
+                        cape = new ItemData() { { name = "Imbued Magic Cape";}};
+                        necklace = new ItemData() { { name = "Occult necklace";}};
                         ammo = new ItemData() { { name = "Dragon arrows";}};
-                        weapon = new ItemData() { { name = "Avernic defender";}};
-                        torso = new ItemData() { { name = "Void top (Elite)";}};
-                        shield = new ItemData() { { name = "Arcane spirit shield";}};
-                        pants = new ItemData() { { name = "Void robe (Elite)";}};
-                        gloves = new ItemData() { { name = "Barrows gloves";}};
-                        boots = new ItemData() { { name = "Pegasian boots";}};
-                        ring = new ItemData() { { name = "Berserker ring (i)";}};
+                        weapon = new ItemData() { { name = "Sanguinesti staff";}};
+                        torso = new ItemData() { { name = "Ancestral robe top";}};
+                        shield = new ItemData() { { name = "Tome of Fire";}};
+                        pants = new ItemData() { { name = "Ancestral robe bottom";}};
+                        gloves = new ItemData() { { name = "Tormented bracelet";}};
+                        boots = new ItemData() { { name = "Primordial boots";}};
+                        ring = new ItemData() { { name = "Brimstone ring";}};
                     }
                 } },
-                { "Role 2", new CmRoleEquipment() {
+                { "Surge DWH", new CmRoleEquipment() {
                     {
-                        helmet = new ItemData() { { name = "Void ranger helm2";}};
+                        helmet = new ItemData() { { name = "Inquisitor's great helm";}};
                         cape = new ItemData() { { name = "Infernal cape";}};
-                        necklace = new ItemData() { { name = "Necklace of anguish";}};
+                        necklace = new ItemData() { { name = "Amulet of torture";}};
                         ammo = new ItemData() { { name = "Dragon arrows";}};
-                        weapon = new ItemData() { { name = "Avernic defender";}};
-                        torso = new ItemData() { { name = "Void top (Elite)";}};
-                        shield = new ItemData() { { name = "Arcane spirit shield";}};
-                        pants = new ItemData() { { name = "Void robe (Elite)";}};
-                        gloves = new ItemData() { { name = "Barrows gloves";}};
-                        boots = new ItemData() { { name = "Pegasian boots";}};
-                        ring = new ItemData() { { name = "Berserker ring (i)";}};
+                        weapon = new ItemData() { { name = "Dragon warhammer";}};
+                        torso = new ItemData() { { name = "Inquisitor's hauberk";}};
+                        shield = new ItemData() { { name = "Avernic defender";}};
+                        pants = new ItemData() { { name = "Inquisitor's plateskirt";}};
+                        gloves = new ItemData() { { name = "Ferocious gloves";}};
+                        boots = new ItemData() { { name = "Primordial boots";}};
+                        ring = new ItemData() { { name = "Brimstone ring";}};
                     }
                 } },
-                { "Role 3", new CmRoleEquipment() {
+                { "Prep", new CmRoleEquipment() {
                     {
-                        helmet = new ItemData() { { name = "Void ranger helm";}};
+                        helmet = new ItemData() { { name = "Inquisitor's great helm";}};
                         cape = new ItemData() { { name = "Infernal cape";}};
-                        necklace = new ItemData() { { name = "Necklace of anguish";}};
+                        necklace = new ItemData() { { name = "Amulet of torture";}};
                         ammo = new ItemData() { { name = "Dragon arrows";}};
-                        weapon = new ItemData() { { name = "Avernic defender";}};
-                        torso = new ItemData() { { name = "Void top (Elite)";}};
-                        shield = new ItemData() { { name = "Arcane spirit shield";}};
-                        pants = new ItemData() { { name = "Void robe (Elite)";}};
-                        gloves = new ItemData() { { name = "Barrows gloves";}};
-                        boots = new ItemData() { { name = "Pegasian boots";}};
-                        ring = new ItemData() { { name = "Berserker ring (i)";}};
+                        weapon = new ItemData() { { name = "Dragon warhammer";}};
+                        torso = new ItemData() { { name = "Inquisitor's hauberk";}};
+                        shield = new ItemData() { { name = "Avernic defender";}};
+                        pants = new ItemData() { { name = "Inquisitor's plateskirt";}};
+                        gloves = new ItemData() { { name = "Ferocious gloves";}};
+                        boots = new ItemData() { { name = "Primordial boots";}};
+                        ring = new ItemData() { { name = "Brimstone ring";}};
                     }
                 } },
-                { "Role 4", new CmRoleEquipment() {
+                { "Veng Chin", new CmRoleEquipment() {
                     {
-                        helmet = new ItemData() { { name = "Void ranger helm";}};
+                        helmet = new ItemData() { { name = "Inquisitor's great helm";}};
                         cape = new ItemData() { { name = "Infernal cape";}};
-                        necklace = new ItemData() { { name = "Necklace of anguish";}};
+                        necklace = new ItemData() { { name = "Amulet of torture";}};
                         ammo = new ItemData() { { name = "Dragon arrows";}};
-                        weapon = new ItemData() { { name = "Avernic defender";}};
-                        torso = new ItemData() { { name = "Void top (Elite)";}};
-                        shield = new ItemData() { { name = "Arcane spirit shield";}};
-                        pants = new ItemData() { { name = "Void robe (Elite)";}};
-                        gloves = new ItemData() { { name = "Barrows gloves";}};
-                        boots = new ItemData() { { name = "Pegasian boots";}};
-                        ring = new ItemData() { { name = "Berserker ring (i)";}};
+                        weapon = new ItemData() { { name = "Dragon warhammer";}};
+                        torso = new ItemData() { { name = "Inquisitor's hauberk";}};
+                        shield = new ItemData() { { name = "Avernic defender";}};
+                        pants = new ItemData() { { name = "Inquisitor's plateskirt";}};
+                        gloves = new ItemData() { { name = "Ferocious gloves";}};
+                        boots = new ItemData() { { name = "Primordial boots";}};
+                        ring = new ItemData() { { name = "Brimstone ring";}};
                     }
                 } },
-                { "Role 5", new CmRoleEquipment() {
+                { "Veng Leech / Cross", new CmRoleEquipment() {
                     {
-                        helmet = new ItemData() { { name = "Void ranger helm";}};
+                        helmet = new ItemData() { { name = "Neitiznot faceguard";}};
                         cape = new ItemData() { { name = "Infernal cape";}};
-                        necklace = new ItemData() { { name = "Necklace of anguish";}};
+                        necklace = new ItemData() { { name = "Amulet of torture";}};
                         ammo = new ItemData() { { name = "Dragon arrows";}};
-                        weapon = new ItemData() { { name = "Avernic defender";}};
-                        torso = new ItemData() { { name = "Void top (Elite)";}};
-                        shield = new ItemData() { { name = "Arcane spirit shield";}};
-                        pants = new ItemData() { { name = "Void robe (Elite)";}};
-                        gloves = new ItemData() { { name = "Barrows gloves";}};
-                        boots = new ItemData() { { name = "Pegasian boots";}};
-                        ring = new ItemData() { { name = "Berserker ring (i)";}};
+                        weapon = new ItemData() { { name = "Dragon warhammer";}};
+                        torso = new ItemData() { { name = "Bandos chestplate";}};
+                        shield = new ItemData() { { name = "Avernic defender";}};
+                        pants = new ItemData() { { name = "Bandos tassets";}};
+                        gloves = new ItemData() { { name = "Ferocious gloves";}};
+                        boots = new ItemData() { { name = "Primordial boots";}};
+                        ring = new ItemData() { { name = "Brimstone ring";}};
                     }
                 } },
 

@@ -25,7 +25,7 @@ public class CmManRolePanel extends JPanel {
     private final InventoryManager inventoryManager;
     private final ResourceManager resourceManager;
 
-    private String role = "Role 1";
+    private String role = "Surge BGS";
 
     private JPanel itemPanel = new JPanel();
     private JPanel equipmentPanel = new JPanel();
