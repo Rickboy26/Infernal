@@ -183,6 +183,6 @@ public class CmManPanel extends JPanel {
         g2d.setPaint(Color.yellow);
         g2d.drawString(text, 0, 10);
         g2d.dispose();
-        return new ImageIcon(img.getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH));
+        return new ImageIcon(img.getScaledInstance(w, h,  java.awt.Image.SCALE_SMOOTH));
     }
 }
