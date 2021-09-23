@@ -359,7 +359,7 @@ public class CmManData {
                         new ItemData() { { name = "Antidote++ (1)";}},
                         new ItemData() { { name = "Anglerfish";}},
                         new ItemData() { { name = "Anglerfish";}},
-                        new ItemData() { { name = "Vengaence";}},
+                        new ItemData() { { name = "Vengeance";}},
                 } },
                 { "Surge DWH", new ItemData[] {
                         new ItemData() { { name = "Super combat potion (1)";}},
@@ -367,7 +367,7 @@ public class CmManData {
                         new ItemData() { { name = "Antidote++ (1)";}},
                         new ItemData() { { name = "Anglerfish";}},
                         new ItemData() { { name = "Anglerfish";}},
-                        new ItemData() { { name = "Vengaence";}},
+                        new ItemData() { { name = "Vengeance";}},
                 } },
                 { "Prep", new ItemData[] {
                         new ItemData() { { name = "Super combat potion (1)";}},
@@ -375,7 +375,7 @@ public class CmManData {
                         new ItemData() { { name = "Antidote++ (1)";}},
                         new ItemData() { { name = "Anglerfish";}},
                         new ItemData() { { name = "Anglerfish";}},
-                        new ItemData() { { name = "Vengaence";}},
+                        new ItemData() { { name = "Vengeance";}},
                 } },
                 { "Veng Chin", new ItemData[] {
                         new ItemData() { { name = "Super combat potion (1)";}},
@@ -383,7 +383,7 @@ public class CmManData {
                         new ItemData() { { name = "Antidote++ (1)";}},
                         new ItemData() { { name = "Anglerfish";}},
                         new ItemData() { { name = "Anglerfish";}},
-                        new ItemData() { { name = "Vengaence";}},
+                        new ItemData() { { name = "Vengeance";}},
                 } },
                 { "Veng Leech / Cross", new ItemData[] {
                         new ItemData() { { name = "Super combat potion (1)";}},
@@ -391,16 +391,16 @@ public class CmManData {
                         new ItemData() { { name = "Antidote++ (1)";}},
                         new ItemData() { { name = "Anglerfish";}},
                         new ItemData() { { name = "Anglerfish";}},
-                        new ItemData() { { name = "Vengaence";}},
+                        new ItemData() { { name = "Vengeance";}},
                 } }
 
         }).collect(Collectors.toMap(data -> (String) data[0], data -> (ItemData[]) data[1]));
 
         roleNoteMapping = Stream.of(new Object[][] {
-                { "Surge BGS", "Lure tekton <br/> Mage vanguard" },
-                { "Surge DWH", "Range vanguard" },
+                { "Surge BGS", "Lure tekton <br/> <font color='blue'>Mage</font> vanguard" },
+                { "Surge DWH", "<font color='green'>Range</font> vanguard" },
                 { "Prep", "" },
-                { "Veng Chin", "Melee vanguard" },
+                { "Veng Chin", "<font color='red'>Melee</font> vanguard" },
                 { "Veng Leech / Cross", "<font color='red'>Melee</font> vanguard/float <br/> Cross tighrope <br/> Can bring Conditional BGS" }
 
         }).collect(Collectors.toMap(data -> (String) data[0], data -> (String) data[1]));
