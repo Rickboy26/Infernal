@@ -100,7 +100,8 @@ public class ResourceManager {
             return new ImageIcon(InfernalFCPlugin.class.getResource("items/" + itemMapping.get(item)));
         } else {
             BufferedImage image = ImageUtil.loadImageResource(InfernalFCPlugin.class, "items/" + itemMapping.get(item));
-            return new ImageIcon(image.getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH));
+            int[] di = calculateDimension(image.getHeight(), image.getWidth());
+            return new ImageIcon(image.getScaledInstance(di[0], di[1],  java.awt.Image.SCALE_SMOOTH));
         }
     }
 
@@ -110,6 +111,16 @@ public class ResourceManager {
             return new ImageIcon(image.getScaledInstance(size, size,  java.awt.Image.SCALE_SMOOTH));
         } else {
             return new ImageIcon(image);
+        }
+    }
+
+    private int[] calculateDimension(int height, int width) {
+        if (width > height) {
+            int newWidth = (int) Math.round((double) height / (double) width * 30);
+            return new int[] {30, newWidth};
+        } else {
+            int newHeight = (int) Math.round((double) width / (double) height * 30);
+            return new int[] {newHeight, 30};
         }
     }
 
