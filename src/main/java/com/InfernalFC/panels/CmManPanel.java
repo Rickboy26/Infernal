@@ -45,11 +45,15 @@ public class CmManPanel extends JPanel {
         this.setPreferredSize(new Dimension(200, 400));
         this.add(cmButtonPanel, BorderLayout.NORTH);
 
+        this.add(createTitleLabel("een letter"));
+
         itemPanel.setLayout(new GridLayout(0,4));
         itemPanel.setPreferredSize(new Dimension(200, 100));
         setItemPanel();
 
         this.add(itemPanel);
+
+        this.add(createTitleLabel("een letter"));
 
         this.add(createRoleButton("Surge BGS"));
         this.add(createRoleButton("Surge DWH"));
@@ -184,5 +188,12 @@ public class CmManPanel extends JPanel {
         g2d.drawString(text, 0, 10);
         g2d.dispose();
         return new ImageIcon(img.getScaledInstance(w, h,  java.awt.Image.SCALE_SMOOTH));
+    }
+
+    private JLabel createTitleLabel(String title) {
+        JLabel label = new JLabel(title, SwingConstants.CENTER);
+        label.setPreferredSize(new Dimension(200, 20));
+        label.setForeground(Color.yellow);
+        return label;
     }
 }
