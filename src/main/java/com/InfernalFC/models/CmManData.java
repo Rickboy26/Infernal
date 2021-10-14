@@ -214,7 +214,7 @@ public class CmManData {
                         new ItemData() { { name = "Armadyl chainskirt";}},
                         new ItemData() { { name = "Barrows gloves";}},
                         new ItemData() { { name = "Harmonised nightmare staff";}},
-                        new ItemData() { { name = "Avernic defender";}},
+                        new ItemData() { { name = "Tome of Fire";}},
                         new ItemData() { { name = "Pegasian boots";}},
                         new ItemData() { { name = "Twisted bow";}},
                         new ItemData() { { name = "Scythe of Vitur";}},

@@ -47,7 +47,7 @@ public class InventoryManager {
                 { "Toxic blowpipe", new int[] { 12924, 12925, 12926 } },
                 { "Void knight gloves", new int[] { 8842, 24182 } },
                 { "Void robe (Elite)", new int[] { 13073, 24180 } },
-                { "Amulet of torture", new int[] { 19533, 19554, 20366 } },
+                { "Amulet of torture", new int[] { 19553, 19554, 20366 } },
                 { "Infernal/Fire Cape", new int[] { 21284, 21285, 21295, 21297, 23623, 24133, 24224, 6570, 10566, 13329, 24134, 24223 } },
                 { "Scythe / Tbow", new int[] { 22325, 22486, 22487, 22664, 20997, 20998 } },
                 { "Scythe + 250m / Tbow", new int[] { 22325, 22486, 22487, 22664, 20997, 20998, 1004, 8899 } },
