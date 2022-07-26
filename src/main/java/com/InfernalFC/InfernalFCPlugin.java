@@ -217,15 +217,13 @@ public class InfernalFCPlugin extends Plugin
 				return;
 			}
 
-			final MenuEntry lookup = new MenuEntry();
-			lookup.setOption(LOOKUP);
-			lookup.setTarget(event.getTarget());
-			lookup.setType(MenuAction.RUNELITE.getId());
-			lookup.setParam0(event.getActionParam0());
-			lookup.setParam1(event.getActionParam1());
-			lookup.setIdentifier(event.getIdentifier());
-
-			insertMenuEntry(lookup, client.getMenuEntries());
+			client.createMenuEntry(-1)
+					.setOption(LOOKUP)
+					.setTarget(event.getTarget())
+					.setType(MenuAction.RUNELITE)
+					.setParam0(event.getActionParam0())
+					.setParam1(event.getActionParam1())
+					.setIdentifier(event.getIdentifier());
 		}
 	}
 
@@ -263,14 +261,6 @@ public class InfernalFCPlugin extends Plugin
 				panel.getLookupPanel().SearchExact(target);
 			});
 		}
-	}
-
-	private void insertMenuEntry(MenuEntry newEntry, MenuEntry[] entries)
-	{
-		MenuEntry[] newMenu = ObjectArrays.concat(entries, newEntry);
-		int menuEntryCount = newMenu.length;
-		ArrayUtils.swap(newMenu, menuEntryCount - 1, menuEntryCount - 2);
-		client.setMenuEntries(newMenu);
 	}
 
 	private void startClanPanel()
