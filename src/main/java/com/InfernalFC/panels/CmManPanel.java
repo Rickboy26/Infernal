@@ -55,11 +55,11 @@ public class CmManPanel extends JPanel {
 
         this.add(createTitleLabel("Roles"));
 
-        this.add(createRoleButton("Surge BGS"));
-        this.add(createRoleButton("Surge DWH"));
+        this.add(createRoleButton("Surge 1"));
+        this.add(createRoleButton("Surge 2"));
         this.add(createRoleButton("Prep"));
-        this.add(createRoleButton("Veng Chin"));
-        this.add(createRoleButton("Veng Leech / Cross"));
+        this.add(createRoleButton("Chinner"));
+        this.add(createRoleButton("Crosser"));
     }
 
     private JButton createCmButton(int index )

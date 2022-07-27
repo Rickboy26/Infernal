@@ -90,6 +90,12 @@ public class ResourceManager {
                 { "Cicely", "Cicely_icon.png" },
                 { "Humidify", "Humidify_icon.png" },
                 { "Cavern grubs", "Cavern_grubs_icon.png" },
+                { "Zaryte vambraces", "Zaryte_vambraces_detail.png" },
+                { "Slayer helmet", "Slayer_helmet_detail.png" },
+                { "Lockpick", "Lockpick_detail.png" },
+                { "Torva full helm", "Torva_full_helm_detail.png" },
+                { "Torva platebody", "Torva_platebody_detail.png" },
+                { "Torva platelegs", "Torva_platelegs_detail.png" },
 
         }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
     }

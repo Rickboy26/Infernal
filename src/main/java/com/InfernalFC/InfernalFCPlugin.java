@@ -135,7 +135,7 @@ public class InfernalFCPlugin extends Plugin
 		}
 	}
 
-	@Subscribe
+	/*@Subscribe
 	public void onScriptCallbackEvent(ScriptCallbackEvent scriptCallbackEvent)
 	{
 		if (scriptCallbackEvent.getEventName().equals("preChatSendpublic")) {
@@ -167,7 +167,7 @@ public class InfernalFCPlugin extends Plugin
 			}
 		}
 	}
-
+*/
 	@Subscribe
 	private void onItemContainerChanged(ItemContainerChanged event) {
 		if (panel.getRanksPanel().isShowing() && event.getContainerId() == InventoryID.INVENTORY.getId()) {

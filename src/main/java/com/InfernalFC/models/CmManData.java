@@ -89,22 +89,7 @@ public class CmManData {
         }).collect(Collectors.toMap(data -> (String) data[0], data -> (String[][]) data[1]));
 
         roleGearMapping = Stream.of(new Object[][] {
-                { "Surge BGS", new CmRoleEquipment() {
-                    {
-                        helmet = new ItemData() { { name = "Neitiznot faceguard";}};
-                        cape = new ItemData() { { name = "Imbued Magic Cape";}};
-                        necklace = new ItemData() { { name = "Occult necklace";}};
-                        ammo = new ItemData() { { name = "Dragon arrows";}};
-                        weapon = new ItemData() { { name = "Sanguinesti staff";}};
-                        torso = new ItemData() { { name = "Ancestral robe top";}};
-                        shield = new ItemData() { { name = "Tome of Fire";}};
-                        pants = new ItemData() { { name = "Ancestral robe bottom";}};
-                        gloves = new ItemData() { { name = "Tormented bracelet";}};
-                        boots = new ItemData() { { name = "Primordial boots";}};
-                        ring = new ItemData() { { name = "Brimstone ring";}};
-                    }
-                } },
-                { "Surge DWH", new CmRoleEquipment() {
+                { "Surge 1", new CmRoleEquipment() {
                     {
                         helmet = new ItemData() { { name = "Inquisitor's great helm";}};
                         cape = new ItemData() { { name = "Infernal cape";}};
@@ -114,6 +99,21 @@ public class CmManData {
                         torso = new ItemData() { { name = "Inquisitor's hauberk";}};
                         shield = new ItemData() { { name = "Avernic defender";}};
                         pants = new ItemData() { { name = "Inquisitor's plateskirt";}};
+                        gloves = new ItemData() { { name = "Ferocious gloves";}};
+                        boots = new ItemData() { { name = "Primordial boots";}};
+                        ring = new ItemData() { { name = "Brimstone ring";}};
+                    }
+                } },
+                { "Surge 2", new CmRoleEquipment() {
+                    {
+                        helmet = new ItemData() { { name = "Torva full helm";}};
+                        cape = new ItemData() { { name = "Infernal cape";}};
+                        necklace = new ItemData() { { name = "Amulet of torture";}};
+                        ammo = new ItemData() { { name = "Dragon arrows";}};
+                        weapon = new ItemData() { { name = "Dragon warhammer";}};
+                        torso = new ItemData() { { name = "Torva platebody";}};
+                        shield = new ItemData() { { name = "Avernic defender";}};
+                        pants = new ItemData() { { name = "Torva platelegs";}};
                         gloves = new ItemData() { { name = "Ferocious gloves";}};
                         boots = new ItemData() { { name = "Primordial boots";}};
                         ring = new ItemData() { { name = "Brimstone ring";}};
@@ -134,7 +134,7 @@ public class CmManData {
                         ring = new ItemData() { { name = "Brimstone ring";}};
                     }
                 } },
-                { "Veng Chin", new CmRoleEquipment() {
+                { "Chinner", new CmRoleEquipment() {
                     {
                         helmet = new ItemData() { { name = "Inquisitor's great helm";}};
                         cape = new ItemData() { { name = "Infernal cape";}};
@@ -149,16 +149,16 @@ public class CmManData {
                         ring = new ItemData() { { name = "Brimstone ring";}};
                     }
                 } },
-                { "Veng Leech / Cross", new CmRoleEquipment() {
+                { "Crosser", new CmRoleEquipment() {
                     {
-                        helmet = new ItemData() { { name = "Neitiznot faceguard";}};
+                        helmet = new ItemData() { { name = "Torva full helm";}};
                         cape = new ItemData() { { name = "Infernal cape";}};
                         necklace = new ItemData() { { name = "Amulet of torture";}};
                         ammo = new ItemData() { { name = "Dragon arrows";}};
                         weapon = new ItemData() { { name = "Dragon warhammer";}};
-                        torso = new ItemData() { { name = "Bandos chestplate";}};
+                        torso = new ItemData() { { name = "Torva platebody";}};
                         shield = new ItemData() { { name = "Avernic defender";}};
-                        pants = new ItemData() { { name = "Bandos tassets";}};
+                        pants = new ItemData() { { name = "Torva platelegs";}};
                         gloves = new ItemData() { { name = "Ferocious gloves";}};
                         boots = new ItemData() { { name = "Primordial boots";}};
                         ring = new ItemData() { { name = "Brimstone ring";}};
@@ -168,192 +168,192 @@ public class CmManData {
         }).collect(Collectors.toMap(data -> (String) data[0], data -> (CmRoleEquipment) data[1]));
 
         roleInventoryMapping = Stream.of(new Object[][] {
-                { "Surge BGS", new ItemData[] {
-                        new ItemData() { { name = "Bandos chestplate";}},
-                        new ItemData() { { name = "Infernal cape";}},
-                        new ItemData() { { name = "Armadyl helmet";}},
-                        new ItemData() { { name = "Ava's assembler";}},
-                        new ItemData() { { name = "Ferocious gloves";}},
-                        new ItemData() { { name = "Amulet of torture";}},
-                        new ItemData() { { name = "Armadyl chestplate";}},
-                        new ItemData() { { name = "Necklace of anguish";}},
-                        new ItemData() { { name = "Bandos godsword";}},
-                        new ItemData() { { name = "Berserker ring (i)";}},
-                        new ItemData() { { name = "Armadyl chainskirt";}},
-                        new ItemData() { { name = "Barrows gloves";}},
-                        new ItemData() { { name = "Harmonised nightmare staff";}},
-                        new ItemData() { { name = "Avernic defender";}},
-                        new ItemData() { { name = "Pegasian boots";}},
+                { "Surge 1", new ItemData[] {
                         new ItemData() { { name = "Twisted bow";}},
-                        new ItemData() { { name = "Scythe of Vitur";}},
-                        new ItemData() { { name = "Dragon claws";}},
+                        new ItemData() { { name = "Armadyl chestplate";}},
+                        new ItemData() { { name = "Zaryte vambraces";}},
+                        new ItemData() { { name = "Pegasian boots";}},
+                        new ItemData() { { name = "Necklace of anguish";}},
+                        new ItemData() { { name = "Armadyl chainskirt";}},
+                        new ItemData() { { name = "Ava's assembler";}},
+                        new ItemData() { { name = "Slayer helmet";}},
+                        new ItemData() { { name = "Sanguinesti staff";}},
+                        new ItemData() { { name = "Ancestral robe top";}},
+                        new ItemData() { { name = "Imbued Magic Cape";}},
+                        new ItemData() { { name = "Tome of Fire";}},
+                        new ItemData() { { name = "Occult necklace";}},
+                        new ItemData() { { name = "Ancestral robe bottom";}},
+                        new ItemData() { { name = "Tormented bracelet";}},
+                        new ItemData() { { name = "Harmonised nightmare staff";}},
                         new ItemData() { { name = "Crystal pickaxe";}},
+                        new ItemData() { { name = "Dragon claws";}},
+                        new ItemData() { { name = "Scythe of Vitur";}},
+                        new ItemData() { { name = "Saradomin brew (4)";}},
                         new ItemData() { { name = "Salve amulet (ei)";}},
-                        new ItemData() { { name = "Saradomin brew (4)";}},
-                        new ItemData() { { name = "Saradomin brew (4)";}},
-                        new ItemData() { { name = "Saradomin brew (4)";}},
-                        new ItemData() { { name = "Toxic blowpipe";}},
+                        new ItemData() { { name = "Berserker ring (i)";}},
                         new ItemData() { { name = "Super restore (4)";}},
-                        new ItemData() { { name = "Stamina potion (4)";}},
-                        new ItemData() { { name = "Stamina potion (4)";}},
+                        new ItemData() { { name = "Saradomin brew (4)";}},
                         new ItemData() { { name = "Rune pouch";}},
+                        new ItemData() { { name = "Toxic blowpipe";}},
+                        new ItemData() { { name = "Stamina potion (4)";}},
+                        new ItemData() { { name = "Stamina potion (4)";}},
 
 
                 } },
-                { "Surge DWH", new ItemData[] {
+                { "Surge 2", new ItemData[] {
+                        new ItemData() { { name = "Twisted bow";}},
+                        new ItemData() { { name = "Armadyl chestplate";}},
+                        new ItemData() { { name = "Zaryte vambraces";}},
+                        new ItemData() { { name = "Pegasian boots";}},
+                        new ItemData() { { name = "Necklace of anguish";}},
+                        new ItemData() { { name = "Armadyl chainskirt";}},
+                        new ItemData() { { name = "Ava's assembler";}},
+                        new ItemData() { { name = "Slayer helmet";}},
+                        new ItemData() { { name = "Sanguinesti staff";}},
                         new ItemData() { { name = "Ancestral robe top";}},
                         new ItemData() { { name = "Imbued Magic Cape";}},
-                        new ItemData() { { name = "Armadyl helmet";}},
-                        new ItemData() { { name = "Ava's assembler";}},
-                        new ItemData() { { name = "Ancestral robe bottom";}},
-                        new ItemData() { { name = "Occult necklace";}},
-                        new ItemData() { { name = "Armadyl chestplate";}},
-                        new ItemData() { { name = "Necklace of anguish";}},
-                        new ItemData() { { name = "Sanguinesti staff";}},
-                        new ItemData() { { name = "Tormented bracelet";}},
-                        new ItemData() { { name = "Armadyl chainskirt";}},
-                        new ItemData() { { name = "Barrows gloves";}},
-                        new ItemData() { { name = "Harmonised nightmare staff";}},
                         new ItemData() { { name = "Tome of Fire";}},
-                        new ItemData() { { name = "Pegasian boots";}},
-                        new ItemData() { { name = "Twisted bow";}},
-                        new ItemData() { { name = "Scythe of Vitur";}},
-                        new ItemData() { { name = "Dragon claws";}},
+                        new ItemData() { { name = "Occult necklace";}},
+                        new ItemData() { { name = "Ancestral robe bottom";}},
+                        new ItemData() { { name = "Tormented bracelet";}},
+                        new ItemData() { { name = "Harmonised nightmare staff";}},
                         new ItemData() { { name = "Crystal pickaxe";}},
+                        new ItemData() { { name = "Dragon claws";}},
+                        new ItemData() { { name = "Scythe of Vitur";}},
+                        new ItemData() { { name = "Saradomin brew (4)";}},
                         new ItemData() { { name = "Salve amulet (ei)";}},
-                        new ItemData() { { name = "Saradomin brew (4)";}},
-                        new ItemData() { { name = "Saradomin brew (4)";}},
-                        new ItemData() { { name = "Saradomin brew (4)";}},
-                        new ItemData() { { name = "Toxic blowpipe";}},
+                        new ItemData() { { name = "Berserker ring (i)";}},
                         new ItemData() { { name = "Super restore (4)";}},
-                        new ItemData() { { name = "Stamina potion (4)";}},
-                        new ItemData() { { name = "Stamina potion (4)";}},
+                        new ItemData() { { name = "Saradomin brew (4)";}},
                         new ItemData() { { name = "Rune pouch";}},
+                        new ItemData() { { name = "Bandos godsword";}},
+                        new ItemData() { { name = "Stamina potion (4)";}},
+                        new ItemData() { { name = "Stamina potion (4)";}},
                 } },
                 { "Prep", new ItemData[] {
+                        new ItemData() { { name = "Twisted bow";}},
+                        new ItemData() { { name = "Armadyl chestplate";}},
+                        new ItemData() { { name = "Zaryte vambraces";}},
+                        new ItemData() { { name = "Pegasian boots";}},
+                        new ItemData() { { name = "Necklace of anguish";}},
+                        new ItemData() { { name = "Armadyl chainskirt";}},
+                        new ItemData() { { name = "Ava's assembler";}},
+                        new ItemData() { { name = "Slayer helmet";}},
+                        new ItemData() { { name = "Sanguinesti staff";}},
                         new ItemData() { { name = "Ancestral robe top";}},
                         new ItemData() { { name = "Imbued Magic Cape";}},
-                        new ItemData() { { name = "Armadyl helmet";}},
-                        new ItemData() { { name = "Ava's assembler";}},
-                        new ItemData() { { name = "Ancestral robe bottom";}},
-                        new ItemData() { { name = "Occult necklace";}},
-                        new ItemData() { { name = "Armadyl chestplate";}},
-                        new ItemData() { { name = "Necklace of anguish";}},
-                        new ItemData() { { name = "Sanguinesti staff";}},
-                        new ItemData() { { name = "Tormented bracelet";}},
-                        new ItemData() { { name = "Armadyl chainskirt";}},
-                        new ItemData() { { name = "Barrows gloves";}},
                         new ItemData() { { name = "Arcane spirit shield";}},
+                        new ItemData() { { name = "Occult necklace";}},
+                        new ItemData() { { name = "Ancestral robe bottom";}},
+                        new ItemData() { { name = "Tormented bracelet";}},
                         new ItemData() { { name = "Scythe of Vitur";}},
-                        new ItemData() { { name = "Twisted bow";}},
-                        new ItemData() { { name = "Pegasian boots";}},
-                        new ItemData() { { name = "Dragon claws";}},
                         new ItemData() { { name = "Crystal pickaxe";}},
-                        new ItemData() { { name = "Salve amulet (ei)";}},
+                        new ItemData() { { name = "Dragon claws";}},
                         new ItemData() { { name = "Berserker ring (i)";}},
-                        new ItemData() { { name = "Anglerfish";}},
-                        new ItemData() { { name = "Anglerfish";}},
-                        new ItemData() { { name = "Saradomin brew (4)";}},
+                        new ItemData() { { name = "Lockpick";}},
+                        new ItemData() { { name = "Salve amulet (ei)";}},
                         new ItemData() { { name = "Toxic blowpipe";}},
-                        new ItemData() { { name = "Stamina potion (4)";}},
-                        new ItemData() { { name = "Stamina potion (4)";}},
+                        new ItemData() { { name = "Saradomin brew (4)";}},
+                        new ItemData() { { name = "Lockpick";}},
+                        new ItemData() { { name = "Rune pouch";}},
                         new ItemData() { { name = "Water rune";}},
-                        new ItemData() { { name = "Rune pouch";}},
+                        new ItemData() { { name = "Stamina potion (4)";}},
+                        new ItemData() { { name = "Stamina potion (4)";}},
                 } },
-                { "Veng Chin", new ItemData[] {
+                { "Chinner", new ItemData[] {
+                        new ItemData() { { name = "Twisted bow";}},
+                        new ItemData() { { name = "Armadyl chestplate";}},
+                        new ItemData() { { name = "Zaryte vambraces";}},
+                        new ItemData() { { name = "Pegasian boots";}},
+                        new ItemData() { { name = "Necklace of anguish";}},
+                        new ItemData() { { name = "Armadyl chainskirt";}},
+                        new ItemData() { { name = "Ava's assembler";}},
+                        new ItemData() { { name = "Slayer helmet";}},
+                        new ItemData() { { name = "Sanguinesti staff";}},
                         new ItemData() { { name = "Ancestral robe top";}},
                         new ItemData() { { name = "Imbued Magic Cape";}},
-                        new ItemData() { { name = "Armadyl helmet";}},
-                        new ItemData() { { name = "Ava's assembler";}},
-                        new ItemData() { { name = "Ancestral robe bottom";}},
-                        new ItemData() { { name = "Occult necklace";}},
-                        new ItemData() { { name = "Armadyl chestplate";}},
-                        new ItemData() { { name = "Necklace of anguish";}},
-                        new ItemData() { { name = "Sanguinesti staff";}},
-                        new ItemData() { { name = "Tormented bracelet";}},
-                        new ItemData() { { name = "Armadyl chainskirt";}},
-                        new ItemData() { { name = "Barrows gloves";}},
                         new ItemData() { { name = "Arcane spirit shield";}},
-                        new ItemData() { { name = "Berserker ring (i)";}},
-                        new ItemData() { { name = "Pegasian boots";}},
-                        new ItemData() { { name = "Twisted bow";}},
+                        new ItemData() { { name = "Occult necklace";}},
+                        new ItemData() { { name = "Ancestral robe bottom";}},
+                        new ItemData() { { name = "Tormented bracelet";}},
                         new ItemData() { { name = "Scythe of Vitur";}},
-                        new ItemData() { { name = "Dragon claws";}},
                         new ItemData() { { name = "Crystal pickaxe";}},
+                        new ItemData() { { name = "Dragon claws";}},
+                        new ItemData() { { name = "Berserker ring (i)";}},
+                        new ItemData() { { name = "Saradomin brew (4)";}},
                         new ItemData() { { name = "Salve amulet (ei)";}},
+                        new ItemData() { { name = "Toxic blowpipe";}},
+                        new ItemData() { { name = "Super restore (4)";}},
+                        new ItemData() { { name = "Saradomin brew (4)";}},
+                        new ItemData() { { name = "Rune pouch";}},
                         new ItemData() { { name = "Chinchompa";}},
-                        new ItemData() { { name = "Saradomin brew (4)";}},
-                        new ItemData() { { name = "Saradomin brew (4)";}},
-                        new ItemData() { { name = "Toxic blowpipe";}},
-                        new ItemData() { { name = "Super restore (4)";}},
                         new ItemData() { { name = "Stamina potion (4)";}},
                         new ItemData() { { name = "Stamina potion (4)";}},
-                        new ItemData() { { name = "Rune pouch";}},
                 } },
-                { "Veng Leech / Cross", new ItemData[] {
+                { "Crosser", new ItemData[] {
+                        new ItemData() { { name = "Twisted bow";}},
+                        new ItemData() { { name = "Armadyl chestplate";}},
+                        new ItemData() { { name = "Zaryte vambraces";}},
+                        new ItemData() { { name = "Pegasian boots";}},
+                        new ItemData() { { name = "Necklace of anguish";}},
+                        new ItemData() { { name = "Armadyl chainskirt";}},
+                        new ItemData() { { name = "Ava's assembler";}},
+                        new ItemData() { { name = "Slayer helmet";}},
+                        new ItemData() { { name = "Sanguinesti staff";}},
                         new ItemData() { { name = "Ancestral robe top";}},
                         new ItemData() { { name = "Imbued Magic Cape";}},
-                        new ItemData() { { name = "Armadyl helmet";}},
-                        new ItemData() { { name = "Ava's assembler";}},
-                        new ItemData() { { name = "Ancestral robe bottom";}},
-                        new ItemData() { { name = "Occult necklace";}},
-                        new ItemData() { { name = "Armadyl chestplate";}},
-                        new ItemData() { { name = "Necklace of anguish";}},
-                        new ItemData() { { name = "Sanguinesti staff";}},
-                        new ItemData() { { name = "Tormented bracelet";}},
-                        new ItemData() { { name = "Armadyl chainskirt";}},
-                        new ItemData() { { name = "Barrows gloves";}},
                         new ItemData() { { name = "Arcane spirit shield";}},
-                        new ItemData() { { name = "Berserker ring (i)";}},
-                        new ItemData() { { name = "Pegasian boots";}},
-                        new ItemData() { { name = "Twisted bow";}},
+                        new ItemData() { { name = "Occult necklace";}},
+                        new ItemData() { { name = "Ancestral robe bottom";}},
+                        new ItemData() { { name = "Tormented bracelet";}},
                         new ItemData() { { name = "Scythe of Vitur";}},
-                        new ItemData() { { name = "Dragon claws";}},
                         new ItemData() { { name = "Crystal pickaxe";}},
+                        new ItemData() { { name = "Dragon claws";}},
+                        new ItemData() { { name = "Bandos godsword";}},
+                        new ItemData() { { name = "Saradomin brew (4)";}},
                         new ItemData() { { name = "Salve amulet (ei)";}},
-                        new ItemData() { { name = "Saradomin brew (4)";}},
-                        new ItemData() { { name = "Saradomin brew (4)";}},
-                        new ItemData() { { name = "Saradomin brew (4)";}},
-                        new ItemData() { { name = "Toxic blowpipe";}},
+                        new ItemData() { { name = "Berserker ring (i)";}},
                         new ItemData() { { name = "Super restore (4)";}},
-                        new ItemData() { { name = "Stamina potion (4)";}},
-                        new ItemData() { { name = "Stamina potion (4)";}},
+                        new ItemData() { { name = "Saradomin brew (4)";}},
                         new ItemData() { { name = "Rune pouch";}},
+                        new ItemData() { { name = "Toxic blowpipe";}},
+                        new ItemData() { { name = "Stamina potion (4)";}},
+                        new ItemData() { { name = "Stamina potion (4)";}},
                 } }
 
         }).collect(Collectors.toMap(data -> (String) data[0], data -> (ItemData[]) data[1]));
 
         roleRuneMapping = Stream.of(new Object[][] {
-                { "Surge BGS", new ItemData[] {
+                { "Surge 1", new ItemData[] {
                         new ItemData() { { name = "Mist rune";}},
                         new ItemData() { { name = "Wrath rune";}},
                         new ItemData() { { name = "Law rune";}}
                 } },
-                { "Surge DWH", new ItemData[] {
+                { "Surge 2", new ItemData[] {
                         new ItemData() { { name = "Mist rune";}},
                         new ItemData() { { name = "Wrath rune";}},
                         new ItemData() { { name = "Law rune";}}
                 } },
                 { "Prep", new ItemData[] {
                         new ItemData() { { name = "Death rune";}},
+                        new ItemData() { { name = "Astral rune";}},
+                        new ItemData() { { name = "Lava rune";}}
+                } },
+                { "Chinner", new ItemData[] {
+                        new ItemData() { { name = "Death rune";}},
                         new ItemData() { { name = "Lava rune";}},
                         new ItemData() { { name = "Astral rune";}}
                 } },
-                { "Veng Chin", new ItemData[] {
+                { "Crosser", new ItemData[] {
                         new ItemData() { { name = "Death rune";}},
-                        new ItemData() { { name = "Earth rune";}},
-                        new ItemData() { { name = "Astral rune";}}
-                } },
-                { "Veng Leech / Cross", new ItemData[] {
-                        new ItemData() { { name = "Death rune";}},
-                        new ItemData() { { name = "Earth rune";}},
-                        new ItemData() { { name = "Astral rune";}}
+                        new ItemData() { { name = "Astral rune";}},
+                        new ItemData() { { name = "Lava rune";}}
                 } }
 
         }).collect(Collectors.toMap(data -> (String) data[0], data -> (ItemData[]) data[1]));
 
         rolePrepotMapping = Stream.of(new Object[][] {
-                { "Surge BGS", new ItemData[] {
+                { "Surge 1", new ItemData[] {
                         new ItemData() { { name = "Super combat potion (1)";}},
                         new ItemData() { { name = "Stamina potion (1)";}},
                         new ItemData() { { name = "Antidote++ (1)";}},
@@ -361,7 +361,7 @@ public class CmManData {
                         new ItemData() { { name = "Anglerfish";}},
                         new ItemData() { { name = "Vengeance";}},
                 } },
-                { "Surge DWH", new ItemData[] {
+                { "Surge 2", new ItemData[] {
                         new ItemData() { { name = "Super combat potion (1)";}},
                         new ItemData() { { name = "Stamina potion (1)";}},
                         new ItemData() { { name = "Antidote++ (1)";}},
@@ -377,7 +377,7 @@ public class CmManData {
                         new ItemData() { { name = "Anglerfish";}},
                         new ItemData() { { name = "Vengeance";}},
                 } },
-                { "Veng Chin", new ItemData[] {
+                { "Chinner", new ItemData[] {
                         new ItemData() { { name = "Super combat potion (1)";}},
                         new ItemData() { { name = "Stamina potion (1)";}},
                         new ItemData() { { name = "Antidote++ (1)";}},
@@ -385,7 +385,7 @@ public class CmManData {
                         new ItemData() { { name = "Anglerfish";}},
                         new ItemData() { { name = "Vengeance";}},
                 } },
-                { "Veng Leech / Cross", new ItemData[] {
+                { "Crosser", new ItemData[] {
                         new ItemData() { { name = "Super combat potion (1)";}},
                         new ItemData() { { name = "Stamina potion (1)";}},
                         new ItemData() { { name = "Antidote++ (1)";}},
@@ -397,11 +397,11 @@ public class CmManData {
         }).collect(Collectors.toMap(data -> (String) data[0], data -> (ItemData[]) data[1]));
 
         roleNoteMapping = Stream.of(new Object[][] {
-                { "Surge BGS", "Lure tekton <br/> <font color='blue'>Mage</font> vanguard" },
-                { "Surge DWH", "<font color='green'>Range</font> vanguard" },
+                { "Surge 1", "Lure tekton <br/> <font color='blue'>Mage</font> vanguard" },
+                { "Surge 2", "<font color='green'>Range</font> vanguard" },
                 { "Prep", "<b>3</b> Water runes for each humidify" },
-                { "Veng Chin", "<font color='red'>Melee</font> vanguard" },
-                { "Veng Leech / Cross", "<font color='red'>Melee</font> vanguard/float <br/> Cross tighrope <br/> Can bring Conditional BGS" }
+                { "Chinner", "<font color='red'>Melee</font> vanguard" },
+                { "Crosser", "<font color='red'>Melee</font> vanguard/float <br/> Cross tighrope <br/> Can bring Conditional BGS" }
 
         }).collect(Collectors.toMap(data -> (String) data[0], data -> (String) data[1]));
     }

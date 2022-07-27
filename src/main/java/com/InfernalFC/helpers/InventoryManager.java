@@ -51,6 +51,7 @@ public class InventoryManager {
                 { "Infernal/Fire Cape", new int[] { 21284, 21285, 21295, 21297, 23623, 24133, 24224, 6570, 10566, 13329, 24134, 24223 } },
                 { "Scythe / Tbow", new int[] { 22325, 22486, 22487, 22664, 20997, 20998 } },
                 { "Scythe + 250m / Tbow", new int[] { 22325, 22486, 22487, 22664, 20997, 20998, 1004, 8899 } },
+                { "Ancestral Robe Top", new int[] { 21021, 21022, 24666, 24667 } },
 
         }).collect(Collectors.toMap(data -> (String) data[0], data -> (int[]) data[1]));
     }
